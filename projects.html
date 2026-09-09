@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Projects | Texas Aerial Robotics</title>
+    <meta
+      name="description"
+      content="The 2024-2025 Texas Aerial Robotics project teams: claw retrieval, thrust vector control dart, color vision targeting, and the RTX drone competition."
+    />
+
+    <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="assets/brand/favicon-32.png" />
+    <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Projects | Texas Aerial Robotics" />
+    <meta
+      property="og:description"
+      content="The 2024-2025 Texas Aerial Robotics project teams."
+    />
+    <meta property="og:image" content="assets/brand/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/site.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- HEADER (keep identical on every page) -->
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="index.html">
+          <img
+            class="brand__mark"
+            src="assets/brand/logos/tar-logo-primary-dark-tight.png"
+            alt=""
+            width="46"
+            height="31"
+          />
+          <span class="brand__text">
+            <span class="brand__name">TEXAS AERIAL ROBOTICS</span>
+            <span class="brand__sub">UT Austin</span>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span class="sr-only">Menu</span>
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+        </button>
+
+        <nav class="nav" id="primary-nav" aria-label="Primary">
+          <a class="nav__link" href="index.html">Home</a>
+          <a class="nav__link" href="about.html">About</a>
+          <a class="nav__link is-current" href="projects.html">Projects</a>
+          <a class="nav__link" href="ravg.html">RAVG</a>
+          <a class="nav__link" href="partners.html">Partners</a>
+          <a class="nav__link" href="contact.html">Contact</a>
+          <a class="nav__link nav__link--cta" href="donate.html">Donate</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">2024 &ndash; 2025 TAR Projects</span>
+          <h1 class="page-hero__title">Projects</h1>
+          <p class="lede">
+            Four teams, one goal: aerial robots that can sense, decide, and act
+            without a pilot. Every member joins a project and works on it from
+            the first week.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           PROJECT: CLAW RETRIEVAL
+           To add a new project, copy one of these <section> blocks and
+           change the id, the heading, and the copy.
+           =============================================================== -->
+      <section class="section section--light" id="claw-retrieval">
+        <div class="container">
+          <div class="split">
+            <div class="reveal">
+              <span class="eyebrow">Project 01</span>
+              <hr class="rule" />
+              <h2>Claw Retrieval</h2>
+              <p class="lede">
+                Our team is developing a drone for autonomous object retrieval
+                and delivery using a claw mechanism. Members are currently
+                working on designing a 2-in-1 landing gear and claw system for
+                payload handling, developing a driver PCB to control a stepper
+                motor for the claw using PID control, and developing a
+                searchlight to allow operation in low-light conditions.
+              </p>
+            </div>
+
+            <div class="panel reveal">
+              <p class="panel__title">Focus areas</p>
+              <ul class="tags">
+                <li class="tag">Mechanical design</li>
+                <li class="tag">Landing gear</li>
+                <li class="tag">Driver PCB</li>
+                <li class="tag">Stepper motors</li>
+                <li class="tag">PID control</li>
+                <li class="tag">Low-light operation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           PROJECT: THRUST VECTOR CONTROL DART
+           =============================================================== -->
+      <section class="section section--muted" id="tvc-dart">
+        <div class="container">
+          <div class="split">
+            <div class="reveal">
+              <span class="eyebrow">Project 02</span>
+              <hr class="rule" />
+              <h2>Thrust Vector Control Dart</h2>
+              <p class="lede">
+                We are designing a drone system capable of deploying a dart with
+                thrust vectoring control via a coaxial motor for precise
+                manoeuvrability. The dart, controlled by an ESP32
+                microcontroller, includes a camera for real-time video streaming
+                and is designed to self-land upon deployment. A servo-driven
+                release mechanism ensures accurate deployment.
+              </p>
+            </div>
+
+            <div class="panel reveal">
+              <p class="panel__title">Focus areas</p>
+              <ul class="tags">
+                <li class="tag">Thrust vectoring</li>
+                <li class="tag">Coaxial motor</li>
+                <li class="tag">ESP32</li>
+                <li class="tag">Live video streaming</li>
+                <li class="tag">Servo release</li>
+                <li class="tag">Autonomous landing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           PROJECT: COLOR VISION TARGETING
+           =============================================================== -->
+      <section class="section section--light" id="color-vision">
+        <div class="container">
+          <div class="split">
+            <div class="reveal">
+              <span class="eyebrow">Project 03</span>
+              <hr class="rule" />
+              <h2>Color Vision Targeting</h2>
+              <p class="lede">
+                Our team is developing a fully autonomous Nerf gun drone system
+                capable of detecting and targeting maroon-coloured objects. The
+                team's goal is to build a drone that combines image recognition,
+                autonomous navigation, and rapid-fire mechanisms to target
+                specific objects with precision. By blending hardware and
+                software development, members gain valuable experience in areas
+                like drone control systems, object detection algorithms, and
+                automated firing mechanisms.
+              </p>
+            </div>
+
+            <div class="panel reveal">
+              <p class="panel__title">Focus areas</p>
+              <ul class="tags">
+                <li class="tag">Image recognition</li>
+                <li class="tag">Object detection</li>
+                <li class="tag">Autonomous navigation</li>
+                <li class="tag">Drone control systems</li>
+                <li class="tag">Firing mechanisms</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           PROJECT: RTX DRONE COMPETITION
+           Full write-up lives on ravg.html.
+           =============================================================== -->
+      <section class="section section--dark section--grid" id="rtx">
+        <div class="container">
+          <div class="split">
+            <div class="reveal">
+              <span class="eyebrow">Project 04</span>
+              <hr class="rule" />
+              <h2>RTX Drone Competition</h2>
+              <p class="lede">
+                TAR participates in the yearly RTX drone competition. This
+                year's task involves a scout Unmanned Aerial Vehicle (UAV) that
+                will map the area, discover the landing zone, and communicate
+                the location directly to the Delivery Vehicle, UxV (air or
+                ground vehicle). The Delivery UxV will receive the location of
+                the landing zone, fly or drive to it, and deliver the package to
+                the delivery zone.
+              </p>
+              <div class="btn-row">
+                <a class="btn btn--primary" href="ravg.html"
+                  >Go to the RAVG page</a
+                >
+              </div>
+            </div>
+
+            <div class="panel reveal">
+              <p class="panel__title">Focus areas</p>
+              <ul class="tags">
+                <li class="tag">Aerial mapping</li>
+                <li class="tag">Landing zone detection</li>
+                <li class="tag">UAV to UxV comms</li>
+                <li class="tag">Payload delivery</li>
+                <li class="tag">Systems integration</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           ARCHIVE
+           =============================================================== -->
+      <section class="section section--muted" id="archive">
+        <div class="container">
+          <div class="section__header">
+            <span class="eyebrow">Archive</span>
+            <hr class="rule" />
+            <h2>Past missions.</h2>
+            <p class="lede">
+              Before our current project teams, TAR competed in the
+              International Aerial Robotics Competition against top universities
+              from around the world.
+            </p>
+          </div>
+
+          <div class="grid grid--3">
+            <article class="card reveal">
+              <p class="card__index">IARC Mission 7</p>
+              <h3 class="card__title">Herding autonomous ground robots</h3>
+              <p class="card__body">
+                Mission 7 took a monumental leap by requiring autonomous aerial
+                robots to interact with and control autonomous ground robots.
+                Teams were tasked with developing systems to herd ground robots
+                out one end of an arena in the absence of 3D cues such as walls.
+                The ground robots could only be interacted with by touch: a top
+                touch commanded a 45&deg; clockwise turn, and a blocking action
+                resulted in a 180&deg; turn.
+              </p>
+              <div class="card__spacer"></div>
+              <ul class="tags">
+                <li class="tag">YOLO</li>
+                <li class="tag">ArduCopter</li>
+                <li class="tag">EKF</li>
+                <li class="tag">2D LiDAR</li>
+              </ul>
+            </article>
+
+            <article class="card reveal">
+              <p class="card__index">IARC Mission 8</p>
+              <h3 class="card__title">Swarm control without GPS</h3>
+              <p class="card__body">
+                For 2019, IARC changed missions. Mission 8 was again designed to
+                challenge the bounds of what was currently possible in aerial
+                robotics. Teams had to control a swarm of drones, which accepted
+                commands via audio or visual input rather than a traditional
+                radio controller: read and process four fragments of a QR code,
+                piece them together to unlock a chest, and avoid both enemy
+                drones and arena obstacles. This mission was also GPS denied.
+              </p>
+              <div class="card__spacer"></div>
+              <ul class="tags">
+                <li class="tag">Swarms</li>
+                <li class="tag">Obstacle avoidance</li>
+                <li class="tag">QR decoding</li>
+                <li class="tag">GPS denied</li>
+              </ul>
+            </article>
+
+            <article class="card reveal">
+              <p class="card__index">IARC Mission 9</p>
+              <h3 class="card__title">Repairing a moving platform</h3>
+              <p class="card__body">
+                Our drone had to fly approximately two miles from the starting
+                location, around pylons, to a mast simulating the movement of a
+                ship at sea. Once there, it had to synchronise with the mast,
+                remove a defective communications module, replace it with a good
+                one, and return to the starting location &mdash; in under nine
+                minutes, using only onboard computing.
+              </p>
+              <div class="card__spacer"></div>
+              <ul class="tags">
+                <li class="tag">Precision manipulation</li>
+                <li class="tag">Moving frames</li>
+                <li class="tag">Optical recognition</li>
+                <li class="tag">Onboard compute</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="btn-row">
+            <a class="btn btn--outline" href="https://github.com/Texas-Aerial-Robotics"
+              >Browse our code on GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="container container--narrow">
+          <h2>Have a project idea?</h2>
+          <p>
+            Members pitch and lead new projects every year. Tell us what you
+            want to build.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="contact.html">Talk to us</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER (keep identical on every page) -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div>
+            <img
+              class="footer__logo"
+              src="assets/brand/logos/tar-wordmark-paper-tight.png"
+              alt="Texas Aerial Robotics"
+              width="150"
+              height="36"
+            />
+            <p class="text-muted">
+              An undergraduate research organization at The University of Texas
+              at Austin, building fully autonomous drones.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="footer__heading">Explore</h2>
+            <ul class="footer__list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="ravg.html">RAVG</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="footer__heading">Get involved</h2>
+            <ul class="footer__list">
+              <li><a href="partners.html">Partners</a></li>
+              <li><a href="donate.html">Donate</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li>
+                <a href="https://github.com/Texas-Aerial-Robotics">GitHub</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="footer__heading">Follow</h2>
+            <ul class="footer__list">
+              <li>
+                <a href="https://www.instagram.com/texasaerialrobotics/"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/texas-aerial-robotics/"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a href="https://www.facebook.com/texasaerialrobotics/"
+                  >Facebook</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <span>&copy; <span id="year">2025</span> Texas Aerial Robotics</span>
+          <span>Austin, Texas</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/site-config.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

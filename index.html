@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Texas Aerial Robotics | Autonomous drones built at UT Austin</title>
+    <meta
+      name="description"
+      content="Texas Aerial Robotics is an undergraduate research organization at the University of Texas at Austin dedicated to designing, building, and programming fully autonomous drones."
+    />
+
+    <!-- Icons -->
+    <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="assets/brand/favicon-32.png" />
+    <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+
+    <!-- Link preview card (Slack, iMessage, LinkedIn, ...) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Texas Aerial Robotics" />
+    <meta
+      property="og:description"
+      content="Autonomous drones, built by students at The University of Texas at Austin."
+    />
+    <meta property="og:image" content="assets/brand/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/site.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ===================================================================
+         HEADER
+         This exact block is repeated at the top of every page. If you add
+         or rename a tab, do it in all seven pages plus 404.html.
+         The tab for the current page carries the class "is-current".
+         =================================================================== -->
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="index.html">
+          <img
+            class="brand__mark"
+            src="assets/brand/logos/tar-logo-primary-dark-tight.png"
+            alt=""
+            width="46"
+            height="31"
+          />
+          <span class="brand__text">
+            <span class="brand__name">TEXAS AERIAL ROBOTICS</span>
+            <span class="brand__sub">UT Austin</span>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span class="sr-only">Menu</span>
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+        </button>
+
+        <nav class="nav" id="primary-nav" aria-label="Primary">
+          <a class="nav__link is-current" href="index.html">Home</a>
+          <a class="nav__link" href="about.html">About</a>
+          <a class="nav__link" href="projects.html">Projects</a>
+          <a class="nav__link" href="ravg.html">RAVG</a>
+          <a class="nav__link" href="partners.html">Partners</a>
+          <a class="nav__link" href="contact.html">Contact</a>
+          <a class="nav__link nav__link--cta" href="donate.html">Donate</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ===============================================================
+           HERO
+           =============================================================== -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero__grid">
+            <div>
+              <span class="eyebrow">The University of Texas at Austin</span>
+              <h1 class="hero__title">
+                Fully autonomous drones,<br />built <span>from scratch</span>.
+              </h1>
+              <p class="lede">
+                Texas Aerial Robotics is an undergraduate research organization
+                designing, building, and programming aerial robots that fly
+                themselves &mdash; hardware, software, and everything in
+                between.
+              </p>
+              <div class="btn-row">
+                <a class="btn btn--primary" href="projects.html"
+                  >See our projects</a
+                >
+                <a class="btn btn--ghost" href="about.html">Who we are</a>
+              </div>
+            </div>
+
+            <img
+              class="hero__art"
+              src="assets/brand/logos/tar-logo-primary-dark-tight.png"
+              alt=""
+              width="420"
+              height="287"
+            />
+          </div>
+
+          <!-- Quick numbers. Update these as the org changes. -->
+          <div class="stats">
+            <div class="stat">
+              <div class="stat__value">2017</div>
+              <div class="stat__label">Founded at UT Austin</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">40+</div>
+              <div class="stat__label">Undergraduate members</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">5</div>
+              <div class="stat__label">Sub-teams</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value">4</div>
+              <div class="stat__label">Active projects this year</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           WHO ARE WE?
+           =============================================================== -->
+      <section class="section section--light">
+        <div class="container">
+          <div class="split">
+            <div class="reveal">
+              <span class="eyebrow">Who are we?</span>
+              <hr class="rule" />
+              <h2>An undergraduate lab for autonomous flight.</h2>
+              <p class="lede">
+                Based in the University of Texas at Austin, Texas Aerial
+                Robotics is an undergraduate research organization dedicated to
+                designing, building, and programming fully autonomous drones.
+              </p>
+              <p class="lede">
+                Our members gain hands-on experience with industry-relevant
+                tools and technologies, including CAD, prototyping, Linux, C++,
+                and ROS.
+              </p>
+              <div class="btn-row">
+                <a class="btn btn--outline" href="about.html">Learn more</a>
+              </div>
+            </div>
+
+            <div class="panel reveal">
+              <p class="panel__title">Tools our members use</p>
+              <ul class="tags">
+                <li class="tag">CAD</li>
+                <li class="tag">Prototyping</li>
+                <li class="tag">PCB Design</li>
+                <li class="tag">Embedded Electronics</li>
+                <li class="tag">Drone Avionics</li>
+                <li class="tag">Linux</li>
+                <li class="tag">C++</li>
+                <li class="tag">Python</li>
+                <li class="tag">ROS</li>
+                <li class="tag">PX4</li>
+                <li class="tag">Computer Vision</li>
+                <li class="tag">Path Planning</li>
+                <li class="tag">SLAM</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           PROJECTS PREVIEW
+           The full write-ups live on projects.html.
+           =============================================================== -->
+      <section class="section section--muted">
+        <div class="container">
+          <div class="section__header">
+            <span class="eyebrow">2024 &ndash; 2025 TAR Projects</span>
+            <hr class="rule" />
+            <h2>What we are building this year.</h2>
+            <p class="lede">
+              Every member joins a project team and ships real hardware and real
+              software alongside it.
+            </p>
+          </div>
+
+          <div class="grid grid--2">
+            <article class="card reveal">
+              <p class="card__index">01</p>
+              <h3 class="card__title">Claw Retrieval</h3>
+              <p class="card__body">
+                A drone for autonomous object retrieval and delivery using a
+                claw mechanism, with a 2-in-1 landing gear and claw system for
+                payload handling.
+              </p>
+              <div class="card__spacer"></div>
+              <a class="link-arrow" href="projects.html#claw-retrieval"
+                >Read more</a
+              >
+            </article>
+
+            <article class="card reveal">
+              <p class="card__index">02</p>
+              <h3 class="card__title">Thrust Vector Control Dart</h3>
+              <p class="card__body">
+                A drone system that deploys a dart with thrust vectoring control
+                via a coaxial motor, streaming live video and self-landing on
+                deployment.
+              </p>
+              <div class="card__spacer"></div>
+              <a class="link-arrow" href="projects.html#tvc-dart">Read more</a>
+            </article>
+
+            <article class="card reveal">
+              <p class="card__index">03</p>
+              <h3 class="card__title">Color Vision Targeting</h3>
+              <p class="card__body">
+                A fully autonomous Nerf gun drone system that detects and
+                targets maroon-coloured objects using image recognition and
+                autonomous navigation.
+              </p>
+              <div class="card__spacer"></div>
+              <a class="link-arrow" href="projects.html#color-vision"
+                >Read more</a
+              >
+            </article>
+
+            <article class="card reveal">
+              <p class="card__index">04</p>
+              <h3 class="card__title">RTX Drone Competition</h3>
+              <p class="card__body">
+                Our competition team builds a scout UAV that maps the arena and
+                hands the landing zone off to a delivery vehicle.
+              </p>
+              <div class="card__spacer"></div>
+              <a class="link-arrow" href="ravg.html">Go to RAVG</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           TAR AT RTX
+           =============================================================== -->
+      <section class="section section--dark section--grid">
+        <div class="container">
+          <div class="split">
+            <div class="reveal">
+              <span class="eyebrow">TAR at RTX</span>
+              <hr class="rule" />
+              <h2>Competing on a national stage.</h2>
+              <p class="lede">
+                We are proud to have a team participating in the prestigious RTX
+                Autonomous Vehicles Competition. This competition presents a
+                unique challenge, where both aerial and ground robots are
+                employed in dynamic and strategic environments.
+              </p>
+              <div class="btn-row">
+                <a class="btn btn--primary" href="ravg.html"
+                  >Explore the RAVG team</a
+                >
+              </div>
+            </div>
+
+            <div class="panel reveal">
+              <p class="panel__title">This year's mission</p>
+              <ul class="list-check">
+                <li>A scout UAV maps the area and finds the landing zone.</li>
+                <li>
+                  It communicates that location directly to the delivery
+                  vehicle.
+                </li>
+                <li>
+                  The delivery UxV &mdash; air or ground &mdash; travels to the
+                  zone.
+                </li>
+                <li>The package is delivered to the delivery zone.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           PARTNERS STRIP
+           =============================================================== -->
+      <section class="section section--light">
+        <div class="container">
+          <div class="section__header section__header--center">
+            <span class="eyebrow">Our partners</span>
+            <hr class="rule" />
+            <h2>Support us</h2>
+            <p class="lede">
+              Pushing the limits wouldn't be possible without all of the special
+              corporations, institutions, and individuals that support us!
+            </p>
+          </div>
+
+          <!-- Placeholder slots. Replace the text inside each slot with an
+               <img src="assets/brand/partners/name.png" alt="Name" />. -->
+          <div class="logo-wall reveal">
+            <div class="logo-slot">Your logo here</div>
+            <div class="logo-slot">Your logo here</div>
+            <div class="logo-slot">Your logo here</div>
+            <div class="logo-slot">Your logo here</div>
+          </div>
+
+          <div class="btn-row" style="justify-content: center">
+            <a class="btn btn--outline" href="partners.html"
+              >Partnership tiers</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           CALL TO ACTION
+           =============================================================== -->
+      <section class="cta-band">
+        <div class="container container--narrow">
+          <h2>Build something that flies itself.</h2>
+          <p>
+            No experience required &mdash; just curiosity. We train new members
+            on the tools, and everyone works on a real project from day one.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="contact.html">Get in touch</a>
+            <a class="btn btn--outline" href="donate.html">Support the team</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================================================================
+         FOOTER
+         This block is also repeated on every page.
+         =================================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div>
+            <img
+              class="footer__logo"
+              src="assets/brand/logos/tar-wordmark-paper-tight.png"
+              alt="Texas Aerial Robotics"
+              width="150"
+              height="36"
+            />
+            <p class="text-muted">
+              An undergraduate research organization at The University of Texas
+              at Austin, building fully autonomous drones.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="footer__heading">Explore</h2>
+            <ul class="footer__list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="ravg.html">RAVG</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="footer__heading">Get involved</h2>
+            <ul class="footer__list">
+              <li><a href="partners.html">Partners</a></li>
+              <li><a href="donate.html">Donate</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li>
+                <a href="https://github.com/Texas-Aerial-Robotics">GitHub</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="footer__heading">Follow</h2>
+            <ul class="footer__list">
+              <li>
+                <a href="https://www.instagram.com/texasaerialrobotics/"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/texas-aerial-robotics/"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a href="https://www.facebook.com/texasaerialrobotics/"
+                  >Facebook</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <span>&copy; <span id="year">2025</span> Texas Aerial Robotics</span>
+          <span>Austin, Texas</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/site-config.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>

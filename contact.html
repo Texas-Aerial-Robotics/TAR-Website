@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Contact | Texas Aerial Robotics</title>
+    <meta
+      name="description"
+      content="Got a question? Send Texas Aerial Robotics a message and we will respond as soon as possible."
+    />
+
+    <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="assets/brand/favicon-32.png" />
+    <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contact | Texas Aerial Robotics" />
+    <meta
+      property="og:description"
+      content="Send Texas Aerial Robotics a message."
+    />
+    <meta property="og:image" content="assets/brand/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/site.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- HEADER (keep identical on every page) -->
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="index.html">
+          <img
+            class="brand__mark"
+            src="assets/brand/logos/tar-logo-primary-dark-tight.png"
+            alt=""
+            width="46"
+            height="31"
+          />
+          <span class="brand__text">
+            <span class="brand__name">TEXAS AERIAL ROBOTICS</span>
+            <span class="brand__sub">UT Austin</span>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span class="sr-only">Menu</span>
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+        </button>
+
+        <nav class="nav" id="primary-nav" aria-label="Primary">
+          <a class="nav__link" href="index.html">Home</a>
+          <a class="nav__link" href="about.html">About</a>
+          <a class="nav__link" href="projects.html">Projects</a>
+          <a class="nav__link" href="ravg.html">RAVG</a>
+          <a class="nav__link" href="partners.html">Partners</a>
+          <a class="nav__link is-current" href="contact.html">Contact</a>
+          <a class="nav__link nav__link--cta" href="donate.html">Donate</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Contact us</span>
+          <h1 class="page-hero__title">Say hello</h1>
+          <p class="lede">
+            Got a question? We'd love to hear from you! Send us a message, and
+            we will respond as soon as possible.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section--light">
+        <div class="container">
+          <div class="split" style="align-items: start">
+            <!-- ===========================================================
+                 CONTACT FORM
+
+                 Where this goes is set by `contactEndpoint` in
+                 assets/js/site-config.js. See README.md for how to wire it
+                 up to SMTP or a webhook.
+
+                 The `action` below is only used if JavaScript is switched
+                 off; normally assets/js/contact-form.js intercepts submit
+                 and sends the message in the background.
+                 =========================================================== -->
+            <div class="reveal">
+              <form
+                class="form"
+                id="contact-form"
+                method="post"
+                action="/.netlify/functions/contact"
+                novalidate
+              >
+                <div class="form__row">
+                  <div class="field">
+                    <label for="name">Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      autocomplete="name"
+                      required
+                    />
+                  </div>
+
+                  <div class="field">
+                    <label for="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      autocomplete="email"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" />
+                </div>
+
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <!-- Spam trap. Leave this here and leave it hidden. -->
+                <div class="field field--honeypot" aria-hidden="true">
+                  <label for="company-website">Company website</label>
+                  <input
+                    type="text"
+                    id="company-website"
+                    name="company-website"
+                    tabindex="-1"
+                    autocomplete="off"
+                  />
+                </div>
+
+                <div>
+                  <button class="btn btn--primary" type="submit">
+                    Send message
+                  </button>
+                </div>
+
+                <p
+                  class="form__status"
+                  id="contact-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </form>
+            </div>
+
+            <!-- ===========================================================
+                 CONTACT DETAILS
+                 =========================================================== -->
+            <div class="panel reveal">
+              <div class="contact-item">
+                <p class="contact-item__label">Email</p>
+                <p>
+                  <a href="mailto:texasaerialrobotics@gmail.com"
+                    >texasaerialrobotics@gmail.com</a
+                  >
+                </p>
+              </div>
+
+              <div class="contact-item">
+                <p class="contact-item__label">Where we are</p>
+                <p>
+                  The University of Texas at Austin<br />
+                  Austin, Texas
+                </p>
+              </div>
+
+              <div class="contact-item">
+                <p class="contact-item__label">Follow along</p>
+                <p>
+                  <a href="https://www.instagram.com/texasaerialrobotics/"
+                    >Instagram</a
+                  ><br />
+                  <a
+                    href="https://www.linkedin.com/company/texas-aerial-robotics/"
+                    >LinkedIn</a
+                  ><br />
+                  <a href="https://www.facebook.com/texasaerialrobotics/"
+                    >Facebook</a
+                  ><br />
+                  <a href="https://github.com/Texas-Aerial-Robotics">GitHub</a>
+                </p>
+              </div>
+
+              <div class="contact-item">
+                <p class="contact-item__label">Sponsorship</p>
+                <p>
+                  Interested in supporting the team? Start with our
+                  <a href="partners.html">partners page</a>, or just send us a
+                  message.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER (keep identical on every page) -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div>
+            <img
+              class="footer__logo"
+              src="assets/brand/logos/tar-wordmark-paper-tight.png"
+              alt="Texas Aerial Robotics"
+              width="150"
+              height="36"
+            />
+            <p class="text-muted">
+              An undergraduate research organization at The University of Texas
+              at Austin, building fully autonomous drones.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="footer__heading">Explore</h2>
+            <ul class="footer__list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="ravg.html">RAVG</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="footer__heading">Get involved</h2>
+            <ul class="footer__list">
+              <li><a href="partners.html">Partners</a></li>
+              <li><a href="donate.html">Donate</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li>
+                <a href="https://github.com/Texas-Aerial-Robotics">GitHub</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="footer__heading">Follow</h2>
+            <ul class="footer__list">
+              <li>
+                <a href="https://www.instagram.com/texasaerialrobotics/"
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/texas-aerial-robotics/"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a href="https://www.facebook.com/texasaerialrobotics/"
+                  >Facebook</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <span>&copy; <span id="year">2025</span> Texas Aerial Robotics</span>
+          <span>Austin, Texas</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/site-config.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script src="assets/js/contact-form.js"></script>
+  </body>
+</html>
