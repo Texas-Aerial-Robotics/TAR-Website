@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Search engines read this file to discover every page.
+  If you add a page, add a matching <url> block here.
+  Replace the domain if the site moves.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://texasaerialrobotics.org/</loc></url>
+  <url><loc>https://texasaerialrobotics.org/about.html</loc></url>
+  <url><loc>https://texasaerialrobotics.org/projects.html</loc></url>
+  <url><loc>https://texasaerialrobotics.org/ravg.html</loc></url>
+  <url><loc>https://texasaerialrobotics.org/partners.html</loc></url>
+  <url><loc>https://texasaerialrobotics.org/contact.html</loc></url>
+  <url><loc>https://texasaerialrobotics.org/donate.html</loc></url>
+</urlset>

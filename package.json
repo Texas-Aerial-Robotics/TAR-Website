@@ -1,0 +1,13 @@
+{
+  "name": "texas-aerial-robotics-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website for Texas Aerial Robotics at UT Austin.",
+  "scripts": {
+    "start": "npx --yes serve . -l 3000",
+    "dev": "npx --yes netlify-cli dev"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}

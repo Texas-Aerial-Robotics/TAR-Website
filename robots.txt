@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Update the domain below once the site has its real address.
+Sitemap: https://texasaerialrobotics.org/sitemap.xml
