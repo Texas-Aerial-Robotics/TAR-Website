@@ -210,16 +210,56 @@ Links in the footer get this automatically from `external: true` in
 
 ## The contact form
 
-The form on the contact page posts to **Formspark**, which stores the
-submissions and emails you when one arrives. The endpoint is `contactEndpoint`
-in `src/_data/site.js`:
+Every message goes to two places:
+
+| Where | What it is | Set in |
+| ----- | ---------- | ------ |
+| **Formspark** | The message's real home. It stores the submission and emails you. This is what decides whether the visitor sees "sent" or an error. | `contactEndpoint` in `src/_data/site.js` |
+| **Discord** | A notification embed in your server channel. Best effort — if it fails the visitor is not told, because the message is already safe in Formspark. | `notifyEndpoint` in `src/_data/site.js`, plus `DISCORD_WEBHOOK_URL` in Netlify |
 
 ```js
 contactEndpoint: "https://submit-form.com/VxqZQNAmW",
+notifyEndpoint:  "/.netlify/functions/contact",
 ```
 
 Manage notification addresses, spam filtering, and the submission archive at
-<https://formspark.io>.
+<https://formspark.io>. Set `notifyEndpoint` to `""` to switch the Discord
+notification off.
+
+### Discord notifications
+
+The Netlify function posts an embed that looks like this:
+
+```
+Sponsorship -- Ada Lovelace
+Company Sponsorship
+We would love to sponsor the team this season. Who do we talk to?
+```
+
+The title is the subject (or the reason, if the subject was left blank)
+followed by the sender's name; then the reason they picked; then what they
+wrote. Their email address sits in the footer of the embed so you can reply.
+To change the layout, edit `sendToDiscord` in `netlify/functions/contact.js`.
+
+**Setting it up.** In Discord: *Server Settings → Integrations → Webhooks →
+New Webhook*, pick the channel, and copy the URL. In Netlify: *Site
+configuration → Environment variables*, add `DISCORD_WEBHOOK_URL` with that
+value, and redeploy.
+
+> **Do not put the webhook URL in this repository or in any file under
+> `assets/`.** This repo is public and everything under `assets/` is served
+> to visitors. Anyone holding that URL can post anything they like to your
+> channel. It belongs in the Netlify environment variables and nowhere else.
+> If a URL does leak, delete the webhook in Discord and make a new one.
+
+The embed is sent with `allowed_mentions: { parse: [] }`, so a visitor cannot
+make the bot ping `@everyone` by typing it into the form.
+
+To try it locally:
+
+```bash
+DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/..." npm run netlify
+```
 
 Two things to know when editing the form:
 
@@ -258,25 +298,41 @@ visitor on the page.)
 If the request fails for any reason, the page offers a `mailto:` link so a
 message is never silently lost.
 
-### Spam
+### Spam and validation
 
-The form carries a hidden field named `_honeypot`. Real visitors never see it;
-bots fill in everything, and Formspark silently drops any submission that has
-it set. Leave it in place.
+Light checks, meant to turn away drive-by bots and catch honest typos without
+locking out a real person. They run in `assets/js/contact-form.js` before the
+message is sent, and again in `netlify/functions/contact.js`, because anything
+checked only in the browser can be skipped by posting straight to the URL.
 
-### Using the Netlify function instead
+| Check | Rule |
+| ----- | ---- |
+| Honeypot | A hidden field named `_honeypot`. Real visitors never see it; bots fill in everything. Formspark drops these too. |
+| Time trap | A form submitted less than 3 seconds after the page loaded was not filled in by a person. |
+| Cooldown | The same visitor cannot send twice within 30 seconds. |
+| Name | 2–80 characters, must contain letters, no links. |
+| Email | Must look like an address. |
+| Subject | Up to 120 characters, no links. |
+| Reason | Must be one of the options in the dropdown. |
+| Message | 15–4000 characters, at most 2 links. |
 
-`netlify/functions/contact.js` is a self-hosted alternative that can send
-messages over **SMTP, to a webhook, or both at once**. It is not used by
-default. To switch to it, set this in `src/_data/site.js`:
+Anything caught this way is flagged under the field it belongs to. A bot that
+trips the honeypot or the time trap is shown the same thank-you as everyone
+else, so it gets no signal that it was caught.
 
-```js
-contactEndpoint: "/.netlify/functions/contact",
-```
+The numbers all live in one block at the top of `assets/js/contact-form.js`
+(and mirrored near the top of the Netlify function), so they are easy to
+loosen if a real message ever gets turned away.
 
-Then add environment variables in Netlify under *Site configuration →
-Environment variables* and redeploy. Nothing is hard-coded; each route turns
-itself on when its variables are present.
+### Other things the Netlify function can do
+
+Besides Discord, `netlify/functions/contact.js` can send messages over
+**SMTP** and **to any other webhook**. Each route turns itself on when its
+environment variables are present, and every configured route gets a copy.
+
+You can also drop Formspark entirely and let the function be the mailbox, by
+setting `contactEndpoint: "/.netlify/functions/contact"` in
+`src/_data/site.js`.
 
 #### Option A — send email over SMTP
 
@@ -300,10 +356,11 @@ answers them directly.
 | `CONTACT_WEBHOOK_URL`    | `https://hooks.slack.com/services/...` | Any endpoint that accepts a JSON POST     |
 | `CONTACT_WEBHOOK_SECRET` | `some-long-random-string`              | Optional; sent as the `X-TAR-Signature` header |
 
-Works with Slack, Discord, Zapier, Make, n8n, Airtable, or your own server.
+Sends the raw JSON rather than a formatted embed. Works with Slack, Zapier,
+Make, n8n, Airtable, or your own server.
 
-Set both A and B and every message goes to both places. If one route fails the
-other still delivers.
+Every configured route gets a copy of each message. If one fails the others
+still deliver.
 
 #### Testing it locally
 

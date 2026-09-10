@@ -38,6 +38,22 @@ module.exports = {
      ------------------------------------------------------------------ */
   contactEndpoint: "https://submit-form.com/VxqZQNAmW",
 
+  /* ------------------------------------------------------------------
+     A second place the same message is sent, alongside Formspark.
+
+     This is the serverless function in netlify/functions/contact.js. It
+     posts the Discord embed, and can also send email over SMTP. It only
+     does anything once DISCORD_WEBHOOK_URL is set in the Netlify
+     environment variables — the URL is a credential and must not live in
+     this repository, which is public.
+
+     Set this to "" to switch the second delivery off entirely.
+
+     If it fails, the visitor is not told: their message is already safe
+     in Formspark.
+     ------------------------------------------------------------------ */
+  notifyEndpoint: "/.netlify/functions/contact",
+
   /* Where the "email us instead" links point, and the fallback destination
      if contactEndpoint is empty or the request fails.
      CHECK THIS: it is a placeholder until someone confirms the real inbox. */

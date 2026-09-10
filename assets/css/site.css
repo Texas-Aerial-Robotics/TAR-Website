@@ -1359,6 +1359,33 @@ p:last-child {
   transform: none;
 }
 
+/* A field the visitor needs to fix. Added and removed by
+   assets/js/contact-form.js, along with the message underneath. */
+.field--invalid input,
+.field--invalid textarea,
+.field--invalid select {
+  border-color: #c0392b;
+  background-color: #fffafa;
+}
+
+.field--invalid input:focus,
+.field--invalid textarea:focus,
+.field--invalid select:focus {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.16);
+}
+
+.field__error {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #8c2318;
+  display: none;
+}
+
+.field--invalid .field__error {
+  display: block;
+}
+
 /* Anti-spam honeypot. Real people never see or fill this in. */
 .field--honeypot {
   position: absolute;

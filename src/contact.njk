@@ -41,6 +41,9 @@ scripts: ["contact-form.js"]
             action="{{ site.contactEndpoint }}"
             novalidate
           >
+            <!-- Each field has an empty <p class="field__error"> underneath.
+                 assets/js/contact-form.js fills it in and shows it when
+                 something needs fixing. -->
             <div class="form__row">
               <div class="field">
                 <label for="name">Name</label>
@@ -49,8 +52,11 @@ scripts: ["contact-form.js"]
                   id="name"
                   name="name"
                   autocomplete="name"
+                  maxlength="80"
+                  aria-describedby="name-error"
                   required
                 />
+                <p class="field__error" id="name-error"></p>
               </div>
 
               <div class="field">
@@ -60,14 +66,24 @@ scripts: ["contact-form.js"]
                   id="email"
                   name="email"
                   autocomplete="email"
+                  maxlength="254"
+                  aria-describedby="email-error"
                   required
                 />
+                <p class="field__error" id="email-error"></p>
               </div>
             </div>
 
             <div class="field">
               <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" />
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                maxlength="120"
+                aria-describedby="subject-error"
+              />
+              <p class="field__error" id="subject-error"></p>
             </div>
 
             <!-- Add, remove, or reword these options freely. Whatever is
@@ -75,7 +91,12 @@ scripts: ["contact-form.js"]
                  other file needs to change. -->
             <div class="field">
               <label for="reason">Reason for getting in touch</label>
-              <select id="reason" name="reason" required>
+              <select
+                id="reason"
+                name="reason"
+                aria-describedby="reason-error"
+                required
+              >
                 <option value="">Choose a reason&hellip;</option>
                 <option>Organization Collaboration</option>
                 <option>Company Sponsorship</option>
@@ -86,13 +107,21 @@ scripts: ["contact-form.js"]
                 <option>Media or Press</option>
                 <option>Something Else</option>
               </select>
+              <p class="field__error" id="reason-error"></p>
             </div>
 
             <!-- Greyed out until a reason is picked. The "field--locked"
                  class is added and removed by assets/js/contact-form.js. -->
             <div class="field" id="message-field">
               <label for="message">Message</label>
-              <textarea id="message" name="message" required></textarea>
+              <textarea
+                id="message"
+                name="message"
+                maxlength="4000"
+                aria-describedby="message-error"
+                required
+              ></textarea>
+              <p class="field__error" id="message-error"></p>
             </div>
 
             <!-- Spam trap. Leave this here and leave it hidden. "_honeypot"
