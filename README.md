@@ -226,9 +226,13 @@ After the real domain is attached, update the URLs in `sitemap.xml` and
 - `…-primary-dark` — the full-colour logo intended for **dark** backgrounds
 - `…-primary-light` — the full-colour logo intended for **light** backgrounds
 - `…-tight` — cropped close to the artwork, with no surrounding padding
+- `tar-mark-drone-paper.png` — just the drone, no lettering. Used in the
+  header, where the words "Texas Aerial Robotics" already sit beside it.
 
-The site itself uses `tar-logo-primary-dark.png` in the header and hero and
-`tar-wordmark-paper.png` in the footer, because both sit on a dark background.
+The site uses `tar-mark-drone-paper.png` in the header,
+`tar-logo-primary-dark-tight.png` in the hero, and
+`tar-wordmark-paper-tight.png` in the footer, because all three sit on a dark
+background.
 
 ---
 
