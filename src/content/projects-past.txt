@@ -1,0 +1,87 @@
+# ==========================================================================
+# Past missions  ->  the archive carousel at the bottom of the Projects page
+# --------------------------------------------------------------------------
+# When a project team wraps up at the end of the year, move its block here
+# from projects-current.txt and give it a "When" line.
+#
+# One project per block, separated by a blank line. Each line is
+# "Label: value". Wrap a long value over as many lines as you like, as long
+# as the extra lines start with a couple of spaces.
+#
+#   Name         What the team or the mission was called
+#   When         The small line above the name. A school year such as
+#                "2025 - 2026", or a competition such as "IARC Mission 7"
+#   Icon         Any icon name from the list at the bottom of
+#                assets/css/site.css, without the "icon--" part
+#   Description  What the team built
+#   Focus areas  Comma separated. These become the tags on the card.
+#
+# The carousel works out how many cards there are on its own, so the dots
+# and the arrows keep up with whatever is listed here. Cards appear in the
+# order below, newest first.
+#
+# Lines starting with # are notes like this one and are ignored.
+# ==========================================================================
+
+Name: Claw Retrieval
+When: 2025 – 2026
+Icon: package
+Description: A drone for autonomous object retrieval and delivery using a
+  claw mechanism. The team designed a 2-in-1 landing gear and claw system
+  for payload handling, a driver PCB controlling a stepper motor for the
+  claw using PID control, and a searchlight to allow operation in low-light
+  conditions.
+Focus areas: PID control, Driver PCB, Landing gear
+
+Name: Thrust Vector Control Dart
+When: 2025 – 2026
+Icon: target
+Description: A drone system capable of deploying a dart with thrust
+  vectoring control via a coaxial motor for precise manoeuvrability. The
+  dart, controlled by an ESP32 microcontroller, carried a camera for
+  real-time video streaming and self-landed on deployment, released by a
+  servo-driven mechanism.
+Focus areas: Thrust vectoring, ESP32, Video streaming
+
+Name: Color Vision Targeting
+When: 2025 – 2026
+Icon: eye
+Description: A fully autonomous Nerf gun drone system capable of detecting
+  and targeting maroon-coloured objects, combining image recognition,
+  autonomous navigation, and rapid-fire mechanisms to hit specific objects
+  with precision.
+Focus areas: Object detection, Image recognition, Drone control
+
+Name: Herding autonomous ground robots
+When: IARC Mission 7
+Icon: route
+Description: Mission 7 took a monumental leap by requiring autonomous
+  aerial robots to interact with and control autonomous ground robots.
+  Teams were tasked with developing systems to herd ground robots out one
+  end of an arena in the absence of 3D cues such as walls. The ground
+  robots could only be interacted with by touch: a top touch commanded a
+  45° clockwise turn, and a blocking action resulted in a 180° turn.
+Focus areas: YOLO, ArduCopter, EKF, 2D LiDAR
+
+Name: Swarm control without GPS
+When: IARC Mission 8
+Icon: swarm
+Description: For 2019, IARC changed missions. Mission 8 was again designed
+  to challenge the bounds of what was currently possible in aerial
+  robotics. Teams had to control a swarm of drones, which accepted commands
+  via audio or visual input rather than a traditional radio controller:
+  read and process four fragments of a QR code, piece them together to
+  unlock a chest, and avoid both enemy drones and arena obstacles. This
+  mission was also GPS denied.
+Focus areas: Swarms, Obstacle avoidance, QR decoding, GPS denied
+
+Name: Repairing a moving platform
+When: IARC Mission 9
+Icon: trophy
+Description: Our drone had to fly approximately two miles from the starting
+  location, around pylons, to a mast simulating the movement of a ship at
+  sea. Once there, it had to synchronise with the mast, remove a defective
+  communications module, replace it with a good one, and return to the
+  starting location — in under nine minutes, using only onboard computing.
+Focus areas: Precision manipulation, Moving frames, Optical recognition,
+  Onboard compute

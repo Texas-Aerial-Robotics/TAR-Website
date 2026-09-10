@@ -193,92 +193,34 @@ navKey: "about"
 
   <!-- ===============================================================
        OFFICERS
-       Update this list at the start of each academic year.
+       The list itself lives in src/content/about-officer-team.txt.
+       Edit that file to change who is on the team; nothing here needs
+       touching, however many officers there are.
        =============================================================== -->
   <section class="section section--light">
     <div class="container">
       <div class="section__header">
-        <span class="eyebrow">2026 &ndash; 2027 Officer Team</span>
+        <span class="eyebrow">{{ site.season }} Officer Team</span>
         <hr class="rule" />
         <h2>Who runs TAR.</h2>
       </div>
 
       <div class="grid grid--3">
+        {%- for officer in officers %}
         <article class="card reveal">
-          <p class="card__index">President</p>
-          <h3 class="card__title">Andres Suniaga</h3>
+          <p class="card__index">{{ officer.role }}</p>
+          <h3 class="card__title">{{ officer.name }}</h3>
+          {%- if officer.details.length or officer.email %}
           <p class="card__body">
-            Aerospace Engineering &middot; Senior<br />
-            <a href="mailto:andresxsuniaga@utexas.edu"
-              >andresxsuniaga@utexas.edu</a
-            >
+            {{ officer.details | join(" · ") }}
+            {%- if officer.details.length and officer.email %}<br />{% endif %}
+            {%- if officer.email %}
+            <a href="mailto:{{ officer.email }}">{{ officer.email }}</a>
+            {%- endif %}
           </p>
+          {%- endif %}
         </article>
-
-        <article class="card reveal">
-          <p class="card__index">Vice President</p>
-          <h3 class="card__title">Arjun Bhatia</h3>
-          <p class="card__body">
-            Junior<br />
-            <a href="mailto:arjunbhatia@utexas.edu"
-              >arjunbhatia@utexas.edu</a
-            >
-          </p>
-        </article>
-
-        <article class="card reveal">
-          <p class="card__index">Software Lead</p>
-          <h3 class="card__title">Shivansh Madan</h3>
-          <p class="card__body">
-            Electrical and Computer Engineering<br />
-            <a href="mailto:shivansh.madan@utexas.edu"
-              >shivansh.madan@utexas.edu</a
-            >
-          </p>
-        </article>
-
-        <article class="card reveal">
-          <p class="card__index">Software Lead</p>
-          <h3 class="card__title">Jeet Patel</h3>
-          <p class="card__body">
-            Computational Engineering<br />
-            <a href="mailto:jeetp4609@gmail.com">jeetp4609@gmail.com</a>
-          </p>
-        </article>
-
-        <article class="card reveal">
-          <p class="card__index">Hardware Lead</p>
-          <h3 class="card__title">Ethan Chua</h3>
-          <p class="card__body">
-            Sophomore<br />
-            <a href="mailto:cyethan@utexas.edu">cyethan@utexas.edu</a>
-          </p>
-        </article>
-
-        <article class="card reveal">
-          <p class="card__index">Hardware Lead</p>
-          <h3 class="card__title">Li Shi</h3>
-          <p class="card__body">
-            <a href="mailto:li.shi@utexas.edu">li.shi@utexas.edu</a>
-          </p>
-        </article>
-
-        <article class="card reveal">
-          <p class="card__index">Business Lead</p>
-          <h3 class="card__title">Richard Guarneros</h3>
-          <p class="card__body">
-            <a href="mailto:rguarne1@utexas.edu">rguarne1@utexas.edu</a>
-          </p>
-        </article>
-
-        <article class="card reveal">
-          <p class="card__index">Marketing Lead</p>
-          <h3 class="card__title">Arnav Joshi</h3>
-          <p class="card__body">
-            Computer Science<br />
-            <a href="mailto:arnavjoshi@utexas.edu">arnavjoshi@utexas.edu</a>
-          </p>
-        </article>
+        {%- endfor %}
       </div>
     </div>
   </section>

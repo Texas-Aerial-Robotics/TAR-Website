@@ -14,6 +14,10 @@ module.exports = {
   university: "The University of Texas at Austin",
   location: "Austin, Texas",
 
+  /* The academic year. Shown above the project list and the officer team,
+     so both move on with one edit here. */
+  season: "2026 – 2027",
+
   // Used under the logo in the footer.
   blurb:
     "An undergraduate research organization at The University of Texas at Austin, building fully autonomous drones.",

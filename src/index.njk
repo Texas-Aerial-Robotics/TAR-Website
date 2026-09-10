@@ -111,12 +111,14 @@ navKey: "home"
 
   <!-- ===============================================================
        PROJECTS PREVIEW
-       The full write-ups live on projects.html.
+       The projects themselves live in src/content/projects-current.txt.
+       Edit that file to change them; the full write-ups on the Projects
+       page come from the same place.
        =============================================================== -->
   <section class="section section--muted">
     <div class="container">
       <div class="section__header">
-        <span class="eyebrow">2026 &ndash; 2027 TAR Projects</span>
+        <span class="eyebrow">{{ site.season }} TAR Projects</span>
         <hr class="rule" />
         <h2>What we are building this year.</h2>
         <p class="lede">
@@ -126,53 +128,23 @@ navKey: "home"
       </div>
 
       <div class="cards">
+        {%- for project in projects.current %}
         <article class="card reveal">
           <span class="card__icon">
-            <span class="icon icon--swarm icon--lg" aria-hidden="true"
+            <span
+              class="icon icon--{{ project.icon }} icon--lg"
+              aria-hidden="true"
             ></span>
           </span>
-          <p class="card__index">Swarm</p>
-          <h3 class="card__title">Hivemind</h3>
-          <p class="card__body">
-            A fleet of small quadcopters flying as one. Every drone runs the
-            same controller and negotiates its own role, so the formation
-            survives losing a member mid-flight.
-          </p>
+          <p class="card__index">{{ project.label }}</p>
+          <h3 class="card__title">{{ project.name }}</h3>
+          <p class="card__body">{{ project.summary }}</p>
           <div class="card__spacer"></div>
-          <a class="link-arrow" href="/projects.html#hivemind">Read more</a>
+          <a class="link-arrow" href="/projects.html#{{ project.link }}"
+            >Read more</a
+          >
         </article>
-
-        <article class="card reveal">
-          <span class="card__icon">
-            <span class="icon icon--fold icon--lg" aria-hidden="true"
-            ></span>
-          </span>
-          <p class="card__index">Folding &amp; throwable</p>
-          <h3 class="card__title">Origami</h3>
-          <p class="card__body">
-            A drone that folds to the size of a paperback, gets thrown into
-            the air, and unfolds mid-flight to run small jobs around a
-            house.
-          </p>
-          <div class="card__spacer"></div>
-          <a class="link-arrow" href="/projects.html#origami">Read more</a>
-        </article>
-
-        <article class="card reveal">
-          <span class="card__icon">
-            <span class="icon icon--vtol icon--lg" aria-hidden="true"
-            ></span>
-          </span>
-          <p class="card__index">VTOL</p>
-          <h3 class="card__title">Peregrine</h3>
-          <p class="card__body">
-            A tail-sitter that lifts off straight up like a quadcopter, tips
-            over onto a fixed wing, and cruises. The hard part is the
-            handover.
-          </p>
-          <div class="card__spacer"></div>
-          <a class="link-arrow" href="/projects.html#peregrine">Read more</a>
-        </article>
+        {%- endfor %}
       </div>
     </div>
   </section>
@@ -200,19 +172,14 @@ navKey: "home"
           </div>
         </div>
 
+        <!-- The steps come from src/content/ravg-competition.txt, the same
+             file the RAVG page reads, so both move together each season. -->
         <div class="panel reveal">
           <p class="panel__title">This year's mission</p>
           <ul class="list-check">
-            <li>A scout UAV maps the area and finds the landing zone.</li>
-            <li>
-              It communicates that location directly to the delivery
-              vehicle.
-            </li>
-            <li>
-              The delivery UxV &mdash; air or ground &mdash; travels to the
-              zone.
-            </li>
-            <li>The package is delivered to the delivery zone.</li>
+            {%- for step in ravg.steps %}
+            <li><strong>{{ step.step }}.</strong> {{ step.detail }}</li>
+            {%- endfor %}
           </ul>
         </div>
       </div>

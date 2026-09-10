@@ -19,8 +19,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "robots.txt": "robots.txt" });
   eleventyConfig.addPassthroughCopy({ "sitemap.xml": "sitemap.xml" });
 
-  // Editing a stylesheet or an image should refresh the preview too.
+  // Editing a stylesheet, an image, or one of the plain-text content files
+  // should refresh the preview too.
   eleventyConfig.addWatchTarget("assets/");
+  eleventyConfig.addWatchTarget("src/content/");
 
   eleventyConfig.setServerOptions({ port: 4173 });
 

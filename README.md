@@ -64,9 +64,18 @@ src/                    Everything you edit to change a page
     partials/header.njk The top bar. Written once, appears on every page.
     partials/footer.njk The footer. Written once, appears on every page.
 
+  content/              The bits that get rewritten every year, as plain text
+    about-officer-team.txt   The officer team
+    projects-current.txt     This year's project teams
+    projects-past.txt        The archive carousel
+    ravg-competition.txt     The RTX task, mission sequence, and vehicles
+
   _data/
     site.js             Links, email address, contact form destination
     nav.js              Every link in the top bar and in the footer
+    officers.js         Readers for the files in content/. You should not
+    projects.js         need to open these: edit the .txt instead.
+    ravg.js
 
   src.11tydata.js       Defaults shared by all pages (rarely touched)
 
@@ -118,6 +127,42 @@ The available settings are listed in a comment at the top of
 
 ---
 
+## The yearly rewrite
+
+Four sections of the site get replaced every year. None of them is written in
+HTML. They live as plain text in `src/content/`, and the pages build
+themselves from whatever is in there:
+
+| File | Where it shows up |
+| ---- | ----------------- |
+| `about-officer-team.txt` | "Who runs TAR." on the About page |
+| `projects-current.txt` | The project cards on the Home page **and** the full write-ups on the Projects page |
+| `projects-past.txt` | The "Past missions" carousel |
+| `ravg-competition.txt` | "This year's task", the mission sequence, and the vehicles on the RAVG page; the RTX section on the Projects page; the "This year's mission" panel on the Home page |
+
+Every file explains its own layout in a comment block at the top, so open the
+one you need and follow what is already there. The shape is the same in all
+four: **a blank line separates one entry from the next**, and lines starting
+with `#` are notes that never appear on the site.
+
+Nothing else has to change when you edit them. Add a fourth project and the
+Projects page stripes its bands to suit; add a seventh archive card and the
+carousel dots count themselves; add an officer and the grid grows a row.
+
+Handing over at the end of a year usually means:
+
+1. Move each finished team from `projects-current.txt` to `projects-past.txt`,
+   adding a `When:` line with the school year.
+2. Write the new teams into `projects-current.txt`.
+3. Replace the officer list in `about-officer-team.txt`.
+4. Rewrite `ravg-competition.txt` with whatever task RTX has set.
+5. Change `season` in `src/_data/site.js` to the new school year. That is the
+   "2026 – 2027" heading above the projects and the officer team.
+
+Run `npm run dev` while you do it and the page updates as you save.
+
+---
+
 ## Common edits
 
 ### Change wording on a page
@@ -164,25 +209,28 @@ The home page also has a smaller set of slots near the bottom.
 
 ### Update the officer list
 
-`src/about.njk`, in the section commented `OFFICERS`. Copy one of the
-`<article class="card">` blocks to add a person, delete a block to remove one.
+`src/content/about-officer-team.txt`. Four lines per person — role, name,
+major, year — with a blank line between them. See "The yearly rewrite" above.
 
 ### Add a project
 
-`src/projects.njk`, in the section commented `WHAT WE ARE BUILDING THIS YEAR`.
-Copy one `<article class="card">` block and change its icon, label, name, and
-copy. The row stays centred no matter how many cards there are. To show it on
-the home page too, copy a card in the matching section of `src/index.njk`.
+`src/content/projects-current.txt`. Copy an existing block and change the
+values. It appears on both the Home page and the Projects page automatically.
 
 ### Add a card to the "Past missions" carousel
 
-`src/projects.njk`, in the section commented `PAST MISSIONS`. Copy an
-`<article class="card">` inside `<div class="carousel__track">`. The dots
-underneath are generated from however many cards it finds, so there is
-nothing else to keep in sync.
+`src/content/projects-past.txt`. Copy an existing block and change the values.
+The dots underneath count themselves, so there is nothing to keep in sync.
 
-To change how fast it moves, edit `data-carousel-interval` on the
-`<div class="carousel">` — it is milliseconds, so `5000` is five seconds.
+To change how fast the carousel moves, edit `data-carousel-interval` on the
+`<div class="carousel">` in `src/projects.njk` — it is milliseconds, so
+`5000` is five seconds.
+
+### Update the RTX competition task
+
+`src/content/ravg-competition.txt`. One `Headline:` block for the task itself,
+one `Step:` block per line of the mission sequence, and one `Vehicle:` block
+per card. It feeds the RAVG page, the Projects page, and the Home page.
 
 ### Change the reasons in the contact form dropdown
 

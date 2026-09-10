@@ -8,7 +8,7 @@ scripts: ["carousel.js"]
 
   <section class="page-hero">
     <div class="container">
-      <span class="eyebrow">2026 &ndash; 2027 TAR Projects</span>
+      <span class="eyebrow">{{ site.season }} TAR Projects</span>
       <h1 class="page-hero__title">Projects</h1>
       <p class="lede">
         One goal: aerial robots that can sense, decide, and act without a
@@ -19,126 +19,51 @@ scripts: ["carousel.js"]
   </section>
 
   <!-- ===============================================================
-       PROJECT: HIVEMIND
-       To add a new project, copy one of these <section> blocks and
-       change the id, the heading, and the copy. Alternate between
-       "section--light" and "section--muted" so the bands stripe.
+       THE PROJECT TEAMS
+
+       Written in src/content/projects-current.txt. Edit that file to add,
+       remove, or reword a project. The bands stripe themselves light and
+       dark, so however many there are, the page keeps its rhythm.
        =============================================================== -->
-  <section class="section section--light" id="hivemind">
+  {%- for project in projects.current %}
+  <section
+    class="section section--{{ "light" if loop.index0 % 2 == 0 else "muted" }}"
+    id="{{ project.link }}"
+  >
     <div class="container">
       <div class="split">
         <div class="reveal">
-          <span class="eyebrow">Project 01 &middot; Swarm</span>
+          <span class="eyebrow"
+            >Project {% if loop.index < 10 %}0{% endif %}{{ loop.index }} &middot;
+            {{ project.label }}</span
+          >
           <hr class="rule" />
-          <h2>Hivemind</h2>
-          <p class="lede">
-            A fleet of small quadcopters that fly as one. Hivemind is
-            building a decentralised swarm where every drone runs the same
-            controller and negotiates its own role in the air, so the
-            formation reshapes itself rather than collapsing when one
-            member drops out. Members work on the consensus layer, on
-            collision-free trajectory allocation, and on a ground station
-            that can task the whole fleet with a single command.
-          </p>
+          <h2>{{ project.name }}</h2>
+          <p class="lede">{{ project.description }}</p>
         </div>
 
         <div class="panel reveal">
           <p class="panel__title">
-            <span class="icon icon--swarm" aria-hidden="true"></span>
+            <span
+              class="icon icon--{{ project.icon }}"
+              aria-hidden="true"
+            ></span>
             Focus areas
           </p>
           <ul class="tags">
-            <li class="tag">Multi-agent control</li>
-            <li class="tag">Consensus algorithms</li>
-            <li class="tag">ROS 2</li>
-            <li class="tag">UWB ranging</li>
-            <li class="tag">Formation flight</li>
-            <li class="tag">Ground station UI</li>
+            {%- for tag in project.tags %}
+            <li class="tag">{{ tag }}</li>
+            {%- endfor %}
           </ul>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- ===============================================================
-       PROJECT: ORIGAMI
-       =============================================================== -->
-  <section class="section section--muted" id="origami">
-    <div class="container">
-      <div class="split">
-        <div class="reveal">
-          <span class="eyebrow">Project 02 &middot; Folding &amp; throwable</span>
-          <hr class="rule" />
-          <h2>Origami</h2>
-          <p class="lede">
-            A drone that folds down to the size of a paperback, gets thrown
-            into the air by hand, and unfolds mid-flight to run small jobs
-            around a house. The team is designing the spring-loaded arm
-            hinges, tuning a controller that has to recover a stable hover
-            from an uncontrolled tumble, and teaching it to find its way
-            around indoor spaces where there is no GPS to fall back on.
-          </p>
-        </div>
-
-        <div class="panel reveal">
-          <p class="panel__title">
-            <span class="icon icon--fold" aria-hidden="true"></span>
-            Focus areas
-          </p>
-          <ul class="tags">
-            <li class="tag">Compliant mechanisms</li>
-            <li class="tag">Spring hinges</li>
-            <li class="tag">Launch-to-hover recovery</li>
-            <li class="tag">Indoor VIO</li>
-            <li class="tag">Weight budgeting</li>
-            <li class="tag">Rapid prototyping</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===============================================================
-       PROJECT: PEREGRINE
-       =============================================================== -->
-  <section class="section section--light" id="peregrine">
-    <div class="container">
-      <div class="split">
-        <div class="reveal">
-          <span class="eyebrow">Project 03 &middot; VTOL</span>
-          <hr class="rule" />
-          <h2>Peregrine</h2>
-          <p class="lede">
-            A tail-sitter that lifts off straight up like a quadcopter,
-            tips over onto a fixed wing, and cruises. Peregrine is chasing
-            the transition: the few seconds where the airframe stops being
-            a multirotor and starts being an aeroplane. Members work on the
-            wing, on the mixed-mode flight controller, and on the
-            aerodynamic modelling that tells us whether a design will
-            survive the handover before we risk it.
-          </p>
-        </div>
-
-        <div class="panel reveal">
-          <p class="panel__title">
-            <span class="icon icon--vtol" aria-hidden="true"></span>
-            Focus areas
-          </p>
-          <ul class="tags">
-            <li class="tag">Fixed-wing aero</li>
-            <li class="tag">Transition control</li>
-            <li class="tag">CFD</li>
-            <li class="tag">Composite layup</li>
-            <li class="tag">PX4 airframe config</li>
-            <li class="tag">Endurance testing</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+  {%- endfor %}
 
   <!-- ===============================================================
        RTX DRONE COMPETITION
+       This year's task comes from src/content/ravg-competition.txt.
        Full write-up lives on ravg.html.
        =============================================================== -->
   <section class="section section--dark section--grid" id="rtx">
@@ -148,15 +73,7 @@ scripts: ["carousel.js"]
           <span class="eyebrow">Competition team</span>
           <hr class="rule" />
           <h2>RTX Drone Competition</h2>
-          <p class="lede">
-            TAR participates in the yearly RTX drone competition. This
-            year's task involves a scout Unmanned Aerial Vehicle (UAV) that
-            will map the area, discover the landing zone, and communicate
-            the location directly to the Delivery Vehicle, UxV (air or
-            ground vehicle). The Delivery UxV will receive the location of
-            the landing zone, fly or drive to it, and deliver the package to
-            the delivery zone.
-          </p>
+          <p class="lede">{{ ravg.task.overview }}</p>
           <div class="btn-row">
             <a class="btn btn--primary" href="/ravg.html"
               >Go to the RAVG page</a
@@ -167,11 +84,9 @@ scripts: ["carousel.js"]
         <div class="panel reveal">
           <p class="panel__title">Focus areas</p>
           <ul class="tags">
-            <li class="tag">Aerial mapping</li>
-            <li class="tag">Landing zone detection</li>
-            <li class="tag">UAV to UxV comms</li>
-            <li class="tag">Payload delivery</li>
-            <li class="tag">Systems integration</li>
+            {%- for tag in ravg.task.tags %}
+            <li class="tag">{{ tag }}</li>
+            {%- endfor %}
           </ul>
         </div>
       </div>
@@ -201,154 +116,33 @@ scripts: ["carousel.js"]
       </div>
 
       <div class="carousel" data-carousel data-carousel-interval="5000">
+        <!-- Cards come from src/content/projects-past.txt. Edit that
+             file; the dots below count themselves. -->
         <div
           class="carousel__track"
           tabindex="0"
           role="region"
           aria-label="Past missions"
         >
+          {%- for project in projects.past %}
           <article class="card">
             <span class="card__icon">
-              <span class="icon icon--package icon--lg" aria-hidden="true"
+              <span
+                class="icon icon--{{ project.icon }} icon--lg"
+                aria-hidden="true"
               ></span>
             </span>
-            <p class="card__index">2025 &ndash; 2026</p>
-            <h3 class="card__title">Claw Retrieval</h3>
-            <p class="card__body">
-              A drone for autonomous object retrieval and delivery using a
-              claw mechanism. The team designed a 2-in-1 landing gear and
-              claw system for payload handling, a driver PCB controlling a
-              stepper motor for the claw using PID control, and a
-              searchlight to allow operation in low-light conditions.
-            </p>
+            <p class="card__index">{{ project.when }}</p>
+            <h3 class="card__title">{{ project.name }}</h3>
+            <p class="card__body">{{ project.description }}</p>
             <div class="card__spacer"></div>
             <ul class="tags">
-              <li class="tag">PID control</li>
-              <li class="tag">Driver PCB</li>
-              <li class="tag">Landing gear</li>
+              {%- for tag in project.tags %}
+              <li class="tag">{{ tag }}</li>
+              {%- endfor %}
             </ul>
           </article>
-
-          <article class="card">
-            <span class="card__icon">
-              <span class="icon icon--target icon--lg" aria-hidden="true"
-              ></span>
-            </span>
-            <p class="card__index">2025 &ndash; 2026</p>
-            <h3 class="card__title">Thrust Vector Control Dart</h3>
-            <p class="card__body">
-              A drone system capable of deploying a dart with thrust
-              vectoring control via a coaxial motor for precise
-              manoeuvrability. The dart, controlled by an ESP32
-              microcontroller, carried a camera for real-time video
-              streaming and self-landed on deployment, released by a
-              servo-driven mechanism.
-            </p>
-            <div class="card__spacer"></div>
-            <ul class="tags">
-              <li class="tag">Thrust vectoring</li>
-              <li class="tag">ESP32</li>
-              <li class="tag">Video streaming</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="card__icon">
-              <span class="icon icon--eye icon--lg" aria-hidden="true"
-              ></span>
-            </span>
-            <p class="card__index">2025 &ndash; 2026</p>
-            <h3 class="card__title">Color Vision Targeting</h3>
-            <p class="card__body">
-              A fully autonomous Nerf gun drone system capable of detecting
-              and targeting maroon-coloured objects, combining image
-              recognition, autonomous navigation, and rapid-fire mechanisms
-              to hit specific objects with precision.
-            </p>
-            <div class="card__spacer"></div>
-            <ul class="tags">
-              <li class="tag">Object detection</li>
-              <li class="tag">Image recognition</li>
-              <li class="tag">Drone control</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="card__icon">
-              <span class="icon icon--route icon--lg" aria-hidden="true"
-              ></span>
-            </span>
-            <p class="card__index">IARC Mission 7</p>
-            <h3 class="card__title">Herding autonomous ground robots</h3>
-            <p class="card__body">
-              Mission 7 took a monumental leap by requiring autonomous
-              aerial robots to interact with and control autonomous ground
-              robots. Teams were tasked with developing systems to herd
-              ground robots out one end of an arena in the absence of 3D
-              cues such as walls. The ground robots could only be
-              interacted with by touch: a top touch commanded a 45&deg;
-              clockwise turn, and a blocking action resulted in a 180&deg;
-              turn.
-            </p>
-            <div class="card__spacer"></div>
-            <ul class="tags">
-              <li class="tag">YOLO</li>
-              <li class="tag">ArduCopter</li>
-              <li class="tag">EKF</li>
-              <li class="tag">2D LiDAR</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="card__icon">
-              <span class="icon icon--swarm icon--lg" aria-hidden="true"
-              ></span>
-            </span>
-            <p class="card__index">IARC Mission 8</p>
-            <h3 class="card__title">Swarm control without GPS</h3>
-            <p class="card__body">
-              For 2019, IARC changed missions. Mission 8 was again designed
-              to challenge the bounds of what was currently possible in
-              aerial robotics. Teams had to control a swarm of drones,
-              which accepted commands via audio or visual input rather than
-              a traditional radio controller: read and process four
-              fragments of a QR code, piece them together to unlock a
-              chest, and avoid both enemy drones and arena obstacles. This
-              mission was also GPS denied.
-            </p>
-            <div class="card__spacer"></div>
-            <ul class="tags">
-              <li class="tag">Swarms</li>
-              <li class="tag">Obstacle avoidance</li>
-              <li class="tag">QR decoding</li>
-              <li class="tag">GPS denied</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <span class="card__icon">
-              <span class="icon icon--trophy icon--lg" aria-hidden="true"
-              ></span>
-            </span>
-            <p class="card__index">IARC Mission 9</p>
-            <h3 class="card__title">Repairing a moving platform</h3>
-            <p class="card__body">
-              Our drone had to fly approximately two miles from the
-              starting location, around pylons, to a mast simulating the
-              movement of a ship at sea. Once there, it had to synchronise
-              with the mast, remove a defective communications module,
-              replace it with a good one, and return to the starting
-              location &mdash; in under nine minutes, using only onboard
-              computing.
-            </p>
-            <div class="card__spacer"></div>
-            <ul class="tags">
-              <li class="tag">Precision manipulation</li>
-              <li class="tag">Moving frames</li>
-              <li class="tag">Optical recognition</li>
-              <li class="tag">Onboard compute</li>
-            </ul>
-          </article>
+          {%- endfor %}
         </div>
 
         <div class="carousel__controls">

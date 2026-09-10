@@ -1,3 +1,22 @@
+# ==========================================================================
+# Officer team  ->  the "Who runs TAR." section on the About page
+# --------------------------------------------------------------------------
+# One officer per block, four lines each, in this order:
+#
+#     Role
+#     Name
+#     Major
+#     Year
+#
+# Leave a blank line between officers. They appear on the page in the order
+# they appear here, so reorder by moving blocks around.
+#
+# A line with an @ in it is treated as an email address and shown as a
+# mailto: link, so you can add one under any officer who wants it listed.
+#
+# Lines starting with # are notes like this one and are ignored.
+# ==========================================================================
+
 President
 Ifunanya (Ify) Obinabo
 Electrical & Computer Engineering

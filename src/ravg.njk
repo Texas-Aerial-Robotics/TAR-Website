@@ -24,6 +24,11 @@ navKey: "ravg"
 
   <!-- ===============================================================
        THIS YEAR'S TASK
+
+       RTX sets a new task every year. Everything on this page that
+       changes with it — the headline, the paragraph, the mission
+       sequence, and the vehicles below — is written in
+       src/content/ravg-competition.txt. Edit that file each season.
        =============================================================== -->
   <section class="section section--light">
     <div class="container">
@@ -31,41 +36,16 @@ navKey: "ravg"
         <div class="reveal">
           <span class="eyebrow">This year's task</span>
           <hr class="rule" />
-          <h2>Scout, hand off, deliver.</h2>
-          <p class="lede">
-            TAR participates in the yearly RTX drone competition. This
-            year's task involves a scout Unmanned Aerial Vehicle (UAV) that
-            will map the area, discover the landing zone, and communicate
-            the location directly to the Delivery Vehicle, UxV (air or
-            ground vehicle). The Delivery UxV will receive the location of
-            the landing zone, fly or drive to it, and deliver the package to
-            the delivery zone.
-          </p>
+          <h2>{{ ravg.task.headline }}</h2>
+          <p class="lede">{{ ravg.task.overview }}</p>
         </div>
 
         <div class="panel reveal">
           <p class="panel__title">Mission sequence</p>
           <ul class="list-check">
-            <li>
-              <strong>Map.</strong> The scout UAV launches and surveys the
-              arena.
-            </li>
-            <li>
-              <strong>Find.</strong> It identifies the landing zone from the
-              air.
-            </li>
-            <li>
-              <strong>Hand off.</strong> The coordinates go straight to the
-              delivery vehicle.
-            </li>
-            <li>
-              <strong>Travel.</strong> The delivery UxV flies or drives to
-              the zone.
-            </li>
-            <li>
-              <strong>Deliver.</strong> The package is placed in the
-              delivery zone.
-            </li>
+            {%- for step in ravg.steps %}
+            <li><strong>{{ step.step }}.</strong> {{ step.detail }}</li>
+            {%- endfor %}
           </ul>
         </div>
       </div>
@@ -88,47 +68,25 @@ navKey: "ravg"
       </div>
 
       <div class="grid grid--2">
+        {%- for vehicle in ravg.vehicles %}
         <article class="card reveal">
           <span class="card__icon">
-            <span class="icon icon--drone icon--lg" aria-hidden="true"
+            <span
+              class="icon icon--{{ vehicle.icon }} icon--lg"
+              aria-hidden="true"
             ></span>
           </span>
-          <p class="card__index">Vehicle 01</p>
-          <h3 class="card__title">Scout UAV</h3>
-          <p class="card__body">
-            The aerial half of the system. It takes off, builds a map of the
-            arena, recognises the landing zone, and transmits its location
-            to the delivery vehicle.
-          </p>
+          <p class="card__index">Vehicle {% if loop.index < 10 %}0{% endif %}{{ loop.index }}</p>
+          <h3 class="card__title">{{ vehicle.vehicle }}</h3>
+          <p class="card__body">{{ vehicle.description }}</p>
           <div class="card__spacer"></div>
           <ul class="tags">
-            <li class="tag">Autonomous flight</li>
-            <li class="tag">Aerial mapping</li>
-            <li class="tag">Computer vision</li>
-            <li class="tag">Telemetry</li>
+            {%- for tag in vehicle.tags %}
+            <li class="tag">{{ tag }}</li>
+            {%- endfor %}
           </ul>
         </article>
-
-        <article class="card reveal">
-          <span class="card__icon">
-            <span class="icon icon--package icon--lg" aria-hidden="true"
-            ></span>
-          </span>
-          <p class="card__index">Vehicle 02</p>
-          <h3 class="card__title">Delivery UxV</h3>
-          <p class="card__body">
-            Air or ground. It receives the landing zone coordinates,
-            navigates there while avoiding obstacles, and releases the
-            payload in the delivery zone.
-          </p>
-          <div class="card__spacer"></div>
-          <ul class="tags">
-            <li class="tag">Path planning</li>
-            <li class="tag">Obstacle avoidance</li>
-            <li class="tag">Payload release</li>
-            <li class="tag">Vehicle-to-vehicle comms</li>
-          </ul>
-        </article>
+        {%- endfor %}
       </div>
     </div>
   </section>
