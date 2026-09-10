@@ -55,12 +55,17 @@
 
   var reason = form.elements.reason;
   var messageField = form.elements.message;
+  var messageWrapper = document.getElementById("message-field");
 
   function applyReasonGate() {
     var chosen = Boolean(reason && reason.value);
 
     if (messageField) {
       messageField.disabled = !chosen;
+    }
+    // Greys out the "Message" label alongside the box it belongs to.
+    if (messageWrapper) {
+      messageWrapper.classList.toggle("field--locked", !chosen);
     }
     if (submitButton) {
       submitButton.disabled = !chosen;

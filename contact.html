@@ -154,12 +154,11 @@
                     <option>Media or Press</option>
                     <option>Something Else</option>
                   </select>
-                  <p class="field__hint">
-                    Choosing a reason unlocks the message box below.
-                  </p>
                 </div>
 
-                <div class="field">
+                <!-- Greyed out until a reason is picked. The "field--locked"
+                     class is added and removed by assets/js/contact-form.js. -->
+                <div class="field" id="message-field">
                   <label for="message">Message</label>
                   <textarea id="message" name="message" required></textarea>
                 </div>
