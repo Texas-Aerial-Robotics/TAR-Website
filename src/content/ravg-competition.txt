@@ -1,0 +1,72 @@
+# ==========================================================================
+# The RTX competition, as it stands this year
+#
+# Feeds three places at once:
+#   - "This year's task" and "Two vehicles, one mission." on the RAVG page
+#   - the "RTX Drone Competition" section on the Projects page
+#   - the "This year's mission" panel on the Home page
+#
+# RTX sets a new task every year, so this is the file to rewrite each
+# season. Nothing else needs touching.
+# --------------------------------------------------------------------------
+# Blocks are separated by a blank line. Each line is "Label: value", and a
+# long value can be wrapped over as many lines as you like as long as the
+# extra lines start with a couple of spaces.
+#
+# There are three kinds of block, told apart by the label they start with:
+#
+#   Headline:  the task itself. There should be exactly one of these.
+#   Step:      one line of the mission sequence. Add as many as the task has.
+#   Vehicle:   one card under "Two vehicles, one mission."
+#
+# Lines starting with # are notes like this one and are ignored.
+# ==========================================================================
+
+
+# --- The task ------------------------------------------------------------
+
+Headline: Scout, hand off, deliver.
+Overview: TAR participates in the yearly RTX drone competition. This year's
+  task involves a scout Unmanned Aerial Vehicle (UAV) that will map the
+  area, discover the landing zone, and communicate the location directly to
+  the Delivery Vehicle, UxV (air or ground vehicle). The Delivery UxV will
+  receive the location of the landing zone, fly or drive to it, and deliver
+  the package to the delivery zone.
+Focus areas: Aerial mapping, Landing zone detection, UAV to UxV comms,
+  Payload delivery, Systems integration
+
+
+# --- The mission sequence, in order --------------------------------------
+
+Step: Map
+Detail: The scout UAV launches and surveys the arena.
+
+Step: Find
+Detail: It identifies the landing zone from the air.
+
+Step: Hand off
+Detail: The coordinates go straight to the delivery vehicle.
+
+Step: Travel
+Detail: The delivery UxV flies or drives to the zone.
+
+Step: Deliver
+Detail: The package is placed in the delivery zone.
+
+
+# --- The vehicles we are building for it ---------------------------------
+
+Vehicle: Scout UAV
+Icon: drone
+Description: The aerial half of the system. It takes off, builds a map of
+  the arena, recognises the landing zone, and transmits its location to the
+  delivery vehicle.
+Focus areas: Autonomous flight, Aerial mapping, Computer vision, Telemetry
+
+Vehicle: Delivery UxV
+Icon: package
+Description: Air or ground. It receives the landing zone coordinates,
+  navigates there while avoiding obstacles, and releases the payload in the
+  delivery zone.
+Focus areas: Path planning, Obstacle avoidance, Payload release,
+  Vehicle-to-vehicle comms

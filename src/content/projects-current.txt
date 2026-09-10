@@ -1,0 +1,73 @@
+# ==========================================================================
+# This year's project teams
+#
+# Feeds two places at once:
+#   - the "What we are building this year." cards on the Home page
+#   - the full write-up sections on the Projects page
+# --------------------------------------------------------------------------
+# One project per block, separated by a blank line. Each line is
+# "Label: value". Wrap a long value over as many lines as you like, as long
+# as the extra lines start with a couple of spaces.
+#
+#   Name         What the team is called
+#   Link         The short name used in the web address, all lowercase, no
+#                spaces. "hivemind" makes the link /projects.html#hivemind
+#   Label        The small line above the name, e.g. the kind of aircraft
+#   Icon         Any icon name from the list at the bottom of
+#                assets/css/site.css, without the "icon--" part
+#   Summary      The short version, shown on the Home page
+#   Description  The full version, shown on the Projects page
+#   Focus areas  Comma separated. These become the tags in the side panel.
+#
+# Projects appear in the order they are listed here, and the bands on the
+# Projects page stripe themselves light / dark automatically, so adding a
+# fourth project needs no other change.
+#
+# Lines starting with # are notes like this one and are ignored.
+# ==========================================================================
+
+Name: Hivemind
+Link: hivemind
+Label: Swarm
+Icon: swarm
+Summary: A fleet of small quadcopters flying as one. Every drone runs the
+  same controller and negotiates its own role, so the formation survives
+  losing a member mid-flight.
+Description: A fleet of small quadcopters that fly as one. Hivemind is
+  building a decentralised swarm where every drone runs the same controller
+  and negotiates its own role in the air, so the formation reshapes itself
+  rather than collapsing when one member drops out. Members work on the
+  consensus layer, on collision-free trajectory allocation, and on a ground
+  station that can task the whole fleet with a single command.
+Focus areas: Multi-agent control, Consensus algorithms, ROS 2, UWB ranging,
+  Formation flight, Ground station UI
+
+Name: Origami
+Link: origami
+Label: Folding & throwable
+Icon: fold
+Summary: A drone that folds to the size of a paperback, gets thrown into
+  the air, and unfolds mid-flight to run small jobs around a house.
+Description: A drone that folds down to the size of a paperback, gets
+  thrown into the air by hand, and unfolds mid-flight to run small jobs
+  around a house. The team is designing the spring-loaded arm hinges,
+  tuning a controller that has to recover a stable hover from an
+  uncontrolled tumble, and teaching it to find its way around indoor spaces
+  where there is no GPS to fall back on.
+Focus areas: Compliant mechanisms, Spring hinges, Launch-to-hover recovery,
+  Indoor VIO, Weight budgeting, Rapid prototyping
+
+Name: Peregrine
+Link: peregrine
+Label: VTOL
+Icon: vtol
+Summary: A tail-sitter that lifts off straight up like a quadcopter, tips
+  over onto a fixed wing, and cruises. The hard part is the handover.
+Description: A tail-sitter that lifts off straight up like a quadcopter,
+  tips over onto a fixed wing, and cruises. Peregrine is chasing the
+  transition: the few seconds where the airframe stops being a multirotor
+  and starts being an aeroplane. Members work on the wing, on the
+  mixed-mode flight controller, and on the aerodynamic modelling that tells
+  us whether a design will survive the handover before we risk it.
+Focus areas: Fixed-wing aero, Transition control, CFD, Composite layup,
+  PX4 airframe config, Endurance testing

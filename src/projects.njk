@@ -1,0 +1,187 @@
+---
+title: "Projects | Texas Aerial Robotics"
+description: "The 2026-2027 Texas Aerial Robotics project teams: claw retrieval, thrust vector control dart, color vision targeting, and the RTX drone competition."
+ogDescription: "The 2026-2027 Texas Aerial Robotics project teams."
+navKey: "projects"
+scripts: ["carousel.js"]
+---
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">{{ site.season }} TAR Projects</span>
+      <h1 class="page-hero__title">Projects</h1>
+      <p class="lede">
+        One goal: aerial robots that can sense, decide, and act without a
+        pilot. Every member joins a project team and works on it from the
+        first week.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===============================================================
+       THE PROJECT TEAMS
+
+       Written in src/content/projects-current.txt. Edit that file to add,
+       remove, or reword a project. The bands stripe themselves light and
+       dark, so however many there are, the page keeps its rhythm.
+       =============================================================== -->
+  {%- for project in projects.current %}
+  <section
+    class="section section--{{ "light" if loop.index0 % 2 == 0 else "muted" }}"
+    id="{{ project.link }}"
+  >
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow"
+            >Project {% if loop.index < 10 %}0{% endif %}{{ loop.index }} &middot;
+            {{ project.label }}</span
+          >
+          <hr class="rule" />
+          <h2>{{ project.name }}</h2>
+          <p class="lede">{{ project.description }}</p>
+        </div>
+
+        <div class="panel reveal">
+          <p class="panel__title">
+            <span
+              class="icon icon--{{ project.icon }}"
+              aria-hidden="true"
+            ></span>
+            Focus areas
+          </p>
+          <ul class="tags">
+            {%- for tag in project.tags %}
+            <li class="tag">{{ tag }}</li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  {%- endfor %}
+
+  <!-- ===============================================================
+       RTX DRONE COMPETITION
+       This year's task comes from src/content/ravg-competition.txt.
+       Full write-up lives on ravg.html.
+       =============================================================== -->
+  <section class="section section--dark section--grid" id="rtx">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">Competition team</span>
+          <hr class="rule" />
+          <h2>RTX Drone Competition</h2>
+          <p class="lede">{{ ravg.task.overview }}</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="/ravg.html"
+              >Go to the RAVG page</a
+            >
+          </div>
+        </div>
+
+        <div class="panel reveal">
+          <p class="panel__title">Focus areas</p>
+          <ul class="tags">
+            {%- for tag in ravg.task.tags %}
+            <li class="tag">{{ tag }}</li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================================================
+       PAST MISSIONS
+
+       A carousel: it scrolls on its own and can also be dragged,
+       swiped, or stepped through with the arrows and dots.
+       Behaviour is in assets/js/carousel.js; the dots are generated
+       there, so adding a card here needs no other change.
+       Change data-carousel-interval to speed it up or slow it down.
+       =============================================================== -->
+  <section class="section section--muted" id="archive">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Archive</span>
+        <hr class="rule" />
+        <h2>Past missions.</h2>
+        <p class="lede">
+          Earlier project teams, and the International Aerial Robotics
+          Competition missions we flew against top universities from around
+          the world.
+        </p>
+      </div>
+
+      <div class="carousel" data-carousel data-carousel-interval="5000">
+        <!-- Cards come from src/content/projects-past.txt. Edit that
+             file; the dots below count themselves. -->
+        <div
+          class="carousel__track"
+          tabindex="0"
+          role="region"
+          aria-label="Past missions"
+        >
+          {%- for project in projects.past %}
+          <article class="card">
+            <span class="card__icon">
+              <span
+                class="icon icon--{{ project.icon }} icon--lg"
+                aria-hidden="true"
+              ></span>
+            </span>
+            <p class="card__index">{{ project.when }}</p>
+            <h3 class="card__title">{{ project.name }}</h3>
+            <p class="card__body">{{ project.description }}</p>
+            <div class="card__spacer"></div>
+            <ul class="tags">
+              {%- for tag in project.tags %}
+              <li class="tag">{{ tag }}</li>
+              {%- endfor %}
+            </ul>
+          </article>
+          {%- endfor %}
+        </div>
+
+        <div class="carousel__controls">
+          <button
+            class="carousel__button carousel__button--prev"
+            type="button"
+            data-carousel-prev
+            aria-label="Previous past missions"
+          >
+            <span class="icon icon--chevron-left" aria-hidden="true"></span>
+          </button>
+
+          <div class="carousel__dots" data-carousel-dots></div>
+
+          <button
+            class="carousel__button carousel__button--next"
+            type="button"
+            data-carousel-next
+            aria-label="Next past missions"
+          >
+            <span
+              class="icon icon--chevron-right"
+              aria-hidden="true"
+            ></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container container--narrow">
+      <h2>Have a project idea?</h2>
+      <p>
+        Members pitch and lead new projects every year. Tell us what you
+        want to build.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/contact.html">Talk to us</a>
+      </div>
+    </div>
+  </section>

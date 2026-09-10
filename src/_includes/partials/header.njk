@@ -1,0 +1,42 @@
+{#
+  Site header — written once, used on every page.
+
+  The tabs come from src/_data/nav.js. The tab that matches the page's
+  `navKey` (set in that page's front matter) is marked with "is-current".
+#}
+<header class="header">
+  <div class="container header__inner">
+    <a class="brand" href="/index.html">
+      <img
+        class="brand__mark"
+        src="/assets/brand/logos/tar-mark-drone-paper.png"
+        alt=""
+        width="54"
+        height="18"
+      />
+      <span class="brand__text">
+        <span class="brand__name">TEXAS AERIAL ROBOTICS</span>
+        <span class="brand__sub">UT Austin</span>
+      </span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    >
+      <span class="sr-only">Menu</span>
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+    </button>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      {%- for item in nav.primary %}
+      <a
+        class="nav__link{% if item.cta %} nav__link--cta{% endif %}{% if item.key == navKey %} is-current{% endif %}"
+        href="{{ item.url }}"
+      >{{ item.label }}</a>
+      {%- endfor %}
+    </nav>
+  </div>
+</header>

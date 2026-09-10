@@ -1,0 +1,254 @@
+---
+title: "Contact | Texas Aerial Robotics"
+description: "Got a question? Send Texas Aerial Robotics a message and we will respond as soon as possible."
+ogDescription: "Send Texas Aerial Robotics a message."
+navKey: "contact"
+scripts: ["contact-form.js"]
+---
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Contact us</span>
+      <h1 class="page-hero__title">Say hello</h1>
+      <p class="lede">
+        Got a question? We'd love to hear from you! Send us a message, and
+        we will respond as soon as possible.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="split" style="align-items: start">
+        <!-- ===========================================================
+             CONTACT FORM
+
+             Submissions go to Formspark. The address is `contactEndpoint`
+             in src/_data/site.js; read the submissions at formspark.io.
+
+             Every field needs a `name` — that is what Formspark labels the
+             submission with. A field without one is simply not recorded.
+
+             The `action` below is what runs if JavaScript is switched off.
+             Normally assets/js/contact-form.js intercepts submit and posts
+             the same fields in the background so the visitor stays here.
+             =========================================================== -->
+        <div class="reveal">
+          <form
+            class="form"
+            id="contact-form"
+            method="post"
+            action="{{ site.contactEndpoint }}"
+            novalidate
+          >
+            <!-- Each field has an empty <p class="field__error"> underneath.
+                 assets/js/contact-form.js fills it in and shows it when
+                 something needs fixing. -->
+            <div class="form__row">
+              <div class="field">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  autocomplete="name"
+                  maxlength="80"
+                  aria-describedby="name-error"
+                  required
+                />
+                <p class="field__error" id="name-error"></p>
+              </div>
+
+              <div class="field">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  autocomplete="email"
+                  maxlength="254"
+                  aria-describedby="email-error"
+                  required
+                />
+                <p class="field__error" id="email-error"></p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                maxlength="120"
+                aria-describedby="subject-error"
+              />
+              <p class="field__error" id="subject-error"></p>
+            </div>
+
+            <!-- Add, remove, or reword these options freely. Whatever is
+                 chosen is passed straight through to Formspark, so no
+                 other file needs to change. -->
+            <div class="field">
+              <label for="reason">Reason for getting in touch</label>
+              <select
+                id="reason"
+                name="reason"
+                aria-describedby="reason-error"
+                required
+              >
+                <option value="">Choose a reason&hellip;</option>
+                <option>Organization Collaboration</option>
+                <option>Company Sponsorship</option>
+                <option>Company Talk</option>
+                <option>Project Sponsorship</option>
+                <option>Joining the Team</option>
+                <option>Mentorship or Advising</option>
+                <option>Media or Press</option>
+                <option>Something Else</option>
+              </select>
+              <p class="field__error" id="reason-error"></p>
+            </div>
+
+            <!-- Greyed out until a reason is picked. The "field--locked"
+                 class is added and removed by assets/js/contact-form.js. -->
+            <div class="field" id="message-field">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                maxlength="4000"
+                aria-describedby="message-error"
+                required
+              ></textarea>
+              <p class="field__error" id="message-error"></p>
+            </div>
+
+            <!-- Spam trap. Leave this here and leave it hidden. "_honeypot"
+                 is the name Formspark looks for: anything that fills it in
+                 is silently dropped. -->
+            <div class="field field--honeypot" aria-hidden="true">
+              <label for="company-website">Company website</label>
+              <input
+                type="text"
+                id="company-website"
+                name="_honeypot"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- Which page the message came from. -->
+            <input type="hidden" name="page" value="/contact.html" />
+
+            <div>
+              <button class="btn btn--primary" type="submit">
+                Send message
+              </button>
+            </div>
+
+            <p
+              class="form__status"
+              id="contact-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
+        </div>
+
+        <!-- ===========================================================
+             CONTACT DETAILS
+             =========================================================== -->
+        <div class="panel reveal">
+          <div class="contact-item">
+            <p class="contact-item__label">
+              <span class="icon icon--mail" aria-hidden="true"></span>
+              Email
+            </p>
+            <p>
+              <a href="mailto:{{ site.contactEmail }}"
+                >{{ site.contactEmail }}</a
+              >
+            </p>
+          </div>
+
+          <div class="contact-item">
+            <p class="contact-item__label">
+              <span class="icon icon--map-pin" aria-hidden="true"></span>
+              Where we are
+            </p>
+            <p>
+              The University of Texas at Austin<br />
+              Austin, Texas
+            </p>
+          </div>
+
+          <div class="contact-item">
+            <p class="contact-item__label">
+              <span class="icon icon--signal" aria-hidden="true"></span>
+              Follow along
+            </p>
+            <ul class="link-list">
+              <li>
+                <a
+                  href="{{ site.links.instagram }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span
+                    class="icon icon--instagram"
+                    aria-hidden="true"
+                  ></span>
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="{{ site.links.linkedin }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span
+                    class="icon icon--linkedin"
+                    aria-hidden="true"
+                  ></span>
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href="{{ site.links.facebook }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span
+                    class="icon icon--facebook"
+                    aria-hidden="true"
+                  ></span>
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="{{ site.links.github }}" target="_blank" rel="noopener">
+                  <span class="icon icon--github" aria-hidden="true"></span>
+                  GitHub
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="contact-item">
+            <p class="contact-item__label">
+              <span class="icon icon--heart" aria-hidden="true"></span>
+              Sponsorship
+            </p>
+            <p>
+              Interested in supporting the team? Start with our
+              <a href="/partners.html">partners page</a>, or just send us a
+              message.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
