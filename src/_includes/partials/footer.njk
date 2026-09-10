@@ -1,0 +1,52 @@
+{#
+  Site footer — written once, used on every page.
+
+  The link columns come from src/_data/nav.js.
+
+  Pages that set `footer: "minimal"` in their front matter (404.njk) get
+  only the copyright strip.
+#}
+<footer class="footer">
+  <div class="container">
+    {%- if footer != "minimal" %}
+    <div class="footer__grid">
+      <div>
+        <img
+          class="footer__logo"
+          src="/assets/brand/logos/tar-wordmark-paper-tight.png"
+          alt="{{ site.name }}"
+          width="150"
+          height="36"
+        />
+        <p class="text-muted">{{ site.blurb }}</p>
+      </div>
+
+      {%- for column in nav.footer %}
+      <div>
+        <h2 class="footer__heading">{{ column.heading }}</h2>
+        <ul class="footer__list">
+          {%- for link in column.links %}
+          <li>
+            <a
+              href="{{ link.url }}"
+              {%- if link.external %} target="_blank" rel="noopener"{% endif %}
+            >
+              {%- if link.icon %}
+              <span class="icon icon--{{ link.icon }}" aria-hidden="true"></span>
+              {%- endif %}
+              {{ link.label }}
+            </a>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+
+    <div class="footer__bottom">
+      <span>&copy; <span id="year">2025</span> {{ site.name }}</span>
+      <span>{{ site.location }}</span>
+    </div>
+  </div>
+</footer>

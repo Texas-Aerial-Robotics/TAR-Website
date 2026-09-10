@@ -1,0 +1,82 @@
+{#
+  The shell every page sits inside: the <head>, the header, and the footer.
+
+  A page supplies the middle. It can set these in its front matter (the
+  block between the --- lines at the top of the file):
+
+    title        the browser tab / search result heading   (required)
+    description  the one-line summary search engines show
+    ogTitle      link-preview title, defaults to `title`
+    ogDescription  link-preview text, defaults to `description`
+    navKey       which top tab to highlight
+    scripts      extra files from assets/js/ to load, e.g. ["carousel.js"]
+    noindex      true to keep the page out of search results
+    footer       "minimal" for just the copyright strip
+    bodyClass    an extra class on <body>, e.g. "body--dark"
+#}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{ title }}</title>
+    {%- if description %}
+    <meta name="description" content="{{ description }}" />
+    {%- endif %}
+    {%- if noindex %}
+    <meta name="robots" content="noindex" />
+    {%- endif %}
+
+    <!-- Icons -->
+    <link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/assets/brand/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+
+    <!-- Link preview card (Slack, iMessage, LinkedIn, ...) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ ogTitle or title }}" />
+    {%- if ogDescription or description %}
+    <meta
+      property="og:description"
+      content="{{ ogDescription or description }}"
+    />
+    {%- endif %}
+    <meta property="og:image" content="/assets/brand/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/assets/css/site.css" />
+  </head>
+
+  <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    {% include "partials/header.njk" %}
+
+    <main id="main">
+{{ content | safe }}
+    </main>
+
+    {% include "partials/footer.njk" %}
+
+    <!-- Settings the JavaScript needs. Edit them in src/_data/site.js. -->
+    <script>
+      window.TAR_CONFIG = {
+        contactEndpoint: {{ site.contactEndpoint | dump | safe }},
+        contactEmail: {{ site.contactEmail | dump | safe }}
+      };
+    </script>
+    <script src="/assets/js/site.js"></script>
+    {%- for script in scripts %}
+    <script src="/assets/js/{{ script }}"></script>
+    {%- endfor %}
+  </body>
+</html>

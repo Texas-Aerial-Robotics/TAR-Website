@@ -2,7 +2,7 @@
    Texas Aerial Robotics — contact form
    --------------------------------------------------------------------------
    Sends the contact form as JSON to whatever URL is set as `contactEndpoint`
-   in assets/js/site-config.js.
+   in src/_data/site.js. Out of the box that is Formspark.
 
    The JSON body looks like this, so any SMTP relay, webhook, form service,
    or serverless function can consume it:
@@ -119,7 +119,7 @@
     event.preventDefault();
 
     // Honeypot: bots fill in every field, humans never see this one.
-    if (form.elements["company-website"].value !== "") {
+    if (form.elements._honeypot.value !== "") {
       setStatus("success", "Thanks! Your message has been sent.");
       form.reset();
       applyReasonGate();
@@ -153,9 +153,14 @@
     }
     setStatus("pending", "Sending your message\u2026");
 
+    // Formspark only records a JSON body when both of these headers are
+    // set. Other endpoints ignore the Accept header, so it is safe to send.
     fetch(config.contactEndpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
       body: JSON.stringify(data),
     })
       .then(function (response) {

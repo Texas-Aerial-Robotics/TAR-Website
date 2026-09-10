@@ -159,7 +159,7 @@ exports.handler = async function handler(event) {
   }
 
   // Honeypot field: only bots fill it in.
-  if (data["company-website"]) {
+  if (data._honeypot) {
     return reply(200, { ok: true });
   }
 

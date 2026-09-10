@@ -92,6 +92,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* For short pages that are dark all the way down, such as 404. Without it
+   the page behind shows through as a white band under the content. */
+.body--dark {
+  background: var(--ink);
+}
+
 main {
   flex: 1 0 auto;
 }

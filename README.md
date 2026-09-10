@@ -3,28 +3,39 @@
 The public website for Texas Aerial Robotics at UT Austin.
 
 It is deliberately built with **plain HTML, CSS, and JavaScript**. There is no
-React, no Tailwind, no build step, and nothing to compile. If you can edit a
-text file, you can edit this site. Open a `.html` file in your browser and it
-works exactly as it will in production.
+React and no Tailwind. The only tool involved is
+[Eleventy](https://www.11ty.dev/), a small static site generator whose entire
+job here is to let the header, the footer, and the `<head>` block live in one
+file instead of being copy-pasted into all eight pages. It turns the templates
+in `src/` into ordinary HTML files in `_site/`. What ships is still plain HTML.
+
+If you can edit a text file, you can edit this site.
 
 ---
 
 ## Quick start
 
-Double-click `index.html` and it opens in your browser. That is enough for
-editing text and styles.
-
-To view it the way Netlify serves it (nice URLs, working contact function):
-
 ```bash
-npm install          # once, to fetch nodemailer for the contact function
-npm run dev          # opens http://localhost:8888 via the Netlify CLI
+npm install          # once
+npm run dev          # http://localhost:4173, reloads as you save
 ```
 
-Or, for a plain static preview without the contact function:
+Leave that running while you work. Editing anything in `src/` or `assets/`
+refreshes the browser.
+
+To build the finished site once, without the preview server:
 
 ```bash
-npm start            # opens http://localhost:3000
+npm run build        # writes _site/
+```
+
+`_site/` is generated. Never edit it by hand — it is deleted and rebuilt every
+time. It is also not committed to git.
+
+To run it the way Netlify does, including the contact function:
+
+```bash
+npm run netlify      # http://localhost:8888 via the Netlify CLI
 ```
 
 ---
@@ -32,37 +43,72 @@ npm start            # opens http://localhost:3000
 ## What is where
 
 ```
-index.html          Home
-about.html          About  (history, skills, sub-teams, officer list)
-projects.html       Projects  (current project teams + archived IARC missions)
-ravg.html           RAVG  (the RTX Autonomous Vehicle Competition team)
-partners.html       Partners  (sponsor logos + partnership tiers)
-contact.html        Contact  (the contact form)
-donate.html         Donate
-404.html            Shown for any URL that does not exist
+src/                    Everything you edit to change a page
+  index.njk             Home
+  about.njk             About  (history, skills, sub-teams, officer list)
+  projects.njk          Projects  (current teams + archived IARC missions)
+  ravg.njk              RAVG  (the RTX Autonomous Vehicle Competition team)
+  partners.njk          Partners  (sponsor logos + partnership tiers)
+  contact.njk           Contact  (the contact form)
+  donate.njk            Donate
+  404.njk               Shown for any URL that does not exist
 
-assets/
+  _includes/
+    base.njk            The <head>, and the wrapper every page sits inside
+    partials/header.njk The top bar. Written once, appears on every page.
+    partials/footer.njk The footer. Written once, appears on every page.
+
+  _data/
+    site.js             Links, email address, contact form destination
+    nav.js              Every link in the top bar and in the footer
+
+  src.11tydata.js       Defaults shared by all pages (rarely touched)
+
+assets/                 Copied to the finished site untouched
   brand/
-    logos/          The TAR logo kit. See "Which logo do I use?" below.
-    favicon*.png    Browser tab icons, generated from the logo
-    og-image.jpg    The image that shows up when the site is linked in Slack,
-                    iMessage, LinkedIn, etc.
-  icons/            Interface icons, plus brand/ for company logos.
-                    See assets/icons/README.md for how to add one.
-  css/site.css      Every style on the site, in one commented file
-  js/site-config.js Links, email address, and contact form destination
-  js/site.js        Mobile menu, scroll animations, footer year
-  js/contact-form.js Contact page only: sends the form
-  js/carousel.js    Projects page only: the "Past missions" carousel
+    logos/              The TAR logo kit. See "Which logo do I use?" below.
+    favicon*.png        Browser tab icons, generated from the logo
+    og-image.jpg        The image that shows up when the site is linked in
+                        Slack, iMessage, LinkedIn, etc.
+  icons/                Interface icons and company logos.
+                        See assets/icons/README.md for how to add one.
+  css/site.css          Every style on the site, in one commented file
+  js/site.js            Mobile menu, scroll animations, footer year
+  js/contact-form.js    Contact page only: sends the form
+  js/carousel.js        Projects page only: the "Past missions" carousel
 
 netlify/functions/
-  contact.js        Receives the contact form and forwards it by SMTP
-                    and/or to a webhook
+  contact.js            An alternative contact backend: receives the form and
+                        forwards it by SMTP and/or to a webhook. Not used by
+                        default — see "The contact form" below.
 
-netlify.toml        Netlify settings (nothing to change for a normal deploy)
-sitemap.xml         List of pages for search engines
-robots.txt          Search engine instructions
+eleventy.config.js      Build settings (rarely touched)
+netlify.toml            Netlify settings (nothing to change for a normal deploy)
+sitemap.xml             List of pages for search engines
+robots.txt              Search engine instructions
+_site/                  Generated. Do not edit.
 ```
+
+### What a page file looks like
+
+Each file in `src/` starts with a small settings block between `---` lines,
+followed by ordinary HTML:
+
+```
+---
+title: "About | Texas Aerial Robotics"
+description: "Founded in 2017 at UT Austin..."
+navKey: "about"
+---
+
+<section class="page-hero">
+  ...
+</section>
+```
+
+The available settings are listed in a comment at the top of
+`src/_includes/base.njk`. Everything after the second `---` is dropped into
+`<main>` on the finished page, with the header and footer added around it.
 
 ---
 
@@ -70,34 +116,41 @@ robots.txt          Search engine instructions
 
 ### Change wording on a page
 
-Open the `.html` file and edit the text between the tags. Everything is in
-plain English inside the markup; there is no separate content file to hunt
-through.
+Open the matching `.njk` file in `src/` and edit the text between the tags. It
+is plain HTML; the `.njk` extension only means Eleventy is allowed to fill in
+the shared pieces.
 
 ### Change a colour, font, or spacing
 
 Open `assets/css/site.css` and look at the block at the very top called
 `1. THEME`. Every colour and font on the site comes from there. Change
-`--orange` once and it updates across all seven pages.
+`--orange` once and it updates across all eight pages.
 
 ### Add or rename a navigation tab
 
-The header is copied into every page so the site works without JavaScript.
-That means editing a tab is **eight small edits, not one**: `index.html`,
-`about.html`, `projects.html`, `ravg.html`, `partners.html`, `contact.html`,
-`donate.html`, and `404.html`. Search each file for `<nav class="nav"` and make
-the same change.
+One edit, in `src/_data/nav.js`. Add a line to the `primary` list:
 
-The tab for the page you are on carries `class="nav__link is-current"`.
+```js
+{ key: "outreach", label: "Outreach", url: "/outreach.html" },
+```
+
+Then create `src/outreach.njk` with `navKey: "outreach"` in its settings block.
+The tab highlights itself on the page whose `navKey` matches.
+
+### Change the footer links
+
+Also `src/_data/nav.js`, in the `footer` list. Each column has a `heading` and
+a list of links. A link can carry an `icon` (any name from the icon list at the
+bottom of `assets/css/site.css`) and `external: true` to open in a new tab.
 
 ### Add a partner logo
 
 1. Drop the image into `assets/brand/partners/` (create the folder the first
    time).
-2. In `partners.html`, find a `<div class="logo-slot">Partner logo</div>` and
-   replace the text with:
+2. In `src/partners.njk`, find a `<div class="logo-slot">Partner logo</div>`
+   and replace the text with:
    ```html
-   <img src="assets/brand/partners/acme.png" alt="Acme Robotics" />
+   <img src="/assets/brand/partners/acme.png" alt="Acme Robotics" />
    ```
 3. Delete any leftover empty slots.
 
@@ -105,19 +158,19 @@ The home page also has a smaller set of slots near the bottom.
 
 ### Update the officer list
 
-`about.html`, in the section commented `OFFICERS`. Copy one of the
+`src/about.njk`, in the section commented `OFFICERS`. Copy one of the
 `<article class="card">` blocks to add a person, delete a block to remove one.
 
 ### Add a project
 
-`projects.html`, in the section commented `WHAT WE ARE BUILDING THIS YEAR`.
+`src/projects.njk`, in the section commented `WHAT WE ARE BUILDING THIS YEAR`.
 Copy one `<article class="card">` block and change its icon, label, name, and
 copy. The row stays centred no matter how many cards there are. To show it on
-the home page too, copy a card in the matching section of `index.html`.
+the home page too, copy a card in the matching section of `src/index.njk`.
 
 ### Add a card to the "Past missions" carousel
 
-`projects.html`, in the section commented `PAST MISSIONS`. Copy an
+`src/projects.njk`, in the section commented `PAST MISSIONS`. Copy an
 `<article class="card">` inside `<div class="carousel__track">`. The dots
 underneath are generated from however many cards it finds, so there is
 nothing else to keep in sync.
@@ -127,44 +180,105 @@ To change how fast it moves, edit `data-carousel-interval` on the
 
 ### Change the reasons in the contact form dropdown
 
-`contact.html`, in the `<select id="reason">`. Add or reword the `<option>`
-lines. Whatever is chosen is passed through to the email and the webhook, so
-no other file needs changing. Leave the first, empty option in place: it is
-what keeps the message box locked until a reason is picked.
+`src/contact.njk`, in the `<select id="reason">`. Add or reword the `<option>`
+lines. Whatever is chosen is passed through to Formspark, so no other file
+needs changing. Leave the first, empty option in place: it is what keeps the
+message box locked until a reason is picked.
 
 ### Update links and the contact email
 
-All in one place: `assets/js/site-config.js`.
+All in one place: `src/_data/site.js`.
 
 > The email currently in that file, `texasaerialrobotics@gmail.com`, is a
-> placeholder. Replace it with the real inbox — it also appears in the
-> "Contact details" panel in `contact.html`.
+> placeholder. Replace it with the real inbox. It is used in the "Contact
+> details" panel and in the fallback `mailto:` link, both of which read it
+> from `site.js`.
+
+### Link to something outside this site
+
+Add `target="_blank" rel="noopener"` so it opens in a new tab and leaves the
+site open behind it:
+
+```html
+<a href="https://example.com" target="_blank" rel="noopener">Example</a>
+```
+
+Links in the footer get this automatically from `external: true` in
+`src/_data/nav.js`.
 
 ---
 
 ## The contact form
 
-The form on `contact.html` sends a JSON payload:
+The form on the contact page posts to **Formspark**, which stores the
+submissions and emails you when one arrives. The endpoint is `contactEndpoint`
+in `src/_data/site.js`:
+
+```js
+contactEndpoint: "https://submit-form.com/VxqZQNAmW",
+```
+
+Manage notification addresses, spam filtering, and the submission archive at
+<https://formspark.io>.
+
+Two things to know when editing the form:
+
+- **Every field needs a `name`.** That is the label the submission is filed
+  under. A field without a `name` is simply not recorded. Add a field and it
+  shows up in Formspark on the next submission; nothing else has to change.
+- **The submit button must be `type="submit"`**, otherwise the form does not
+  send when JavaScript is off.
+
+The form works both ways round. With JavaScript on,
+`assets/js/contact-form.js` intercepts the submit and posts this JSON in the
+background, so the visitor stays on the page:
 
 ```json
 {
   "name": "Ada Lovelace",
   "email": "ada@example.com",
   "subject": "Sponsorship",
+  "reason": "Company Sponsorship",
   "message": "Hello!",
   "page": "https://.../contact.html"
 }
 ```
 
-Where it goes is controlled by `contactEndpoint` in
-`assets/js/site-config.js`. By default that is
-`/.netlify/functions/contact`, the serverless function in this repo.
+With JavaScript off, the browser submits the form normally to the same URL and
+Formspark shows its own confirmation page. To send visitors to a page of your
+own instead, add a hidden field inside the form:
 
-That function supports **SMTP, a webhook, or both at once**. Nothing is
-hard-coded; you turn each route on by adding environment variables in Netlify
-under *Site configuration → Environment variables*, then redeploying.
+```html
+<input type="hidden" name="_redirect" value="https://yoursite.com/thanks.html" />
+```
 
-### Option A — send email over SMTP
+(Formspark ignores `_redirect` on the JavaScript path, which already keeps the
+visitor on the page.)
+
+If the request fails for any reason, the page offers a `mailto:` link so a
+message is never silently lost.
+
+### Spam
+
+The form carries a hidden field named `_honeypot`. Real visitors never see it;
+bots fill in everything, and Formspark silently drops any submission that has
+it set. Leave it in place.
+
+### Using the Netlify function instead
+
+`netlify/functions/contact.js` is a self-hosted alternative that can send
+messages over **SMTP, to a webhook, or both at once**. It is not used by
+default. To switch to it, set this in `src/_data/site.js`:
+
+```js
+contactEndpoint: "/.netlify/functions/contact",
+```
+
+Then add environment variables in Netlify under *Site configuration →
+Environment variables* and redeploy. Nothing is hard-coded; each route turns
+itself on when its variables are present.
+
+#### Option A — send email over SMTP
 
 | Variable       | Example              | Notes                                          |
 | -------------- | -------------------- | ---------------------------------------------- |
@@ -179,7 +293,7 @@ under *Site configuration → Environment variables*, then redeploying.
 The email's `Reply-To` is set to the visitor, so hitting reply in your inbox
 answers them directly.
 
-### Option B — POST to a webhook
+#### Option B — POST to a webhook
 
 | Variable                 | Example                                | Notes                                     |
 | ------------------------ | -------------------------------------- | ----------------------------------------- |
@@ -191,30 +305,25 @@ Works with Slack, Discord, Zapier, Make, n8n, Airtable, or your own server.
 Set both A and B and every message goes to both places. If one route fails the
 other still delivers.
 
-### Option C — skip the function entirely
+#### Testing it locally
 
-Point `contactEndpoint` straight at a third-party URL:
+```bash
+CONTACT_WEBHOOK_URL="https://webhook.site/your-id" npm run netlify
+```
+
+Then submit the form at <http://localhost:8888/contact.html>.
+
+### Any other destination
+
+`contactEndpoint` can be any URL that accepts a JSON POST — Zapier, Make, a
+Slack webhook, your own server:
 
 ```js
 contactEndpoint: "https://hooks.zapier.com/hooks/catch/123456/abcdef/",
 ```
 
-Or set it to `""` and the form falls back to opening the visitor's email app
-with the message pre-filled.
-
-### If nothing is configured
-
-The function replies with a clear error and the page offers the visitor a
-`mailto:` link, so a message is never silently lost.
-
-### Testing it locally
-
-```bash
-npm install
-CONTACT_WEBHOOK_URL="https://webhook.site/your-id" npm run dev
-```
-
-Then submit the form at <http://localhost:8888/contact.html>.
+Set it to `""` and the form falls back to opening the visitor's email app with
+the message pre-filled.
 
 ---
 
@@ -222,9 +331,10 @@ Then submit the form at <http://localhost:8888/contact.html>.
 
 1. Push this repository to GitHub.
 2. In Netlify: **Add new site → Import an existing project** and pick the repo.
-3. Accept the defaults. Netlify reads `netlify.toml`, so the publish directory
-   and functions directory are already correct.
-4. Add the contact form environment variables (above), then **Deploy**.
+3. Accept the defaults. Netlify reads `netlify.toml`, so the build command
+   (`npm run build`), the publish directory (`_site`), and the functions
+   directory are already correct.
+4. **Deploy.**
 
 Every push to the default branch redeploys automatically. Pull requests get
 their own preview URL.

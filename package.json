@@ -4,10 +4,15 @@
   "private": true,
   "description": "Static website for Texas Aerial Robotics at UT Austin.",
   "scripts": {
-    "start": "npx --yes serve . -l 3000",
-    "dev": "npx --yes netlify-cli dev"
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "dev": "eleventy --serve",
+    "netlify": "npx --yes netlify-cli dev"
   },
   "dependencies": {
     "nodemailer": "^6.9.14"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
   }
 }
