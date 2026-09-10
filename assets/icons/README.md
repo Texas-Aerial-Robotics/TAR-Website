@@ -2,19 +2,20 @@
 
 Two kinds of icon live here.
 
-`*.svg` in this folder are the interface icons (drone, wrench, eye, and so
-on). They were drawn for this site on a 24×24 grid with a 1.75 stroke.
+The interface icons (drone, wrench, eye, and so on) were drawn for this site
+on a 24×24 grid with a 1.75 stroke.
 
-`brand/*.svg` are logos from [Simple Icons](https://simpleicons.org), which
-are CC0. Grab more the same way:
+The `*-icon.svg` files are [Font Awesome
+Free](https://fontawesome.com/search?ip=brands) glyphs. Download more from
+there and drop them straight in — no editing needed.
+
+[Simple Icons](https://simpleicons.org) is another good source, and it is
+CC0:
 
 ```bash
-curl -o assets/icons/brand/discord.svg \
+curl -o assets/icons/discord-icon.svg \
   https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/discord.svg
 ```
-
-Font Awesome brand icons work too — download the SVG from
-<https://fontawesome.com/search?ip=brands> and drop it in `brand/`.
 
 ## How icons get onto a page
 
@@ -29,7 +30,7 @@ commented `ICON LIBRARY`:
 
 ```css
 .icon--discord {
-  --icon: url("../icons/brand/discord.svg");
+  --icon: url("../icons/discord-icon.svg");
 }
 ```
 
