@@ -1630,6 +1630,26 @@ p:last-child {
   --icon: url("../icons/chevron-right.svg");
 }
 
+/* Navigation icons, used by the footer link columns (Font Awesome Free) */
+.icon--home {
+  --icon: url("../icons/home-icon.svg");
+}
+.icon--about {
+  --icon: url("../icons/about-us-icon.svg");
+}
+.icon--projects {
+  --icon: url("../icons/projects-icon.svg");
+}
+.icon--ravg {
+  --icon: url("../icons/ravg-icon-footer.svg");
+}
+.icon--partners {
+  --icon: url("../icons/partners-icon.svg");
+}
+.icon--donate {
+  --icon: url("../icons/donate-icon.svg");
+}
+
 /* Brand logos (Font Awesome Free) */
 .icon--github {
   --icon: url("../icons/github-icon.svg");
