@@ -98,13 +98,15 @@ async function sendWithSmtp(message) {
     auth: SMTP_USER ? { user: SMTP_USER, pass: SMTP_PASS } : undefined,
   });
 
-  const subject = message.subject
-    ? `[TAR website] ${message.subject}`
+  const headline = message.subject || message.reason;
+  const subject = headline
+    ? `[TAR website] ${headline}`
     : "[TAR website] New contact form message";
 
   const lines = [
     `Name:    ${message.name}`,
     `Email:   ${message.email}`,
+    `Reason:  ${message.reason || "(none)"}`,
     `Subject: ${message.subject || "(none)"}`,
     `Page:    ${message.page || "(unknown)"}`,
     "",
@@ -165,6 +167,7 @@ exports.handler = async function handler(event) {
     name: String(data.name || "").trim(),
     email: String(data.email || "").trim(),
     subject: String(data.subject || "").trim(),
+    reason: String(data.reason || "").trim(),
     message: String(data.message || "").trim(),
     page: String(data.page || "").trim(),
     receivedAt: new Date().toISOString(),
