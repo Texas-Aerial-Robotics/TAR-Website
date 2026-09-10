@@ -38,6 +38,12 @@ To run it the way Netlify does, including the contact function:
 npm run netlify      # http://localhost:8888 via the Netlify CLI
 ```
 
+Use this one whenever you are working on the contact form. `npm run dev` is
+Eleventy on its own, and Eleventy does not run serverless functions, so the
+Discord notification 404s there. That 404 is harmless — the message still
+reaches Formspark — but Discord will stay quiet until you either use
+`npm run netlify` or deploy.
+
 ---
 
 ## What is where
@@ -255,11 +261,18 @@ value, and redeploy.
 The embed is sent with `allowed_mentions: { parse: [] }`, so a visitor cannot
 make the bot ping `@everyone` by typing it into the form.
 
-To try it locally:
+**Trying it locally.** Copy `.env.example` to `.env`, put the webhook URL in
+it, and start the Netlify CLI. `.env` is git-ignored, so the URL stays on your
+machine.
 
 ```bash
-DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/..." npm run netlify
+cp .env.example .env     # then fill in DISCORD_WEBHOOK_URL
+npm run netlify          # http://localhost:8888/contact.html
 ```
+
+Plain `npm run dev` will not work for this: it serves the site but not the
+function, so you get `404 /.netlify/functions/contact` in the console and no
+Discord message.
 
 Two things to know when editing the form:
 

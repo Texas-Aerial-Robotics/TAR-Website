@@ -360,9 +360,27 @@
     setStatus("pending", "Sending your message\u2026");
 
     // Fire-and-forget. A failure here does not concern the visitor: their
-    // message is safe in Formspark either way.
+    // message is safe in Formspark either way. It is only logged, so that a
+    // broken notification is still findable in the browser console.
+    //
+    // A 404 here while running `npm run dev` is expected: that server does
+    // not run Netlify functions. Use `npm run netlify` to test Discord.
     if (config.notifyEndpoint && config.notifyEndpoint !== config.contactEndpoint) {
-      post(config.notifyEndpoint, data).catch(function () {});
+      post(config.notifyEndpoint, data)
+        .then(function (response) {
+          if (!response.ok) {
+            console.warn(
+              "Contact notification returned " +
+                response.status +
+                " from " +
+                config.notifyEndpoint +
+                ". The message itself was still sent."
+            );
+          }
+        })
+        .catch(function () {
+          console.warn("Contact notification could not be reached.");
+        });
     }
 
     post(config.contactEndpoint, data)

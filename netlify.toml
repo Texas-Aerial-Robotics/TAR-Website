@@ -19,6 +19,23 @@
   node_bundler = "esbuild"
 
 # --------------------------------------------------------------------------
+# Local preview WITH the contact function: `npm run netlify`
+#
+# This starts the Eleventy preview server and puts the Netlify CLI in front
+# of it, so /.netlify/functions/contact answers the same way it will in
+# production. Plain `npm run dev` does not serve functions, which is why the
+# Discord ping 404s there. That 404 is harmless — the message still reaches
+# Formspark — but you cannot test Discord without this.
+# --------------------------------------------------------------------------
+[dev]
+  framework = "#custom"
+  command = "npm run dev"
+  targetPort = 4173
+  port = 8888
+  publish = "_site"
+  autoLaunch = false
+
+# --------------------------------------------------------------------------
 # Friendly URLs: /about also serves /about.html
 # (Netlify does this automatically, these entries just make it explicit.)
 # --------------------------------------------------------------------------
