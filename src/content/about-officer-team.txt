@@ -19,12 +19,12 @@
 
 President
 Ifunanya (Ify) Obinabo
-Electrical & Computer Engineering
+ECE
 Senior
 
 Vice President
 Rishi Wadhwa
-Electrical & Computer Engineering
+ECE
 Junior
 
 Business Lead
@@ -34,12 +34,12 @@ Sophomore
 
 RAVG Lead
 Abhiram (Abhi) Patil
-Electrical & Computer Engineering
+ECE
 Senior
 
 Team 1 "Hivemind" Hardware Lead
 Henry Hoff
-Electrical & Computer Engineering
+ECE
 Sophomore
 
 Team 1 "Hivemind" Software Lead
@@ -49,7 +49,7 @@ Sophomore
 
 Team 2 "Origami" Hardware Lead
 Matthew Zhang
-Electrical & Computer Engineering Honors
+ECE Honors
 Sophomore
 
 Team 2 "Origami" Software Lead
@@ -59,10 +59,10 @@ Sophomore
 
 Team 3 "Peregrine" Hardware Lead
 Hudson Nguyen
-Electrical & Computer Engineering Honors
+ECE Honors
 Junior
 
 Team 3 "Peregrine" Software Lead
 Tanooj Kanike
-Electrical & Computer Engineering Honors
+ECE Honors
 Sophomore
