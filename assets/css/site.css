@@ -77,14 +77,27 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* The flex column here is what keeps the footer at the bottom of the window
+   on short pages such as 404.html. */
 body {
   margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: var(--light);
   color: var(--text-on-light);
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.footer {
+  margin-top: auto;
 }
 
 img {
@@ -680,6 +693,21 @@ p:last-child {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
+/* Like .grid, but a row that is not completely full stays centred instead of
+   hugging the left edge. Use it when you have three cards, or any count that
+   does not divide evenly. */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.cards > * {
+  flex: 1 1 300px;
+  max-width: 380px;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -720,6 +748,24 @@ p:last-child {
 }
 
 .section--dark .card__index {
+  color: var(--orange-bright);
+}
+
+/* Rounded tile holding an icon at the top of a card. */
+.card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background: rgba(191, 87, 0, 0.1);
+  color: var(--orange);
+}
+
+.section--dark .card__icon {
+  background: rgba(255, 122, 26, 0.14);
   color: var(--orange-bright);
 }
 
@@ -791,6 +837,9 @@ p:last-child {
 }
 
 .panel__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-display);
   font-size: 0.82rem;
   font-weight: 700;
@@ -798,6 +847,11 @@ p:last-child {
   text-transform: uppercase;
   color: var(--orange);
   margin: 0 0 16px;
+}
+
+.panel__title .icon {
+  width: 18px;
+  height: 18px;
 }
 
 .section--dark .panel__title {
@@ -829,6 +883,126 @@ p:last-child {
 }
 
 .section--dark .list-check li::before {
+  background: var(--orange-bright);
+}
+
+/* ==========================================================================
+   8b. CAROUSEL
+   A row of cards that scrolls sideways. It advances on its own, and the
+   visitor can also swipe, scroll, drag, use the arrows, or use the dots.
+   Behaviour lives in assets/js/carousel.js.
+   ========================================================================== */
+
+.carousel {
+  position: relative;
+}
+
+/* The scrolling strip itself. Even with JavaScript switched off this is a
+   normal scrollable element, so no content is ever unreachable. */
+.carousel__track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 4px 4px 20px;
+  /* Hide the scrollbar; the arrows and dots do the job instead. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__track > * {
+  flex: 0 0 clamp(260px, 30%, 360px);
+  scroll-snap-align: start;
+}
+
+/* While the visitor is dragging, suppress the smooth-scroll easing so the
+   cards track the pointer exactly. */
+.carousel__track.is-dragging {
+  scroll-behavior: auto;
+  cursor: grabbing;
+  user-select: none;
+}
+
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.carousel__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--light-line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--text-on-light);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.carousel__button:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.carousel__button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.section--dark .carousel__button {
+  background: var(--ink-raised);
+  border-color: var(--ink-line);
+  color: var(--text-on-dark);
+}
+
+.section--dark .carousel__button:hover {
+  border-color: var(--orange-bright);
+  color: var(--orange-bright);
+}
+
+.carousel__dots {
+  display: flex;
+  gap: 10px;
+}
+
+.carousel__dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--light-line);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.carousel__dot:hover {
+  background: var(--text-on-light-dim);
+}
+
+.carousel__dot.is-active {
+  background: var(--orange);
+  transform: scale(1.35);
+}
+
+.section--dark .carousel__dot {
+  background: var(--ink-line);
+}
+
+.section--dark .carousel__dot.is-active {
   background: var(--orange-bright);
 }
 
@@ -1101,6 +1275,46 @@ p:last-child {
   resize: vertical;
 }
 
+/* Native arrow removed so the select matches the text inputs. */
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 42px;
+  background-image: url("../icons/chevron-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+/* Fields that are waiting on an earlier answer. The contact form uses this
+   to hold the message box shut until a reason has been picked. */
+.field input:disabled,
+.field textarea:disabled,
+.field select:disabled {
+  background-color: var(--light-raised);
+  color: var(--text-on-light-dim);
+  cursor: not-allowed;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  transform: none;
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+/* Small grey note under a field. */
+.field__hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-on-light-dim);
+}
+
 /* Anti-spam honeypot. Real people never see or fill this in. */
 .field--honeypot {
   position: absolute;
@@ -1155,6 +1369,9 @@ p:last-child {
 }
 
 .contact-item__label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   font-family: var(--font-display);
   font-size: 0.78rem;
   font-weight: 700;
@@ -1164,10 +1381,51 @@ p:last-child {
   margin-bottom: 6px;
 }
 
+.contact-item__label .icon {
+  width: 16px;
+  height: 16px;
+}
+
 .contact-item a {
   color: var(--text-on-light);
   text-decoration-color: var(--orange);
   text-underline-offset: 3px;
+}
+
+/* Vertical list of links with an icon in front of each one. */
+.link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link-list li {
+  margin-bottom: 8px;
+}
+
+.link-list li:last-child {
+  margin-bottom: 0;
+}
+
+.link-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.link-list a:hover {
+  color: var(--orange);
+}
+
+.link-list .icon {
+  width: 17px;
+  height: 17px;
+  color: var(--text-on-light-dim);
+}
+
+.link-list a:hover .icon {
+  color: var(--orange);
 }
 
 /* ==========================================================================
@@ -1213,6 +1471,9 @@ p:last-child {
 }
 
 .footer__list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   color: var(--text-on-dark-dim);
   text-decoration: none;
   transition: color 0.15s ease;
@@ -1220,6 +1481,11 @@ p:last-child {
 
 .footer__list a:hover {
   color: var(--orange-bright);
+}
+
+.footer__list .icon {
+  width: 16px;
+  height: 16px;
 }
 
 .footer__bottom {
@@ -1231,6 +1497,113 @@ p:last-child {
   padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   13b. ICON LIBRARY
+
+   Icons are painted with a CSS mask, so one SVG file works in any colour:
+   it picks up the colour of the text around it. That means no separate
+   light and dark copies of the same icon.
+
+   To use one:
+     <span class="icon icon--drone" aria-hidden="true"></span>
+
+   To add one: save the SVG into assets/icons/ and add a rule to the list
+   at the bottom of this block. See assets/icons/README.md.
+   ========================================================================== */
+
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.icon--lg {
+  width: 26px;
+  height: 26px;
+}
+
+.icon--xl {
+  width: 34px;
+  height: 34px;
+}
+
+/* Interface icons */
+.icon--drone {
+  --icon: url("../icons/drone.svg");
+}
+.icon--swarm {
+  --icon: url("../icons/swarm.svg");
+}
+.icon--fold {
+  --icon: url("../icons/fold.svg");
+}
+.icon--vtol {
+  --icon: url("../icons/vtol.svg");
+}
+.icon--eye {
+  --icon: url("../icons/eye.svg");
+}
+.icon--wrench {
+  --icon: url("../icons/wrench.svg");
+}
+.icon--code {
+  --icon: url("../icons/code.svg");
+}
+.icon--cpu {
+  --icon: url("../icons/cpu.svg");
+}
+.icon--route {
+  --icon: url("../icons/route.svg");
+}
+.icon--target {
+  --icon: url("../icons/target.svg");
+}
+.icon--trophy {
+  --icon: url("../icons/trophy.svg");
+}
+.icon--package {
+  --icon: url("../icons/package.svg");
+}
+.icon--users {
+  --icon: url("../icons/users.svg");
+}
+.icon--heart {
+  --icon: url("../icons/heart.svg");
+}
+.icon--mail {
+  --icon: url("../icons/mail.svg");
+}
+.icon--map-pin {
+  --icon: url("../icons/map-pin.svg");
+}
+.icon--signal {
+  --icon: url("../icons/signal.svg");
+}
+.icon--chevron-left {
+  --icon: url("../icons/chevron-left.svg");
+}
+.icon--chevron-right {
+  --icon: url("../icons/chevron-right.svg");
+}
+
+/* Brand logos (from assets/icons/brand) */
+.icon--github {
+  --icon: url("../icons/brand/github.svg");
+}
+.icon--instagram {
+  --icon: url("../icons/brand/instagram.svg");
+}
+.icon--linkedin {
+  --icon: url("../icons/brand/linkedin.svg");
+}
+.icon--facebook {
+  --icon: url("../icons/brand/facebook.svg");
 }
 
 /* ==========================================================================

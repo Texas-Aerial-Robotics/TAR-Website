@@ -11,9 +11,13 @@
        "name":    "Ada Lovelace",
        "email":   "ada@example.com",
        "subject": "Sponsorship",
+       "reason":  "Company Sponsorship",
        "message": "Hello!",
        "page":    "https://texasaerialrobotics.org/contact.html"
      }
+
+   It also keeps the message box and the send button switched off until a
+   reason has been picked, so every enquiry arrives already sorted.
 
    If the endpoint is empty or the request fails, the visitor is offered a
    plain mailto: link so a message never gets lost.
@@ -40,6 +44,34 @@
     status.textContent = message;
   }
 
+  /* ----------------------------------------------------------------------
+     Gate the message box behind the reason dropdown
+
+     The message field and the send button start out switched off, and only
+     wake up once a reason has been chosen. They are enabled in the HTML and
+     switched off here, so that a visitor without JavaScript still gets a
+     usable form.
+     ---------------------------------------------------------------------- */
+
+  var reason = form.elements.reason;
+  var messageField = form.elements.message;
+
+  function applyReasonGate() {
+    var chosen = Boolean(reason && reason.value);
+
+    if (messageField) {
+      messageField.disabled = !chosen;
+    }
+    if (submitButton) {
+      submitButton.disabled = !chosen;
+    }
+  }
+
+  if (reason) {
+    reason.addEventListener("change", applyReasonGate);
+    applyReasonGate();
+  }
+
   /** Builds a mailto: link so the visitor can send the message themselves. */
   function mailtoFallback(data) {
     var body =
@@ -47,6 +79,8 @@
       data.name +
       "\nEmail: " +
       data.email +
+      "\nReason: " +
+      data.reason +
       "\n\n" +
       data.message;
 
@@ -54,7 +88,7 @@
       "mailto:" +
       (config.contactEmail || "") +
       "?subject=" +
-      encodeURIComponent(data.subject || "Website enquiry") +
+      encodeURIComponent(data.subject || data.reason || "Website enquiry") +
       "&body=" +
       encodeURIComponent(body)
     );
@@ -83,6 +117,13 @@
     if (form.elements["company-website"].value !== "") {
       setStatus("success", "Thanks! Your message has been sent.");
       form.reset();
+      applyReasonGate();
+      return;
+    }
+
+    if (reason && !reason.value) {
+      setStatus("error", "Please choose a reason for getting in touch.");
+      reason.focus();
       return;
     }
 
@@ -90,6 +131,7 @@
       name: form.elements.name.value.trim(),
       email: form.elements.email.value.trim(),
       subject: form.elements.subject.value.trim(),
+      reason: reason ? reason.value : "",
       message: form.elements.message.value.trim(),
       page: window.location.href,
     };
@@ -128,9 +170,10 @@
       })
       .finally(function () {
         if (submitButton) {
-          submitButton.disabled = false;
           submitButton.textContent = submitLabel;
         }
+        // Re-locks the message box if the form was reset after sending.
+        applyReasonGate();
       });
   });
 })();

@@ -138,6 +138,27 @@
                   <input type="text" id="subject" name="subject" />
                 </div>
 
+                <!-- Add, remove, or reword these options freely. Whatever is
+                     chosen is passed straight through to the email and the
+                     webhook, so no other file needs to change. -->
+                <div class="field">
+                  <label for="reason">Reason for getting in touch</label>
+                  <select id="reason" name="reason" required>
+                    <option value="">Choose a reason&hellip;</option>
+                    <option>Organization Collaboration</option>
+                    <option>Company Sponsorship</option>
+                    <option>Company Talk</option>
+                    <option>Project Sponsorship</option>
+                    <option>Joining the Team</option>
+                    <option>Mentorship or Advising</option>
+                    <option>Media or Press</option>
+                    <option>Something Else</option>
+                  </select>
+                  <p class="field__hint">
+                    Choosing a reason unlocks the message box below.
+                  </p>
+                </div>
+
                 <div class="field">
                   <label for="message">Message</label>
                   <textarea id="message" name="message" required></textarea>
@@ -175,7 +196,10 @@
                  =========================================================== -->
             <div class="panel reveal">
               <div class="contact-item">
-                <p class="contact-item__label">Email</p>
+                <p class="contact-item__label">
+                  <span class="icon icon--mail" aria-hidden="true"></span>
+                  Email
+                </p>
                 <p>
                   <a href="mailto:texasaerialrobotics@gmail.com"
                     >texasaerialrobotics@gmail.com</a
@@ -184,7 +208,10 @@
               </div>
 
               <div class="contact-item">
-                <p class="contact-item__label">Where we are</p>
+                <p class="contact-item__label">
+                  <span class="icon icon--map-pin" aria-hidden="true"></span>
+                  Where we are
+                </p>
                 <p>
                   The University of Texas at Austin<br />
                   Austin, Texas
@@ -192,24 +219,54 @@
               </div>
 
               <div class="contact-item">
-                <p class="contact-item__label">Follow along</p>
-                <p>
-                  <a href="https://www.instagram.com/texasaerialrobotics/"
-                    >Instagram</a
-                  ><br />
-                  <a
-                    href="https://www.linkedin.com/company/texas-aerial-robotics/"
-                    >LinkedIn</a
-                  ><br />
-                  <a href="https://www.facebook.com/texasaerialrobotics/"
-                    >Facebook</a
-                  ><br />
-                  <a href="https://github.com/Texas-Aerial-Robotics">GitHub</a>
+                <p class="contact-item__label">
+                  <span class="icon icon--signal" aria-hidden="true"></span>
+                  Follow along
                 </p>
+                <ul class="link-list">
+                  <li>
+                    <a href="https://www.instagram.com/texasaerialrobotics/">
+                      <span
+                        class="icon icon--instagram"
+                        aria-hidden="true"
+                      ></span>
+                      Instagram
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.linkedin.com/company/texas-aerial-robotics/"
+                    >
+                      <span
+                        class="icon icon--linkedin"
+                        aria-hidden="true"
+                      ></span>
+                      LinkedIn
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.facebook.com/texasaerialrobotics/">
+                      <span
+                        class="icon icon--facebook"
+                        aria-hidden="true"
+                      ></span>
+                      Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Texas-Aerial-Robotics">
+                      <span class="icon icon--github" aria-hidden="true"></span>
+                      GitHub
+                    </a>
+                  </li>
+                </ul>
               </div>
 
               <div class="contact-item">
-                <p class="contact-item__label">Sponsorship</p>
+                <p class="contact-item__label">
+                  <span class="icon icon--heart" aria-hidden="true"></span>
+                  Sponsorship
+                </p>
                 <p>
                   Interested in supporting the team? Start with our
                   <a href="partners.html">partners page</a>, or just send us a
@@ -257,7 +314,10 @@
               <li><a href="donate.html">Donate</a></li>
               <li><a href="contact.html">Contact</a></li>
               <li>
-                <a href="https://github.com/Texas-Aerial-Robotics">GitHub</a>
+                <a href="https://github.com/Texas-Aerial-Robotics">
+                  <span class="icon icon--github" aria-hidden="true"></span>
+                  GitHub
+                </a>
               </li>
             </ul>
           </div>
@@ -266,20 +326,24 @@
             <h2 class="footer__heading">Follow</h2>
             <ul class="footer__list">
               <li>
-                <a href="https://www.instagram.com/texasaerialrobotics/"
-                  >Instagram</a
-                >
+                <a href="https://www.instagram.com/texasaerialrobotics/">
+                  <span class="icon icon--instagram" aria-hidden="true"></span>
+                  Instagram
+                </a>
               </li>
               <li>
                 <a
                   href="https://www.linkedin.com/company/texas-aerial-robotics/"
-                  >LinkedIn</a
                 >
+                  <span class="icon icon--linkedin" aria-hidden="true"></span>
+                  LinkedIn
+                </a>
               </li>
               <li>
-                <a href="https://www.facebook.com/texasaerialrobotics/"
-                  >Facebook</a
-                >
+                <a href="https://www.facebook.com/texasaerialrobotics/">
+                  <span class="icon icon--facebook" aria-hidden="true"></span>
+                  Facebook
+                </a>
               </li>
             </ul>
           </div>
