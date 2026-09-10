@@ -89,33 +89,19 @@
       </section>
 
       <!-- ===============================================================
-           WHAT WE ARE BUILDING THIS YEAR
-
-           To add a project, copy one <article class="card"> block and
-           change its icon, label, name, and copy. The row stays centred
-           however many there are.
+           PROJECT: HIVEMIND
+           To add a new project, copy one of these <section> blocks and
+           change the id, the heading, and the copy. Alternate between
+           "section--light" and "section--muted" so the bands stripe.
            =============================================================== -->
-      <section class="section section--light" id="this-year">
+      <section class="section section--light" id="hivemind">
         <div class="container">
-          <div class="section__header section__header--center">
-            <span class="eyebrow">2026 &ndash; 2027 TAR Projects</span>
-            <hr class="rule" />
-            <h2>What we are building this year.</h2>
-            <p class="lede">
-              Three project teams, each chasing a different hard problem in
-              autonomous flight.
-            </p>
-          </div>
-
-          <div class="cards">
-            <article class="card reveal" id="hivemind">
-              <span class="card__icon">
-                <span class="icon icon--swarm icon--lg" aria-hidden="true"
-                ></span>
-              </span>
-              <p class="card__index">Swarm</p>
-              <h3 class="card__title">Hivemind</h3>
-              <p class="card__body">
+          <div class="split">
+            <div class="reveal">
+              <span class="eyebrow">Project 01 &middot; Swarm</span>
+              <hr class="rule" />
+              <h2>Hivemind</h2>
+              <p class="lede">
                 A fleet of small quadcopters that fly as one. Hivemind is
                 building a decentralised swarm where every drone runs the same
                 controller and negotiates its own role in the air, so the
@@ -124,7 +110,13 @@
                 collision-free trajectory allocation, and on a ground station
                 that can task the whole fleet with a single command.
               </p>
-              <div class="card__spacer"></div>
+            </div>
+
+            <div class="panel reveal">
+              <p class="panel__title">
+                <span class="icon icon--swarm" aria-hidden="true"></span>
+                Focus areas
+              </p>
               <ul class="tags">
                 <li class="tag">Multi-agent control</li>
                 <li class="tag">Consensus algorithms</li>
@@ -133,16 +125,22 @@
                 <li class="tag">Formation flight</li>
                 <li class="tag">Ground station UI</li>
               </ul>
-            </article>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <article class="card reveal" id="origami">
-              <span class="card__icon">
-                <span class="icon icon--fold icon--lg" aria-hidden="true"
-                ></span>
-              </span>
-              <p class="card__index">Folding &amp; throwable</p>
-              <h3 class="card__title">Origami</h3>
-              <p class="card__body">
+      <!-- ===============================================================
+           PROJECT: ORIGAMI
+           =============================================================== -->
+      <section class="section section--muted" id="origami">
+        <div class="container">
+          <div class="split">
+            <div class="reveal">
+              <span class="eyebrow">Project 02 &middot; Folding &amp; throwable</span>
+              <hr class="rule" />
+              <h2>Origami</h2>
+              <p class="lede">
                 A drone that folds down to the size of a paperback, gets thrown
                 into the air by hand, and unfolds mid-flight to run small jobs
                 around a house. The team is designing the spring-loaded arm
@@ -150,7 +148,13 @@
                 from an uncontrolled tumble, and teaching it to find its way
                 around indoor spaces where there is no GPS to fall back on.
               </p>
-              <div class="card__spacer"></div>
+            </div>
+
+            <div class="panel reveal">
+              <p class="panel__title">
+                <span class="icon icon--fold" aria-hidden="true"></span>
+                Focus areas
+              </p>
               <ul class="tags">
                 <li class="tag">Compliant mechanisms</li>
                 <li class="tag">Spring hinges</li>
@@ -159,16 +163,22 @@
                 <li class="tag">Weight budgeting</li>
                 <li class="tag">Rapid prototyping</li>
               </ul>
-            </article>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <article class="card reveal" id="peregrine">
-              <span class="card__icon">
-                <span class="icon icon--vtol icon--lg" aria-hidden="true"
-                ></span>
-              </span>
-              <p class="card__index">VTOL</p>
-              <h3 class="card__title">Peregrine</h3>
-              <p class="card__body">
+      <!-- ===============================================================
+           PROJECT: PEREGRINE
+           =============================================================== -->
+      <section class="section section--light" id="peregrine">
+        <div class="container">
+          <div class="split">
+            <div class="reveal">
+              <span class="eyebrow">Project 03 &middot; VTOL</span>
+              <hr class="rule" />
+              <h2>Peregrine</h2>
+              <p class="lede">
                 A tail-sitter that lifts off straight up like a quadcopter,
                 tips over onto a fixed wing, and cruises. Peregrine is chasing
                 the transition: the few seconds where the airframe stops being
@@ -177,7 +187,13 @@
                 aerodynamic modelling that tells us whether a design will
                 survive the handover before we risk it.
               </p>
-              <div class="card__spacer"></div>
+            </div>
+
+            <div class="panel reveal">
+              <p class="panel__title">
+                <span class="icon icon--vtol" aria-hidden="true"></span>
+                Focus areas
+              </p>
               <ul class="tags">
                 <li class="tag">Fixed-wing aero</li>
                 <li class="tag">Transition control</li>
@@ -186,7 +202,7 @@
                 <li class="tag">PX4 airframe config</li>
                 <li class="tag">Endurance testing</li>
               </ul>
-            </article>
+            </div>
           </div>
         </div>
       </section>
@@ -407,7 +423,7 @@
 
             <div class="carousel__controls">
               <button
-                class="carousel__button"
+                class="carousel__button carousel__button--prev"
                 type="button"
                 data-carousel-prev
                 aria-label="Previous past missions"
@@ -418,7 +434,7 @@
               <div class="carousel__dots" data-carousel-dots></div>
 
               <button
-                class="carousel__button"
+                class="carousel__button carousel__button--next"
                 type="button"
                 data-carousel-next
                 aria-label="Next past missions"
