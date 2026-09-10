@@ -47,10 +47,13 @@ assets/
     favicon*.png    Browser tab icons, generated from the logo
     og-image.jpg    The image that shows up when the site is linked in Slack,
                     iMessage, LinkedIn, etc.
+  icons/            Interface icons, plus brand/ for company logos.
+                    See assets/icons/README.md for how to add one.
   css/site.css      Every style on the site, in one commented file
   js/site-config.js Links, email address, and contact form destination
   js/site.js        Mobile menu, scroll animations, footer year
   js/contact-form.js Contact page only: sends the form
+  js/carousel.js    Projects page only: the "Past missions" carousel
 
 netlify/functions/
   contact.js        Receives the contact form and forwards it by SMTP
@@ -107,9 +110,27 @@ The home page also has a smaller set of slots near the bottom.
 
 ### Add a project
 
-`projects.html`. Copy any of the project `<section>` blocks, then change its
-`id`, heading, and copy. If you want it to appear on the home page too, copy a
-card in the `PROJECTS PREVIEW` section of `index.html`.
+`projects.html`, in the section commented `WHAT WE ARE BUILDING THIS YEAR`.
+Copy one `<article class="card">` block and change its icon, label, name, and
+copy. The row stays centred no matter how many cards there are. To show it on
+the home page too, copy a card in the matching section of `index.html`.
+
+### Add a card to the "Past missions" carousel
+
+`projects.html`, in the section commented `PAST MISSIONS`. Copy an
+`<article class="card">` inside `<div class="carousel__track">`. The dots
+underneath are generated from however many cards it finds, so there is
+nothing else to keep in sync.
+
+To change how fast it moves, edit `data-carousel-interval` on the
+`<div class="carousel">` — it is milliseconds, so `5000` is five seconds.
+
+### Change the reasons in the contact form dropdown
+
+`contact.html`, in the `<select id="reason">`. Add or reword the `<option>`
+lines. Whatever is chosen is passed through to the email and the webhook, so
+no other file needs changing. Leave the first, empty option in place: it is
+what keeps the message box locked until a reason is picked.
 
 ### Update links and the contact email
 
