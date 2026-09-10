@@ -205,7 +205,9 @@ navKey: "about"
         <h2>Who runs TAR.</h2>
       </div>
 
-      <div class="grid grid--3">
+      <!-- ".cards" rather than ".grid grid--3" so that a last row which is
+           not completely full sits centred instead of hugging the left. -->
+      <div class="cards">
         {%- for officer in officers %}
         <article class="card reveal">
           <p class="card__index">{{ officer.role }}</p>
