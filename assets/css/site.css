@@ -570,6 +570,16 @@ p:last-child {
   color: var(--text-on-dark);
   overflow: hidden;
   padding: 120px 0 110px;
+  /* Keep the first screen on brand + headline + CTA; stats live below. */
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 /* Grid texture + orange glow behind the hero text. */
@@ -600,11 +610,6 @@ p:last-child {
     rgba(191, 87, 0, 0) 62%
   );
   pointer-events: none;
-}
-
-.hero > .container {
-  position: relative;
-  z-index: 1;
 }
 
 .hero__grid {
