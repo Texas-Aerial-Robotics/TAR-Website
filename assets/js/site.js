@@ -73,9 +73,7 @@
       { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
     );
 
-    revealables.forEach(function (element, index) {
-      // Stagger siblings slightly so groups of cards cascade in.
-      element.style.transitionDelay = (index % 4) * 70 + "ms";
+    revealables.forEach(function (element) {
       observer.observe(element);
     });
   }

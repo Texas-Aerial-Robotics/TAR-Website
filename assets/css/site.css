@@ -46,16 +46,16 @@
   --text-on-light: #14161a;
   --text-on-light-dim: #5c6169;
 
-  /* Type */
+  /* Type — Space Grotesk for headings, Source Sans 3 for body.
+     Avoid the usual vibe-coded defaults (Inter / Poppins / Montserrat). */
   --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
+  --font-body: "Source Sans 3", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  /* Spacing + shape */
+  /* Spacing + shape — 8px rhythm, two radii only */
   --container: 1180px;
   --gutter: 24px;
-  --radius: 14px;
-  --radius-sm: 8px;
+  --radius: 8px;
+  --radius-sm: 4px;
 
   /* Header height, used to offset anchor links */
   --header-height: 72px;
@@ -322,21 +322,17 @@ p:last-child {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 26px;
+  padding: 12px 24px;
   border: 2px solid transparent;
-  border-radius: 999px;
+  border-radius: var(--radius);
   font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.15s ease,
-    border-color 0.15s ease, color 0.15s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .btn--primary {
@@ -416,9 +412,7 @@ p:last-child {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(11, 12, 14, 0.85);
-  backdrop-filter: saturate(160%) blur(12px);
-  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  background: var(--ink);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -471,8 +465,8 @@ p:last-child {
 }
 
 .nav__link {
-  padding: 9px 14px;
-  border-radius: 999px;
+  padding: 8px 14px;
+  border-radius: var(--radius);
   font-family: var(--font-display);
   font-size: 0.92rem;
   font-weight: 600;
@@ -631,18 +625,7 @@ p:last-child {
 .hero__art {
   justify-self: center;
   max-width: 420px;
-  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.55));
-  animation: hover-float 7s ease-in-out infinite;
-}
-
-@keyframes hover-float {
-  0%,
-  100% {
-    transform: translateY(-10px);
-  }
-  50% {
-    transform: translateY(10px);
-  }
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.45));
 }
 
 /* Smaller hero used on interior pages. */
@@ -723,18 +706,15 @@ p:last-child {
 .card {
   display: flex;
   flex-direction: column;
-  padding: 28px;
+  padding: 24px;
   background: var(--light-raised);
   border: 1px solid var(--light-line);
   border-radius: var(--radius);
-  transition: transform 0.2s ease, box-shadow 0.2s ease,
-    border-color 0.2s ease;
+  transition: border-color 0.15s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
   border-color: var(--orange);
-  box-shadow: 0 18px 40px rgba(20, 22, 26, 0.1);
 }
 
 .section--dark .card,
@@ -747,7 +727,6 @@ p:last-child {
 .section--dark .card:hover,
 .card--dark:hover {
   border-color: var(--orange-bright);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 }
 
 .card__index {
@@ -768,10 +747,10 @@ p:last-child {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 18px;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 16px;
+  border-radius: var(--radius);
   background: rgba(191, 87, 0, 0.1);
   color: var(--orange);
 }
@@ -812,9 +791,9 @@ p:last-child {
 }
 
 .tag {
-  padding: 5px 12px;
+  padding: 4px 10px;
   border: 1px solid var(--light-line);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: #fff;
   font-size: 0.8rem;
   font-weight: 600;
@@ -1108,6 +1087,13 @@ p:last-child {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+/* Standalone stats band (homepage), not nested inside the hero. */
+.stats--band {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
 .stat__value {
   font-family: var(--font-display);
   font-size: 2.4rem;
@@ -1201,7 +1187,6 @@ p:last-child {
 
 .tier--featured {
   border-color: var(--orange);
-  box-shadow: 0 18px 40px rgba(191, 87, 0, 0.12);
 }
 
 .tier__name {
@@ -1231,8 +1216,7 @@ p:last-child {
   margin-top: 6px;
 }
 
-/* Grid of sponsor logo slots. Drop an <img> inside each slot when you have
-   real logos; until then the slot shows placeholder text. */
+/* Grid of sponsor logo slots. */
 .logo-wall {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -1245,8 +1229,8 @@ p:last-child {
   justify-content: center;
   min-height: 110px;
   padding: 20px;
-  border: 1px dashed var(--light-line);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--light-line);
+  border-radius: var(--radius);
   background: #fff;
   color: var(--text-on-light-dim);
   font-family: var(--font-display);
@@ -1356,7 +1340,6 @@ p:last-child {
   border-color: #6f737a;
   color: #e4e4e2;
   cursor: not-allowed;
-  transform: none;
 }
 
 /* A field the visitor needs to fix. Added and removed by
@@ -1705,8 +1688,8 @@ p:last-child {
 
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .reveal.is-visible {
