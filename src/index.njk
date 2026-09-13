@@ -7,60 +7,77 @@ navKey: "home"
 ---
 
   <!-- ===============================================================
-       HERO
+       HERO — brand-first, one job, full-bleed atmosphere
        =============================================================== -->
   <section class="hero">
-    <div class="container">
-      <div class="hero__grid">
-        <div>
-          <span class="eyebrow">The University of Texas at Austin</span>
-          <h1 class="hero__title">
-            Fully autonomous drones,<br />built <span>from scratch</span>.
-          </h1>
-          <p class="lede">
-            Texas Aerial Robotics is an undergraduate research organization
-            designing, building, and programming aerial robots that fly
-            themselves &mdash; hardware, software, and everything in
-            between.
-          </p>
-          <div class="btn-row">
-            <a class="btn btn--primary" href="/projects.html"
-              >See our projects</a
-            >
-            <a class="btn btn--ghost" href="/about.html">Who we are</a>
-          </div>
-        </div>
+    <div class="hero__sky" aria-hidden="true">
+      <div class="hero__beam"></div>
+      <div class="hero__gridlines"></div>
+      <svg class="hero__paths" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <path class="hero__path hero__path--a" d="M-40 520 C 220 420, 380 610, 620 480 S 980 320, 1240 400" fill="none" />
+        <path class="hero__path hero__path--b" d="M-20 180 C 260 260, 420 80, 680 160 S 1020 280, 1240 120" fill="none" />
+        <path class="hero__path hero__path--c" d="M100 760 C 340 640, 520 720, 760 600 S 1080 520, 1300 560" fill="none" />
+      </svg>
+    </div>
 
-        <img
-          class="hero__art"
-          src="/assets/brand/logos/tar-logo-primary-dark-tight.png"
-          alt=""
-          width="420"
-          height="287"
-        />
+    <div class="container hero__layout">
+      <div class="hero__copy">
+        <p class="hero__brand">Texas Aerial Robotics</p>
+        <h1 class="hero__title">
+          Flight that thinks<br />
+          for <em>itself</em>.
+        </h1>
+        <p class="lede hero__lede">
+          UT Austin undergraduates designing, building, and programming
+          fully autonomous drones &mdash; airframe to autonomy stack.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/projects.html">See the fleet</a>
+          <a class="btn btn--ghost" href="/about.html">Meet the lab</a>
+        </div>
+      </div>
+
+      <div class="hero__stage" aria-hidden="true">
+        <div class="orbit">
+          <span class="orbit__ring orbit__ring--outer"></span>
+          <span class="orbit__ring orbit__ring--mid"></span>
+          <span class="orbit__ring orbit__ring--inner"></span>
+          <span class="orbit__ping"></span>
+          <img
+            class="orbit__mark"
+            src="/assets/brand/logos/tar-logo-primary-dark-tight.png"
+            alt=""
+            width="420"
+            height="287"
+          />
+        </div>
+        <p class="orbit__caption">
+          <span class="orbit__dot"></span>
+          Autonomy stack live
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Quick numbers sit below the hero so the first screen stays focused. -->
-  <section class="section section--dark section--tight">
+  <!-- Telemetry strip — intentionally below the first screen -->
+  <section class="telemetry" aria-label="Team snapshot">
     <div class="container">
-      <div class="stats stats--band">
-        <div class="stat">
-          <div class="stat__value">2017</div>
-          <div class="stat__label">Founded at UT Austin</div>
+      <div class="telemetry__rail">
+        <div class="telemetry__item">
+          <span class="telemetry__key">Founded</span>
+          <span class="telemetry__val">2017</span>
         </div>
-        <div class="stat">
-          <div class="stat__value">40+</div>
-          <div class="stat__label">Undergraduate members</div>
+        <div class="telemetry__item">
+          <span class="telemetry__key">Members</span>
+          <span class="telemetry__val">40+</span>
         </div>
-        <div class="stat">
-          <div class="stat__value">9</div>
-          <div class="stat__label">Sub-Teams</div>
+        <div class="telemetry__item">
+          <span class="telemetry__key">Sub-teams</span>
+          <span class="telemetry__val">9</span>
         </div>
-        <div class="stat">
-          <div class="stat__value">4</div>
-          <div class="stat__label">Active projects this year</div>
+        <div class="telemetry__item">
+          <span class="telemetry__key">Active builds</span>
+          <span class="telemetry__val">4</span>
         </div>
       </div>
     </div>
@@ -73,39 +90,38 @@ navKey: "home"
     <div class="container">
       <div class="split">
         <div class="reveal">
-          <span class="eyebrow">Who are we?</span>
+          <span class="eyebrow">Who we are</span>
           <hr class="rule" />
           <h2>An undergraduate lab for autonomous flight.</h2>
           <p class="lede">
-            Based in the University of Texas at Austin, Texas Aerial
-            Robotics is an undergraduate research organization dedicated to
-            designing, building, and programming fully autonomous drones.
+            Based at The University of Texas at Austin, Texas Aerial
+            Robotics designs, builds, and programs drones that fly
+            themselves.
           </p>
           <p class="lede">
-            Our members gain hands-on experience with industry-relevant
-            tools and technologies, including CAD, prototyping, Linux, C++,
-            and ROS.
+            Members ship with the same tools used in industry: CAD,
+            prototyping, Linux, C++, ROS, and computer vision.
           </p>
           <div class="btn-row">
             <a class="btn btn--outline" href="/about.html">Learn more</a>
           </div>
         </div>
 
-        <div class="panel reveal">
-          <p class="panel__title">Tools our members use</p>
+        <div class="panel panel--signal reveal">
+          <p class="panel__title">Stack we train on</p>
           <ul class="tags">
             <li class="tag">CAD</li>
             <li class="tag">Prototyping</li>
             <li class="tag">PCB Design</li>
-            <li class="tag">Embedded Electronics</li>
-            <li class="tag">Drone Avionics</li>
+            <li class="tag">Embedded</li>
+            <li class="tag">Avionics</li>
             <li class="tag">Linux</li>
             <li class="tag">C++</li>
             <li class="tag">Python</li>
             <li class="tag">ROS</li>
             <li class="tag">PX4</li>
-            <li class="tag">Computer Vision</li>
-            <li class="tag">Path Planning</li>
+            <li class="tag">Vision</li>
+            <li class="tag">Planning</li>
             <li class="tag">SLAM</li>
           </ul>
         </div>
@@ -114,40 +130,33 @@ navKey: "home"
   </section>
 
   <!-- ===============================================================
-       PROJECTS PREVIEW
-       The projects themselves live in src/content/projects-current.txt.
-       Edit that file to change them; the full write-ups on the Projects
-       page come from the same place.
+       PROJECTS — editorial mission list, not a card grid
        =============================================================== -->
   <section class="section section--muted">
     <div class="container">
       <div class="section__header">
-        <span class="eyebrow">{{ site.season }} TAR Projects</span>
+        <span class="eyebrow">{{ site.season }} missions</span>
         <hr class="rule" />
         <h2>What we are building this year.</h2>
         <p class="lede">
-          Every member joins a project team and ships real hardware and real
-          software alongside it.
+          Every member joins a project team and ships real hardware with
+          real software beside it.
         </p>
       </div>
 
-      <div class="cards">
+      <div class="missions">
         {%- for project in projects.current %}
-        <article class="card reveal">
-          <span class="card__icon">
-            <span
-              class="icon icon--{{ project.icon }} icon--lg"
-              aria-hidden="true"
-            ></span>
+        <a
+          class="mission reveal"
+          href="/projects.html#{{ project.link }}"
+        >
+          <span class="mission__index">{{ project.label }}</span>
+          <span class="mission__body">
+            <span class="mission__name">{{ project.name }}</span>
+            <span class="mission__summary">{{ project.summary }}</span>
           </span>
-          <p class="card__index">{{ project.label }}</p>
-          <h3 class="card__title">{{ project.name }}</h3>
-          <p class="card__body">{{ project.summary }}</p>
-          <div class="card__spacer"></div>
-          <a class="link-arrow" href="/projects.html#{{ project.link }}"
-            >Read more</a
-          >
-        </article>
+          <span class="mission__go" aria-hidden="true">View</span>
+        </a>
         {%- endfor %}
       </div>
     </div>
@@ -164,10 +173,8 @@ navKey: "home"
           <hr class="rule" />
           <h2>Competing on a national stage.</h2>
           <p class="lede">
-            We are proud to have a team participating in the prestigious RTX
-            Autonomous Vehicles Competition. This competition presents a
-            unique challenge, where both aerial and ground robots are
-            employed in dynamic and strategic environments.
+            Our RAVG team races in the RTX Autonomous Vehicles Competition,
+            pairing aerial and ground robots in fast, strategic arenas.
           </p>
           <div class="btn-row">
             <a class="btn btn--primary" href="/ravg.html"
@@ -176,8 +183,6 @@ navKey: "home"
           </div>
         </div>
 
-        <!-- The steps come from src/content/ravg-competition.txt, the same
-             file the RAVG page reads, so both move together each season. -->
         <div class="panel reveal">
           <p class="panel__title">This year's mission</p>
           <ul class="list-check">
@@ -191,32 +196,26 @@ navKey: "home"
   </section>
 
   <!-- ===============================================================
-       PARTNERS STRIP
+       PARTNERS
        =============================================================== -->
   <section class="section section--light">
     <div class="container">
       <div class="section__header section__header--center">
-        <span class="eyebrow">Our partners</span>
+        <span class="eyebrow">Partners</span>
         <hr class="rule" />
         <h2>Sponsors who keep us flying.</h2>
         <p class="lede">
-          Software licences, parts, and funding from these partners become
-          flight hours for undergraduates building autonomous systems.
+          Licenses, parts, and funding from these partners become flight
+          hours for undergraduates building autonomous systems.
         </p>
       </div>
 
       <div class="logo-wall reveal">
         <div class="logo-slot">
-          <img
-            src="/assets/company/platinum/Altium_logo.svg"
-            alt="Altium"
-          />
+          <img src="/assets/company/platinum/Altium_logo.svg" alt="Altium" />
         </div>
         <div class="logo-slot">
-          <img
-            src="/assets/company/platinum/ANSYS_logo.png"
-            alt="ANSYS"
-          />
+          <img src="/assets/company/platinum/ANSYS_logo.png" alt="ANSYS" />
         </div>
         <div class="logo-slot">
           <img
@@ -245,6 +244,7 @@ navKey: "home"
        =============================================================== -->
   <section class="cta-band">
     <div class="container container--narrow">
+      <p class="cta-band__brand">Texas Aerial Robotics</p>
       <h2>Join a team that ships flying robots.</h2>
       <p>
         No experience required &mdash; just curiosity. We train new members
