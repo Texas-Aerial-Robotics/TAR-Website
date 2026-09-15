@@ -14,6 +14,9 @@ module.exports = {
   university: "The University of Texas at Austin",
   location: "Austin, Texas",
 
+  /* Public site origin. Used for absolute Open Graph / social preview URLs. */
+  url: "https://texasaerialrobotics.org",
+
   /* The academic year. Shown above the project list and the officer team,
      so both move on with one edit here. */
   season: "2026 – 2027",
