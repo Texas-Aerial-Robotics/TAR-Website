@@ -24,19 +24,40 @@
     {%- if description %}
     <meta name="description" content="{{ description }}" />
     {%- endif %}
-    {%- if noindex %}
-    <meta name="robots" content="noindex" />
+
+    {%- if noindex or not site.isProduction %}
+    <!-- Either this page asked to stay out of search results, or this is a
+         Netlify deploy preview, which is public but must not compete with
+         the real site. See `isProduction` in src/_data/site.js. -->
+    <meta name="robots" content="noindex, follow" />
+    {%- else %}
+    <!-- The one address for this page. Netlify serves /about, /about.html,
+         and (for the home page) /index.html as three copies of the same
+         thing; this is what tells a search engine which one counts, so the
+         page's credit is not split three ways. -->
+    <link rel="canonical" href="{{ page.url | canonical }}" />
+
+    <!-- max-image-preview lets Google show a large thumbnail; the other two
+         stop it trimming the snippet. All three only widen what it may
+         show, never what it may crawl. -->
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
     {%- endif %}
 
     <!-- Icons -->
     <link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="/assets/brand/favicon-32.png" />
     <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0d0d0f" />
+    <meta name="application-name" content="{{ site.name }}" />
 
     <!-- Link preview card (Slack, iMessage, LinkedIn, ...) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="{{ site.name }}" />
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="{{ page.url | canonical }}" />
     <meta property="og:title" content="{{ ogTitle or title }}" />
     {%- if ogDescription or description %}
     <meta
@@ -44,7 +65,10 @@
       content="{{ ogDescription or description }}"
     />
     {%- endif %}
-    <meta property="og:image" content="{{ site.url }}/assets/brand/og-image.jpg" />
+    <meta property="og:image" content="{{ '/assets/brand/og-image.jpg' | absolute }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{{ site.name }} — {{ site.university }}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ ogTitle or title }}" />
     {%- if ogDescription or description %}
@@ -53,7 +77,14 @@
       content="{{ ogDescription or description }}"
     />
     {%- endif %}
-    <meta name="twitter:image" content="{{ site.url }}/assets/brand/og-image.jpg" />
+    <meta name="twitter:image" content="{{ '/assets/brand/og-image.jpg' | absolute }}" />
+    <meta name="twitter:image:alt" content="{{ site.name }} — {{ site.university }}" />
+
+    {%- if not noindex and site.isProduction %}
+    <!-- Who we are, in the format search engines read. Built in lib/seo.js
+         from the details in src/_data/site.js. -->
+    {% structuredData page.url, title, description, navKey %}
+    {%- endif %}
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

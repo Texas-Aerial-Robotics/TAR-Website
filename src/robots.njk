@@ -1,0 +1,23 @@
+---
+#
+# robots.txt — the first file a search engine asks for.
+#
+# Generated rather than hand-written so that the sitemap address below is
+# always the address the site is actually deployed to. It is built from
+# `site.url` in src/_data/site.js, which Netlify fills in automatically.
+#
+permalink: /robots.txt
+layout: null
+eleventyExcludeFromCollections: true
+---
+{%- if site.isProduction -%}
+User-agent: *
+Allow: /
+
+Sitemap: {{ site.url }}/sitemap.xml
+{%- else -%}
+# Deploy preview, not the real site. Kept out of search results so it does
+# not compete with the live site for the same words.
+User-agent: *
+Disallow: /
+{%- endif %}
