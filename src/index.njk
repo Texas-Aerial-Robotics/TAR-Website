@@ -22,8 +22,12 @@ navKey: "home"
 
     <div class="container hero__layout">
       <div class="hero__copy">
-        <p class="hero__brand">Texas Aerial Robotics</p>
+        <!-- The name is inside the <h1> on purpose. Someone searching for
+             "texas aerial robotics" should find the words they typed in the
+             page's one top-level heading, not only in the tab title. It
+             still renders as two lines, exactly as it looks. -->
         <h1 class="hero__title">
+          <span class="hero__brand">Texas Aerial Robotics</span>
           Flight that thinks<br />
           for <em>itself</em>.
         </h1>
@@ -32,8 +36,8 @@ navKey: "home"
           fully autonomous drones &mdash; airframe to autonomy stack.
         </p>
         <div class="btn-row">
-          <a class="btn btn--primary" href="/projects.html">See the fleet</a>
-          <a class="btn btn--ghost" href="/about.html">Meet the lab</a>
+          <a class="btn btn--primary" href="/projects">See the fleet</a>
+          <a class="btn btn--ghost" href="/about">Meet the lab</a>
         </div>
       </div>
 
@@ -103,7 +107,7 @@ navKey: "home"
             prototyping, Linux, C++, ROS, and computer vision.
           </p>
           <div class="btn-row">
-            <a class="btn btn--outline" href="/about.html">Learn more</a>
+            <a class="btn btn--outline" href="/about">Learn more</a>
           </div>
         </div>
 
@@ -148,7 +152,7 @@ navKey: "home"
         {%- for project in projects.current %}
         <a
           class="mission reveal"
-          href="/projects.html#{{ project.link }}"
+          href="/projects#{{ project.link }}"
         >
           <span class="mission__index">{{ project.label }}</span>
           <span class="mission__body">
@@ -177,7 +181,7 @@ navKey: "home"
             pairing aerial and ground robots in fast, strategic arenas.
           </p>
           <div class="btn-row">
-            <a class="btn btn--primary" href="/ravg.html"
+            <a class="btn btn--primary" href="/ravg"
               >Explore the RAVG team</a
             >
           </div>
@@ -232,7 +236,7 @@ navKey: "home"
       </div>
 
       <div class="btn-row" style="justify-content: center">
-        <a class="btn btn--outline" href="/partners.html"
+        <a class="btn btn--outline" href="/partners"
           >Partnership tiers</a
         >
       </div>
@@ -251,8 +255,8 @@ navKey: "home"
         on the tools, and everyone works on a real project from day one.
       </p>
       <div class="btn-row">
-        <a class="btn btn--primary" href="/contact.html">Get in touch</a>
-        <a class="btn btn--outline" href="/donate.html">Support the team</a>
+        <a class="btn btn--primary" href="/contact">Get in touch</a>
+        <a class="btn btn--outline" href="/donate">Support the team</a>
       </div>
     </div>
   </section>

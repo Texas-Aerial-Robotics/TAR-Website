@@ -36,12 +36,15 @@
   autoLaunch = false
 
 # --------------------------------------------------------------------------
-# Friendly URLs: /about also serves /about.html
-# (Netlify does this automatically, these entries just make it explicit.)
+# Friendly URLs
+#
+# Netlify serves _site/about.html at /about as well, and /about is the
+# address the site declares as the real one (see the canonical tag in
+# src/_includes/base.njk), so that is what the pages link to.
 # --------------------------------------------------------------------------
 [[redirects]]
   from = "/home"
-  to = "/index.html"
+  to = "/"
   status = 301
 
 # --------------------------------------------------------------------------
