@@ -9,13 +9,62 @@
 // example {{ site.contactEmail }}.
 // ==========================================================================
 
+/* ------------------------------------------------------------------
+   Public site origin — the address people actually type in.
+
+   Everything absolute on the site is built from this: the canonical
+   tags that tell Google which URL is the real one, the link-preview
+   URLs, robots.txt, and sitemap.xml. If it points somewhere that does
+   not exist, Google cannot crawl the pages the sitemap advertises and
+   the canonical tags send it to a dead domain, so the site does not
+   rank. It is worth getting right.
+
+   It is resolved in this order:
+
+     1. SITE_URL, if you set it yourself. Use this to override.
+     2. URL, which Netlify sets automatically to the site's primary
+        address. Attach a custom domain in Netlify and this picks it
+        up on the next deploy with no code change.
+     3. FALLBACK_SITE_URL below, for local builds.
+
+   Only the origin is kept: no trailing slash, no path.
+   ------------------------------------------------------------------ */
+const FALLBACK_SITE_URL = "https://texasaerialrobotics.netlify.app";
+
+function resolveSiteUrl() {
+  for (const candidate of [process.env.SITE_URL, process.env.URL]) {
+    try {
+      const parsed = new URL(candidate);
+      if (parsed.protocol === "http:" || parsed.protocol === "https:") {
+        return parsed.origin;
+      }
+    } catch {
+      // Not set, or not a URL. Try the next one.
+    }
+  }
+  return FALLBACK_SITE_URL;
+}
+
 module.exports = {
   name: "Texas Aerial Robotics",
+  shortName: "TAR",
   university: "The University of Texas at Austin",
   location: "Austin, Texas",
+  founded: "2017",
 
-  /* Public site origin. Used for absolute Open Graph / social preview URLs. */
-  url: "https://texasaerialrobotics.org",
+  url: resolveSiteUrl(),
+
+  /* ------------------------------------------------------------------
+     Is this build the real, public site?
+
+     Netlify sets CONTEXT to "production" only for the live site. Deploy
+     previews and branch deploys are also public, on their own addresses,
+     and a search engine will happily index them as a second copy of the
+     site competing with the real one. So robots.txt closes the door on
+     anything that is not production. Local builds count as production so
+     that what you see locally is what deploys.
+     ------------------------------------------------------------------ */
+  isProduction: (process.env.CONTEXT || "production") === "production",
 
   /* The academic year. Shown above the project list and the officer team,
      so both move on with one edit here. */
@@ -73,6 +122,28 @@ module.exports = {
     linkedin: "https://www.linkedin.com/company/texas-aerial-robotics/",
     facebook: "https://www.facebook.com/texasaerialrobotics/",
     github: "https://github.com/Texas-Aerial-Robotics",
+    hornslink: "https://utexas.campuslabs.com/engage/organization/TAR",
     donate: "https://give.utexas.edu/",
   },
+
+  /* ------------------------------------------------------------------
+     Every page that is unambiguously *this* organisation somewhere else
+     on the web. These go into the `sameAs` list in the structured data,
+     which is how a search engine learns that one organisation owns all
+     of them and that this site is its home page.
+
+     Keep the old Wix site in this list for as long as it is still up. It
+     currently outranks us for "texas aerial robotics", and listing it
+     tells Google the two are one organisation rather than two, so the
+     signals point here instead of competing. Delete the line once the
+     Wix page is gone.
+     ------------------------------------------------------------------ */
+  profiles: [
+    "https://utexas.campuslabs.com/engage/organization/TAR",
+    "https://www.instagram.com/texasaerialrobotics/",
+    "https://www.linkedin.com/company/texas-aerial-robotics/",
+    "https://www.facebook.com/texasaerialrobotics/",
+    "https://github.com/Texas-Aerial-Robotics",
+    "https://texasaerialrobotics.wixsite.com/website",
+  ],
 };

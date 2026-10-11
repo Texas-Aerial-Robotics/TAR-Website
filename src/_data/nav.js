@@ -19,13 +19,13 @@ const links = require("./site.js").links;
 module.exports = {
   // The tabs across the top of every page, in order.
   primary: [
-    { key: "home", label: "Home", url: "/index.html" },
-    { key: "about", label: "About", url: "/about.html" },
-    { key: "projects", label: "Projects", url: "/projects.html" },
-    { key: "ravg", label: "RAVG", url: "/ravg.html" },
-    { key: "partners", label: "Partners", url: "/partners.html" },
-    { key: "contact", label: "Contact", url: "/contact.html" },
-    { key: "donate", label: "Donate", url: "/donate.html", cta: true },
+    { key: "home", label: "Home", url: "/" },
+    { key: "about", label: "About", url: "/about" },
+    { key: "projects", label: "Projects", url: "/projects" },
+    { key: "ravg", label: "RAVG", url: "/ravg" },
+    { key: "partners", label: "Partners", url: "/partners" },
+    { key: "contact", label: "Contact", url: "/contact" },
+    { key: "donate", label: "Donate", url: "/donate", cta: true },
   ],
 
   // The three link columns in the footer.
@@ -33,18 +33,18 @@ module.exports = {
     {
       heading: "Explore",
       links: [
-        { label: "Home", url: "/index.html", icon: "home" },
-        { label: "About", url: "/about.html", icon: "about" },
-        { label: "Projects", url: "/projects.html", icon: "projects" },
-        { label: "RAVG", url: "/ravg.html", icon: "ravg" },
+        { label: "Home", url: "/", icon: "home" },
+        { label: "About", url: "/about", icon: "about" },
+        { label: "Projects", url: "/projects", icon: "projects" },
+        { label: "RAVG", url: "/ravg", icon: "ravg" },
       ],
     },
     {
       heading: "Get involved",
       links: [
-        { label: "Partners", url: "/partners.html", icon: "partners" },
-        { label: "Donate", url: "/donate.html", icon: "donate" },
-        { label: "Contact", url: "/contact.html", icon: "mail" },
+        { label: "Partners", url: "/partners", icon: "partners" },
+        { label: "Donate", url: "/donate", icon: "donate" },
+        { label: "Contact", url: "/contact", icon: "mail" },
         {
           label: "GitHub",
           url: links.github,

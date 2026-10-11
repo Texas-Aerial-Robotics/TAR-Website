@@ -654,11 +654,16 @@ p:last-child {
   width: 100%;
 }
 
+/* Sits inside .hero__title, so it has to undo the heading's size, spacing,
+   and tight 0.98 line-height — 1.65 is the body line-height it used to
+   inherit, which keeps the line exactly where it was. */
 .hero__brand {
+  display: block;
   margin: 0 0 18px;
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 2.2vw, 1.35rem);
   font-weight: 800;
+  line-height: 1.65;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--orange-bright);

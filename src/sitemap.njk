@@ -1,0 +1,27 @@
+---
+#
+# sitemap.xml — the list of pages handed to search engines.
+#
+# This used to be a file in the project root that had to be edited by hand
+# every time a page was added, and it listed a domain the site was never
+# actually deployed to. Now it writes itself from the pages that exist, so
+# it cannot go stale and cannot point at the wrong address.
+#
+# Add a page to src/ and it appears here. Set `noindex: true` in a page's
+# front matter and it is left out, which is why the 404 page is missing.
+#
+# There is deliberately no <lastmod>. A fresh checkout gives every file the
+# same timestamp, so a build-time date would claim every page changed on
+# every deploy; Google ignores dates it finds unreliable, and a sitemap with
+# no dates is better than one that lies.
+#
+permalink: /sitemap.xml
+layout: null
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in collections.indexable %}
+  <url><loc>{{ item.url | canonical }}</loc></url>
+{%- endfor %}
+</urlset>

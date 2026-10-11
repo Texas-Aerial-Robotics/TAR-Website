@@ -58,6 +58,8 @@ src/                    Everything you edit to change a page
   contact.njk           Contact  (the contact form)
   donate.njk            Donate
   404.njk               Shown for any URL that does not exist
+  robots.njk            Generates robots.txt
+  sitemap.njk           Generates sitemap.xml
 
   _includes/
     base.njk            The <head>, and the wrapper every page sits inside
@@ -97,12 +99,19 @@ netlify/functions/
                         forwards it by SMTP and/or to a webhook. Not used by
                         default — see "The contact form" below.
 
+lib/
+  content.js            Readers for the .txt files. You should not need this.
+  seo.js                Page addresses and the structured data in the <head>.
+                        See "Showing up in search" below.
+
 eleventy.config.js      Build settings (rarely touched)
 netlify.toml            Netlify settings (nothing to change for a normal deploy)
-sitemap.xml             List of pages for search engines
-robots.txt              Search engine instructions
 _site/                  Generated. Do not edit.
 ```
+
+`robots.txt` and `sitemap.xml` are generated into `_site/` on every build, from
+`src/robots.njk` and `src/sitemap.njk`. There is nothing to keep in step by
+hand: add a page and the sitemap picks it up.
 
 ### What a page file looks like
 
@@ -247,6 +256,10 @@ All in one place: `src/_data/site.js`.
 > placeholder. Replace it with the real inbox. It is used in the "Contact
 > details" panel and in the fallback `mailto:` link, both of which read it
 > from `site.js`.
+
+If you add a social account, add it to **both** `links` (so it can appear in
+the footer) and `profiles` (so search engines know it is ours). See
+"Showing up in search" below.
 
 ### Link to something outside this site
 
@@ -457,8 +470,86 @@ the message pre-filled.
 Every push to the default branch redeploys automatically. Pull requests get
 their own preview URL.
 
-After the real domain is attached, update the URLs in `sitemap.xml` and
-`robots.txt`.
+Nothing needs changing in this repository when a domain is attached. The site
+reads its own address from the `URL` environment variable that Netlify sets, so
+the canonical tags, the link previews, `robots.txt`, and `sitemap.xml` all
+follow the domain on the next deploy. To override it — a different host, or a
+local test — set `SITE_URL`. The fallback, used when neither is set, is
+`FALLBACK_SITE_URL` at the top of `src/_data/site.js`.
+
+---
+
+## Showing up in search
+
+The problem this section exists to solve: searching for "texas aerial
+robotics" brings up the **old Wix site** first, and the club can no longer
+edit or take that site down.
+
+### What the site already does
+
+Handled by the build, nothing to maintain:
+
+- **One address per page.** Netlify serves `/about`, `/about.html`, and
+  `/index.html` as three copies of the same page. Each page declares which one
+  is real in a `<link rel="canonical">`, so a search engine credits one page
+  instead of splitting it three ways. `/about` is the one declared, which is
+  why links in the pages are written without `.html`.
+- **A sitemap that cannot go stale.** `src/sitemap.njk` lists the pages that
+  exist, in tab order. A page opts out with `noindex: true` in its front
+  matter, which is how the 404 page stays out.
+- **Structured data.** Every page carries a JSON-LD block describing the org,
+  its UT Austin parent, and every other page about it on the web. This is what
+  tells Google that a search for the club's name is a search for *us*, and
+  that this domain is our home. Built in `lib/seo.js` from `src/_data/site.js`.
+- **Deploy previews kept out of search.** Preview URLs are public. They now
+  serve `Disallow: /` and a `noindex` tag, so they cannot compete with the
+  live site for the same words.
+
+### What only you can do
+
+On-page work cannot win a search for the club's name on its own. These are the
+levers that actually move it, in order of how much they matter.
+
+**1. Point `texasaerialrobotics.com` at Netlify.** This is the big one. That
+domain is currently still aimed at Wix, where it answers with a 404 and a
+`noindex` tag — so it is doing nothing for anyone. An exact-match domain with
+the real site on it beats a `wixsite.com` subdomain for the club's own name
+about as reliably as anything in search. If the club still controls the
+registrar, change the DNS to Netlify (**Netlify → Domain management → Add a
+domain**) and set it as the primary domain. Everything in this repository
+picks the new address up automatically.
+
+**2. Make the pages that already rank point here.** Google weighs who links
+to you. Three of these the club controls outright:
+
+- **HornsLink** — the organisation page already ranks second. Put the new
+  site in its website field.
+- **Instagram** — the link in the bio.
+- **GitHub** — the `Texas-Aerial-Robotics` org profile has an empty website
+  field. Fill it in.
+- **LinkedIn** and **Facebook** — same, in the page's website field.
+- Any UT Austin department, course, or student-org directory that lists the
+  club. These links carry real weight because the domains do.
+
+**3. Register the site in Google Search Console** at
+<https://search.google.com/search-console>. Verify ownership (Netlify supports
+the DNS TXT method), submit `https://<your-domain>/sitemap.xml`, and use **URL
+Inspection → Request indexing** on the home page. This does not improve
+ranking by itself, but it is the only way to see what Google thinks of the
+site, and it gets the pages crawled in days rather than whenever Google
+notices.
+
+**4. Expect it to take a while.** Replacing an established result for a brand
+name is not instant, even once everything above is done. Watch it in Search
+Console rather than by searching repeatedly — your own searches are
+personalised and will mislead you.
+
+### When the Wix site finally goes away
+
+Delete the `wixsite.com` line from `profiles` in `src/_data/site.js`. Until
+then, leave it: it is listed so that Google reads the two sites as one
+organisation whose home is this one, rather than as two organisations
+competing for the same name.
 
 ---
 
