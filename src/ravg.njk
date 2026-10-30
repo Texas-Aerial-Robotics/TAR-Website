@@ -7,7 +7,6 @@ navKey: "ravg"
 
   <section class="page-hero">
     <div class="container">
-      <span class="eyebrow">TAR at RTX</span>
       <h1 class="page-hero__title">RAVG</h1>
       <p class="lede">
         Our team in the RTX Autonomous Vehicle Competition. We are proud to
@@ -25,67 +24,56 @@ navKey: "ravg"
   <!-- ===============================================================
        THIS YEAR'S TASK
 
-       RTX sets a new task every year. Everything on this page that
-       changes with it — the headline, the paragraph, the mission
-       sequence, and the vehicles below — is written in
-       src/content/ravg-competition.txt. Edit that file each season.
+       RTX sets a new task every year. The paragraphs below are written in
+       src/content/ravg-competition.txt. Edit that file each season; the
+       steps are joined into one paragraph, in order.
        =============================================================== -->
   <section class="section section--light">
     <div class="container">
       <div class="split">
         <div class="reveal">
-          <span class="eyebrow">This year's task</span>
-          <hr class="rule" />
-          <h2>{{ ravg.task.headline }}</h2>
+          <h2>This year's task</h2>
           <p class="lede">{{ ravg.task.overview }}</p>
         </div>
 
-        <div class="panel reveal">
-          <p class="panel__title">Mission sequence</p>
-          <ul class="list-check">
-            {%- for step in ravg.steps %}
-            <li><strong>{{ step.step }}.</strong> {{ step.detail }}</li>
-            {%- endfor %}
-          </ul>
+        <div class="reveal prose">
+          <h3>How a run goes</h3>
+          <p>
+            {%- for step in ravg.steps %} {{ step.detail }}{% endfor %}
+          </p>
         </div>
       </div>
+
+      <figure class="photo photo--wide reveal" style="margin-top: 48px">
+        <img
+          src="/assets/media/comp-drone-rover.jpg"
+          alt="TAR drone hovering above the ground rover with its landing platform"
+          loading="lazy"
+        />
+        <figcaption>Drone and rover at competition, spring 2026</figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- ===============================================================
-       THE TWO VEHICLES
+       THE VEHICLES
        =============================================================== -->
-  <section class="section section--dark section--grid">
+  <section class="section section--dark">
     <div class="container">
       <div class="section__header">
-        <span class="eyebrow">The system</span>
-        <hr class="rule" />
-        <h2>Two vehicles, one mission.</h2>
+        <h2>The vehicles</h2>
         <p class="lede">
           RAVG splits into vehicle teams that have to agree on a shared
           picture of the world before either one moves.
         </p>
       </div>
 
-      <div class="grid grid--2">
+      <div class="grid grid--2 prose-grid">
         {%- for vehicle in ravg.vehicles %}
-        <article class="card reveal">
-          <span class="card__icon">
-            <span
-              class="icon icon--{{ vehicle.icon }} icon--lg"
-              aria-hidden="true"
-            ></span>
-          </span>
-          <p class="card__index">Vehicle {% if loop.index < 10 %}0{% endif %}{{ loop.index }}</p>
-          <h3 class="card__title">{{ vehicle.vehicle }}</h3>
-          <p class="card__body">{{ vehicle.description }}</p>
-          <div class="card__spacer"></div>
-          <ul class="tags">
-            {%- for tag in vehicle.tags %}
-            <li class="tag">{{ tag }}</li>
-            {%- endfor %}
-          </ul>
-        </article>
+        <div class="reveal prose">
+          <h3>{{ vehicle.vehicle }}</h3>
+          <p>{{ vehicle.description }}</p>
+        </div>
         {%- endfor %}
       </div>
     </div>
@@ -97,81 +85,43 @@ navKey: "ravg"
   <section class="section section--muted">
     <div class="container">
       <div class="section__header">
-        <span class="eyebrow">On the team</span>
-        <hr class="rule" />
-        <h2>What RAVG members work on.</h2>
+        <h2>What RAVG members work on</h2>
       </div>
 
-      <div class="grid grid--3">
-        <article class="card reveal">
-          <span class="card__icon">
-            <span class="icon icon--code icon--lg" aria-hidden="true"
-            ></span>
-          </span>
-          <p class="card__index">Software</p>
-          <h3 class="card__title">Autonomy stack</h3>
-          <p class="card__body">
+      <div class="grid grid--3 prose-grid">
+        <div class="reveal prose">
+          <h3>Autonomy stack</h3>
+          <p>
             Flight control, path planning, and the vision pipeline that
             turns camera frames into a landing zone the vehicles can agree
             on.
           </p>
-          <div class="card__spacer"></div>
-          <ul class="tags">
-            <li class="tag">ROS</li>
-            <li class="tag">PX4</li>
-            <li class="tag">C++</li>
-            <li class="tag">Python</li>
-          </ul>
-        </article>
+        </div>
 
-        <article class="card reveal">
-          <span class="card__icon">
-            <span class="icon icon--wrench icon--lg" aria-hidden="true"
-            ></span>
-          </span>
-          <p class="card__index">Hardware</p>
-          <h3 class="card__title">Airframe and payload</h3>
-          <p class="card__body">
+        <div class="reveal prose">
+          <h3>Airframe and payload</h3>
+          <p>
             Frame design, avionics layout, power budgeting, and the release
             mechanism that has to put the package down exactly where it
             belongs.
           </p>
-          <div class="card__spacer"></div>
-          <ul class="tags">
-            <li class="tag">CAD</li>
-            <li class="tag">Manufacturing</li>
-            <li class="tag">PCB design</li>
-            <li class="tag">Avionics</li>
-          </ul>
-        </article>
+        </div>
 
-        <article class="card reveal">
-          <span class="card__icon">
-            <span class="icon icon--cpu icon--lg" aria-hidden="true"
-            ></span>
-          </span>
-          <p class="card__index">Integration</p>
-          <h3 class="card__title">Test and fly</h3>
-          <p class="card__body">
+        <div class="reveal prose">
+          <h3>Test and fly</h3>
+          <p>
             Simulation before flight, then range days: calibrating,
             repeating runs, and hunting down the failure modes that only
             appear outdoors.
           </p>
-          <div class="card__spacer"></div>
-          <ul class="tags">
-            <li class="tag">Gazebo</li>
-            <li class="tag">Flight testing</li>
-            <li class="tag">Safety procedures</li>
-            <li class="tag">Systems engineering</li>
-          </ul>
-        </article>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="cta-band">
     <div class="container container--narrow">
-      <h2>Competition season runs all year.</h2>
+      <h2>Join RAVG</h2>
       <p>
         RAVG recruits at the start of each semester, and sponsors help cover
         airframes, sensors, and travel to the competition.

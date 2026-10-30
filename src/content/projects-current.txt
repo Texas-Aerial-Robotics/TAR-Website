@@ -17,7 +17,12 @@
 #                assets/css/site.css, without the "icon--" part
 #   Summary      The short version, shown on the Home page
 #   Description  The full version, shown on the Projects page
-#   Focus areas  Comma separated. These become the tags in the side panel.
+#   Focus areas  Comma separated. No longer shown on the site; kept here in
+#                case a future design brings them back.
+#   Photo        Optional. A path like /assets/projects/hivemind.jpg. It shows
+#                on the left of the project on the Home and Projects pages.
+#                Without one, a "Photo coming" slot holds the space. See
+#                assets/projects/README.txt.
 #
 # Projects appear in the order they are listed here, and the bands on the
 # Projects page stripe themselves light / dark automatically, so adding a
@@ -61,13 +66,12 @@ Name: Peregrine
 Link: peregrine
 Label: VTOL
 Icon: vtol
-Summary: A tail-sitter that lifts off straight up like a quadcopter, tips
-  over onto a fixed wing, and cruises. The hard part is the handover.
-Description: A tail-sitter that lifts off straight up like a quadcopter,
-  tips over onto a fixed wing, and cruises. Peregrine is chasing the
-  transition: the few seconds where the airframe stops being a multirotor
-  and starts being an aeroplane. Members work on the wing, on the
-  mixed-mode flight controller, and on the aerodynamic modelling that tells
-  us whether a design will survive the handover before we risk it.
+Summary: A tail-sitter that takes off straight up like a quadcopter, then
+  tips forward and flies on its fixed wing.
+Description: A tail-sitter that takes off straight up like a quadcopter,
+  then tips forward and flies on its fixed wing. The team is working on the
+  transition between those two modes. Members work on the wing, on the
+  flight controller that handles both modes, and on aerodynamic modelling
+  to check a design before it flies.
 Focus areas: Fixed-wing aero, Transition control, CFD, Composite layup,
   PX4 airframe config, Endurance testing

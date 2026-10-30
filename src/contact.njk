@@ -8,7 +8,6 @@ scripts: ["contact-form.js"]
 
   <section class="page-hero">
     <div class="container">
-      <span class="eyebrow">Contact us</span>
       <h1 class="page-hero__title">Say hello</h1>
       <p class="lede">
         Got a question? We'd love to hear from you! Send us a message, and
@@ -17,16 +16,85 @@ scripts: ["contact-form.js"]
     </div>
   </section>
 
+  <!-- ===============================================================
+       WHAT BRINGS YOU HERE. Picking one fills in the reason below.
+       (assets/js/draft.js reads data-reason.)
+       =============================================================== -->
+  <section class="contact-types">
+    <div class="container">
+      <h2 class="contact-types__title">What brings you here?</h2>
+      <div class="contact-types__grid">
+        <button type="button" class="inquiry" data-reason="Joining the Team">
+          <span class="inquiry__name">Joining the team</span>
+          <span class="inquiry__text">New members join every semester, from every major.</span>
+        </button>
+        <button type="button" class="inquiry" data-reason="Company Sponsorship">
+          <span class="inquiry__name">Sponsoring us</span>
+          <span class="inquiry__text">Funding, parts, or software for the build.</span>
+        </button>
+        <button type="button" class="inquiry" data-reason="Company Talk">
+          <span class="inquiry__name">Speaking to us</span>
+          <span class="inquiry__text">Come talk to members about your work.</span>
+        </button>
+        <button type="button" class="inquiry" data-reason="Something Else">
+          <span class="inquiry__name">Anything else</span>
+          <span class="inquiry__text">Press, mentorship, or a question we have not thought of.</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--light">
     <div class="container">
-      <div class="split" style="align-items: start">
+      <div class="contact-grid">
+        <!-- ===========================================================
+             CONTACT DETAILS
+             =========================================================== -->
+        <div class="contact-info reveal">
+          <h2>Contact details</h2>
+
+          <div class="contact-item">
+            <p class="contact-item__label">Email</p>
+            <p>
+              <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>
+            </p>
+          </div>
+
+          <div class="contact-item">
+            <p class="contact-item__label">Where we are</p>
+            <p>
+              The University of Texas at Austin<br />
+              Austin, Texas
+            </p>
+          </div>
+
+          <div class="contact-item">
+            <p class="contact-item__label">Follow along</p>
+            <ul class="link-list">
+              <li><a href="{{ site.links.instagram }}" target="_blank" rel="noopener">Instagram</a></li>
+              <li><a href="{{ site.links.linkedin }}" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="{{ site.links.facebook }}" target="_blank" rel="noopener">Facebook</a></li>
+              <li><a href="{{ site.links.github }}" target="_blank" rel="noopener">GitHub</a></li>
+            </ul>
+          </div>
+
+          <div class="contact-item">
+            <p class="contact-item__label">Sponsorship</p>
+            <p>
+              Interested in supporting the team? Start with our
+              <a href="/partners.html">partners page</a>, or just send us a
+              message.
+            </p>
+          </div>
+        </div>
+
         <!-- ===========================================================
              CONTACT FORM
 
              Submissions go to Formspark. The address is `contactEndpoint`
              in src/_data/site.js; read the submissions at formspark.io.
 
-             Every field needs a `name` — that is what Formspark labels the
+             Every field needs a `name` - that is what Formspark labels the
              submission with. A field without one is simply not recorded.
 
              The `action` below is what runs if JavaScript is switched off.
@@ -154,100 +222,6 @@ scripts: ["contact-form.js"]
               aria-live="polite"
             ></p>
           </form>
-        </div>
-
-        <!-- ===========================================================
-             CONTACT DETAILS
-             =========================================================== -->
-        <div class="panel reveal">
-          <div class="contact-item">
-            <p class="contact-item__label">
-              <span class="icon icon--mail" aria-hidden="true"></span>
-              Email
-            </p>
-            <p>
-              <a href="mailto:{{ site.contactEmail }}"
-                >{{ site.contactEmail }}</a
-              >
-            </p>
-          </div>
-
-          <div class="contact-item">
-            <p class="contact-item__label">
-              <span class="icon icon--map-pin" aria-hidden="true"></span>
-              Where we are
-            </p>
-            <p>
-              The University of Texas at Austin<br />
-              Austin, Texas
-            </p>
-          </div>
-
-          <div class="contact-item">
-            <p class="contact-item__label">
-              <span class="icon icon--signal" aria-hidden="true"></span>
-              Follow along
-            </p>
-            <ul class="link-list">
-              <li>
-                <a
-                  href="{{ site.links.instagram }}"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <span
-                    class="icon icon--instagram"
-                    aria-hidden="true"
-                  ></span>
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a
-                  href="{{ site.links.linkedin }}"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <span
-                    class="icon icon--linkedin"
-                    aria-hidden="true"
-                  ></span>
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
-                  href="{{ site.links.facebook }}"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <span
-                    class="icon icon--facebook"
-                    aria-hidden="true"
-                  ></span>
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a href="{{ site.links.github }}" target="_blank" rel="noopener">
-                  <span class="icon icon--github" aria-hidden="true"></span>
-                  GitHub
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="contact-item">
-            <p class="contact-item__label">
-              <span class="icon icon--heart" aria-hidden="true"></span>
-              Sponsorship
-            </p>
-            <p>
-              Interested in supporting the team? Start with our
-              <a href="/partners.html">partners page</a>, or just send us a
-              message.
-            </p>
-          </div>
         </div>
       </div>
     </div>

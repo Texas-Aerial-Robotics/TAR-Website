@@ -347,6 +347,19 @@
       elapsedMs: Date.now() - openedAt,
     };
 
+    // Draft copy: pretend it sent. No network call, no email client.
+    if (config.demoMode) {
+      lastSentAt = Date.now();
+      setStatus(
+        "success",
+        "Demo only. Nothing was sent. In the live site this goes to the TAR inbox."
+      );
+      form.reset();
+      clearAllErrors();
+      applyReasonGate();
+      return;
+    }
+
     // No endpoint configured: go straight to the email client.
     if (!config.contactEndpoint) {
       window.location.href = mailtoFallback(data);

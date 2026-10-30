@@ -7,7 +7,6 @@ navKey: "about"
 
   <section class="page-hero">
     <div class="container">
-      <span class="eyebrow">About</span>
       <h1 class="page-hero__title">Texas Aerial Robotics</h1>
       <p class="lede">
         Texas Aerial Robotics was founded in 2017 by a handful of UT
@@ -21,63 +20,26 @@ navKey: "about"
     </div>
   </section>
 
-  <!-- ===============================================================
-       TECHNICAL SKILLS
-       =============================================================== -->
-  <section class="section section--light">
+  <section class="section section--light section--tight">
     <div class="container">
-      <div class="section__header">
-        <span class="eyebrow">Technical skills</span>
-        <hr class="rule" />
-        <h2>Hands-on across the whole design process.</h2>
-        <p class="lede">
-          Our members do hands-on work with a variety of different skills
-          across the design and development process.
-        </p>
-      </div>
-
-      <div class="grid grid--2">
-        <div class="panel reveal">
-          <p class="panel__title">
-            <span class="icon icon--wrench" aria-hidden="true"></span>
-            Hardware
-          </p>
-          <ul class="list-check">
-            <li>CAD</li>
-            <li>Drone Avionics</li>
-            <li>Prototyping + Manufacturing</li>
-            <li>PCB Design</li>
-            <li>Embedded Electronics</li>
-          </ul>
-        </div>
-
-        <div class="panel reveal">
-          <p class="panel__title">
-            <span class="icon icon--code" aria-hidden="true"></span>
-            Software
-          </p>
-          <ul class="list-check">
-            <li>ROS (C++, Python)</li>
-            <li>PX4</li>
-            <li>Computer Vision</li>
-            <li>Path Planning</li>
-            <li>SLAM</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+      <figure class="photo photo--wide reveal">
+        <img
+          src="/assets/media/group-room.jpg"
+          alt="Members of Texas Aerial Robotics standing together in a conference room"
+          loading="lazy"
+        />
+        <figcaption>The team, fall 2026</figcaption>
+      </figure>    </div>
   </section>
 
   <!-- ===============================================================
        THIS YEAR
        =============================================================== -->
-  <section class="section section--dark section--grid">
+  <section class="section section--dark">
     <div class="container">
       <div class="split">
         <div class="reveal">
-          <span class="eyebrow">What we're working on this year</span>
-          <hr class="rule" />
-          <h2>From the ground up to full autonomy.</h2>
+          <h2>What we do</h2>
           <p class="lede">
             Our organization is dedicated to the design, development, and
             programming of a fully autonomous drone, with the goal of
@@ -101,31 +63,28 @@ navKey: "about"
           </div>
         </div>
 
-        <div class="panel reveal">
-          <p class="panel__title">Sub-teams</p>
-          <ul class="list-check">
-            <li>
-              <strong>Hardware</strong> &mdash; designs and manufactures the
-              drone, mission-specific add-ons, and test rigs.
-            </li>
-            <li>
-              <strong>Computer Vision</strong> &mdash; everything to do with
-              how the drone sees its surroundings.
-            </li>
-            <li>
-              <strong>Controls</strong> &mdash; the flight path management
-              code that decides how the drone manoeuvres.
-            </li>
-            <li>
-              <strong>Simulations</strong> &mdash; catches bugs in vision
-              and flight planning before anything leaves the ground.
-            </li>
-            <li>
-              <strong>Business</strong> &mdash; industry sponsorship, event
-              planning, and social media.
-            </li>
-          </ul>
-        </div>
+        <dl class="plain-list reveal">
+          <div>
+            <dt>Hardware</dt>
+            <dd>Designs and manufactures the drone, mission-specific add-ons, and test rigs.</dd>
+          </div>
+          <div>
+            <dt>Computer Vision</dt>
+            <dd>Everything to do with how the drone sees its surroundings.</dd>
+          </div>
+          <div>
+            <dt>Controls</dt>
+            <dd>The flight path management code that decides how the drone maneuvers.</dd>
+          </div>
+          <div>
+            <dt>Simulations</dt>
+            <dd>Catches bugs in vision and flight planning before anything leaves the ground.</dd>
+          </div>
+          <div>
+            <dt>Business</dt>
+            <dd>Industry sponsorship, event planning, and social media.</dd>
+          </div>
+        </dl>
       </div>
     </div>
   </section>
@@ -134,60 +93,20 @@ navKey: "about"
        HISTORY
        =============================================================== -->
   <section class="section section--muted">
-    <div class="container container--narrow">
+    <div class="container">
       <div class="section__header">
-        <span class="eyebrow">History</span>
-        <hr class="rule" />
-        <h2>Where we've been.</h2>
+        <h2>History</h2>
       </div>
 
-      <ol class="timeline">
-        <li class="reveal">
-          <p class="timeline__year">2017</p>
-          <h3 class="timeline__title">Founded</h3>
-          <p class="text-muted">
-            A handful of UT students set out to build a fully autonomous
-            drone from scratch.
-          </p>
-        </li>
-        <li class="reveal">
-          <p class="timeline__year">IARC Mission 7</p>
-          <h3 class="timeline__title">Herding ground robots</h3>
-          <p class="text-muted">
-            Mission 7 took a monumental leap by requiring autonomous aerial
-            robots to interact with and control autonomous ground robots,
-            herding them out of an arena with no 3D cues such as walls.
-          </p>
-        </li>
-        <li class="reveal">
-          <p class="timeline__year">IARC Mission 8</p>
-          <h3 class="timeline__title">Swarms and QR fragments</h3>
-          <p class="text-muted">
-            Teams had to control a swarm of drones that accepted commands
-            through audio or visual input, piece together four fragments of
-            a QR code, and avoid enemy drones &mdash; all without GPS.
-          </p>
-        </li>
-        <li class="reveal">
-          <p class="timeline__year">IARC Mission 9</p>
-          <h3 class="timeline__title">Repair at a distance</h3>
-          <p class="text-muted">
-            Fly roughly two miles to a mast simulating a ship at sea,
-            synchronise with it, swap a defective communications module, and
-            return &mdash; in under nine minutes, using only onboard
-            computing.
-          </p>
-        </li>
-        <li class="reveal">
-          <p class="timeline__year">Today</p>
-          <h3 class="timeline__title">Four project teams and RAVG</h3>
-          <p class="text-muted">
-            Members build claw retrieval, thrust vectoring, and vision
-            targeting systems while our competition team takes on the RTX
-            Autonomous Vehicle Competition.
-          </p>
-        </li>
-      </ol>
+      <ul class="tl tl--years">
+          <li><span class="tl__when">2017</span><span class="tl__what">Founded by a few UT students who wanted to build a fully autonomous drone from scratch.</span></li>
+          <li><span class="tl__when">IARC Mission 7</span><span class="tl__what">Herd ground robots out of an arena with no walls or other 3D cues to navigate by.</span></li>
+          <li><span class="tl__when">IARC Mission 8</span><span class="tl__what">Fly a swarm that takes audio or visual commands, put together four pieces of a QR code, and avoid enemy drones, all without GPS.</span></li>
+          <li><span class="tl__when">IARC Mission 9</span><span class="tl__what">Fly about two miles to a mast standing in for a ship, match its motion, swap a communications module, and get back in under nine minutes.</span></li>
+          <li><span class="tl__when">Spring 2026</span><span class="tl__what">Our RAVG team won the RTX Autonomous Vehicles Competition.</span></li>
+      </ul>
+
+
     </div>
   </section>
 
@@ -200,27 +119,40 @@ navKey: "about"
   <section class="section section--light">
     <div class="container">
       <div class="section__header">
-        <span class="eyebrow">{{ site.season }} Officer Team</span>
-        <hr class="rule" />
-        <h2>Who runs TAR.</h2>
+        <h2>Officers</h2>
       </div>
 
       <!-- ".cards" rather than ".grid grid--3" so that a last row which is
            not completely full sits centred instead of hugging the left. -->
       <div class="cards">
         {%- for officer in officers %}
-        <article class="card reveal">
-          <p class="card__index">{{ officer.role }}</p>
-          <h3 class="card__title">{{ officer.name }}</h3>
-          {%- if officer.details.length or officer.email %}
-          <p class="card__body">
-            {{ officer.details | join(" · ") }}
-            {%- if officer.details.length and officer.email %}<br />{% endif %}
-            {%- if officer.email %}
-            <a href="mailto:{{ officer.email }}">{{ officer.email }}</a>
+        <article class="card officer">
+          <div class="officer__photo">
+            {%- if officer.photo %}
+            <img src="{{ officer.photo }}" alt="{{ officer.name }}, {{ officer.role }}" loading="lazy" />
+            {%- else %}
+            <span class="officer__ph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" focusable="false">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </span>
+            <span class="officer__note">Portrait coming soon</span>
             {%- endif %}
-          </p>
-          {%- endif %}
+          </div>
+          <div class="officer__info">
+            <p class="card__index">{{ officer.role }}</p>
+            <h3 class="card__title">{{ officer.name }}</h3>
+            {%- if officer.details.length or officer.email %}
+            <p class="card__body">
+              {{ officer.details | join(", ") }}
+              {%- if officer.details.length and officer.email %}<br />{% endif %}
+              {%- if officer.email %}
+              <a href="mailto:{{ officer.email }}">{{ officer.email }}</a>
+              {%- endif %}
+            </p>
+            {%- endif %}
+          </div>
         </article>
         {%- endfor %}
       </div>

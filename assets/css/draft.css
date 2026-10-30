@@ -1,0 +1,596 @@
+/* ==========================================================================
+   TAR draft layer. Loaded AFTER site.css, which stays TAR's own design:
+   dark hangar hero, burnt orange, light and dark section rhythm.
+
+   This file only does the following:
+     1. Type: a distinctive pairing in place of the generic one.
+     2. Loader: progress bar with a top-down quadcopter flying along it.
+     3. Contact: the structure and underline-field style they liked at SBI.
+     4. Cleanups from the meeting feedback: no tiles behind logos, no
+        icon-and-tag cards, no "word plus dash" labels, real photos.
+   ========================================================================== */
+
+/* ---- 1. Type -------------------------------------------------------------
+   Big Shoulders Display: condensed, industrial, signage-like.
+   Barlow: a friendly DIN-style text face. Barlow Condensed for small labels.
+   ------------------------------------------------------------------------- */
+:root {
+  --font-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Barlow", system-ui, "Segoe UI", sans-serif;
+  --font-mono: "Barlow Condensed", "Arial Narrow", sans-serif;
+}
+body {
+  font-size: 18px;
+}
+h1,
+h2,
+h3,
+.hero__title,
+.page-hero__title,
+.mission__name,
+.card__title,
+.tier__name,
+.tier__amount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+.hero__title,
+.page-hero__title {
+  font-weight: 800;
+  line-height: 0.98;
+  font-size: clamp(3.6rem, 9vw, 7rem);
+}
+h2 {
+  font-size: clamp(2.4rem, 4.6vw, 3.7rem);
+  line-height: 1.02;
+}
+.lede {
+  font-size: 1.2rem;
+}
+
+/* ---- 4a. Cleanups: remove the generated-looking patterns ------------------ */
+.eyebrow,
+.rule {
+  display: none;
+}
+.card__icon,
+.footer__list .icon,
+.panel__title .icon,
+.contact-item__label .icon,
+.link-list .icon {
+  display: none;
+}
+
+/* Contrast fixes (these were below 4.5:1 on the original site) */
+.cta-band p {
+  color: #fff;
+}
+.footer .text-muted,
+.footer__logo + p {
+  color: var(--text-on-dark-dim);
+}
+
+/* Text that still needs a real answer before launch */
+.placeholder-tag {
+  color: var(--orange);
+  text-decoration: underline dashed;
+  text-underline-offset: 5px;
+}
+.section--dark .placeholder-tag,
+.cta-band .placeholder-tag {
+  color: var(--orange-bright);
+}
+
+/* Logos sit directly on the page: no white tile, no border. The files
+   already have transparent backgrounds. */
+.logo-wall {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px 64px;
+  margin-bottom: 40px;
+}
+.logo-slot {
+  padding: 0;
+  min-height: 0;
+  height: auto;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.logo-slot img {
+  width: auto;
+  max-width: 220px;
+  max-height: 64px;
+  object-fit: contain;
+}
+
+/* A short line under a project name, replacing the old "Project 01 ·" label */
+.kind {
+  margin: 0 0 10px;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a33f00; /* darker orange, 5:1 on the light sections */
+}
+
+/* Carousel dots: keep the small-dot look, give each a 24px tap target
+   (WCAG 2.2 target size). The dot is drawn inside the larger button. */
+.carousel__dot {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 0;
+  background: radial-gradient(circle, #5a6570 0 4px, transparent 4.5px);
+}
+.carousel__dot.is-active {
+  background: radial-gradient(circle, var(--orange) 0 5.5px, transparent 6px);
+}
+.section--dark .kind {
+  color: var(--orange-bright);
+}
+
+/* Plain text blocks instead of icon-and-tag cards */
+.prose h3 {
+  margin: 0 0 10px;
+  font-size: 1.9rem;
+}
+.prose p {
+  margin: 0;
+  color: var(--text-on-light-dim);
+}
+.section--dark .prose p {
+  color: var(--text-on-dark-dim);
+}
+.prose-grid {
+  gap: 48px;
+}
+
+/* Definition list used in place of the sub-team card */
+.plain-list {
+  margin: 0;
+  border-top: 1px solid var(--ink-line);
+}
+.plain-list > div {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--ink-line);
+}
+.plain-list dt {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.plain-list dd {
+  margin: 4px 0 0;
+  color: var(--text-on-dark-dim);
+}
+
+/* Real photos */
+.photo {
+  margin: 0;
+}
+.photo img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+.photo--wide img {
+  aspect-ratio: 21 / 9;
+  object-position: 50% 18%;
+}
+.photo figcaption {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--text-on-light-dim);
+}
+.section--dark .photo figcaption {
+  color: var(--text-on-dark-dim);
+}
+.section--tight {
+  padding-bottom: 0;
+}
+
+/* Hero: a real photo instead of the animated rings and flight paths */
+.hero--photo {
+  background-image: linear-gradient(rgba(10, 13, 18, 0.62), rgba(10, 13, 18, 0.92)),
+    var(--hero-photo);
+  background-size: cover;
+  background-position: center;
+}
+.hero--photo .hero__sky {
+  display: none;
+}
+.hero__layout--single {
+  grid-template-columns: 1fr;
+}
+
+/* Project photos, on the left. Until a team supplies one, a clearly labeled
+   slot holds the space. To add a photo: put the image in assets/projects/ and
+   add a "Photo: /assets/projects/name.jpg" line to the project in
+   src/content/projects-current.txt. */
+.mission--photo {
+  grid-template-columns: 280px 1fr auto;
+  gap: 36px;
+}
+.mission__photo img,
+.project-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+.mission__body .mission__index {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+.photo-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 16px;
+  text-align: center;
+  background-color: #12161d;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 138, 43, 0.07) 0 2px,
+    transparent 2px 14px
+  );
+  border: 1px solid var(--ink-line);
+  border-radius: var(--radius);
+  color: var(--text-on-dark-dim);
+}
+.photo-slot__name {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--text-on-dark);
+}
+.photo-slot__note {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.photo-slot--large .photo-slot__name {
+  font-size: 2.4rem;
+}
+.split--photo {
+  align-items: center;
+  gap: 64px;
+}
+@media (max-width: 900px) {
+  .mission--photo {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .split--photo {
+    gap: 28px;
+  }
+}
+
+/* Officer cards: a portrait on top (as on SBI's team cards), name and role
+   underneath. Without a photo, a "Portrait coming soon" slot holds the space.
+   To add one: put the image in assets/officers/ and add a
+   "Photo: /assets/officers/name.jpg" line to the person in
+   src/content/about-officer-team.txt. */
+/* Five per row, so ten officers make two full rows with nobody left hanging
+   at the end. Two per row on narrower screens (ten divides evenly there too).
+   If the team ever grows to a count that does not divide evenly, add or
+   remove a card rather than leaving one alone on the last row. */
+.cards:has(> .officer) {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+}
+.cards:has(> .officer) > .officer {
+  max-width: none;
+}
+@media (max-width: 1000px) {
+  .cards:has(> .officer) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.officer.card {
+  padding: 0;
+  overflow: hidden;
+}
+.officer__info .card__title {
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+.officer__info .card__body {
+  font-size: 0.95rem;
+}
+.officer__photo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: #12161d;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 138, 43, 0.06) 0 2px,
+    transparent 2px 14px
+  );
+  color: var(--text-on-dark-dim);
+}
+.officer__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.officer__ph {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border: 1px solid var(--ink-line);
+  border-radius: 50%;
+}
+.officer__ph svg {
+  width: 42px;
+  height: 42px;
+  color: var(--text-on-dark-dim);
+}
+.officer__note {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.officer__info {
+  padding: 22px 24px 26px;
+}
+.officer__info .card__index {
+  margin-bottom: 6px;
+}
+
+/* ---- 2. Loader ------------------------------------------------------------ */
+/* Hidden by default: it only appears when assets/js/draft.js decides the page
+   is genuinely still loading on a first visit. No JavaScript, no loader. */
+.tar-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--text-on-dark);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 500ms ease, visibility 0s linear 500ms;
+}
+.tar-loader.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 200ms ease;
+}
+.tar-loader.is-active.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 500ms ease, visibility 0s linear 500ms;
+}
+.tar-loader__inner {
+  width: min(560px, 80vw);
+}
+.tar-loader__name {
+  margin: 0 0 120px;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-dim);
+}
+.tar-loader__track {
+  position: relative;
+  height: 2px;
+  background: var(--ink-line);
+}
+.tar-loader__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--orange-bright);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+.tar-loader__drone {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 72px;
+  height: 72px;
+  margin-left: -36px;
+  color: var(--text-on-dark);
+  animation: tar-hover 2.6s ease-in-out infinite;
+}
+/* Each of the four rotors spins in place. They alternate direction, as on a
+   real quadcopter. */
+.tar-loader__drone .rotor {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: tar-spin 0.35s linear infinite;
+}
+.tar-loader__drone .rotor--b {
+  animation-direction: reverse;
+}
+.tar-loader__pct {
+  margin: 26px 0 0;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  color: var(--text-on-dark-dim);
+}
+@keyframes tar-hover {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes tar-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tar-loader__drone,
+  .tar-loader__drone .rotor {
+    animation: none;
+  }
+  .tar-loader {
+    transition-duration: 1ms;
+  }
+}
+
+/* ---- 3. Contact: the SBI-style structure, in TAR's own colors -------------- */
+.contact-types {
+  padding: 40px 0;
+  background: var(--light);
+  border-bottom: 1px solid var(--light-line);
+}
+.contact-types__title {
+  margin: 0 0 20px;
+  font-size: 1.6rem;
+}
+.contact-types__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.inquiry {
+  display: block;
+  padding: 14px 20px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-left: 1px solid var(--light-line);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.inquiry:hover,
+.inquiry:focus-visible {
+  border-left-color: var(--orange);
+  background: rgba(194, 81, 0, 0.05);
+}
+.inquiry__name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.inquiry__text {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.95rem;
+  color: var(--text-on-light-dim);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 88px;
+  align-items: start;
+}
+.contact-info h2 {
+  margin: 0 0 32px;
+}
+.contact-item {
+  margin-bottom: 28px;
+}
+.contact-item__label {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-on-light-dim);
+}
+.contact-item p {
+  margin: 0;
+}
+.contact-item a {
+  color: var(--text-on-light);
+}
+.contact-item a:hover {
+  color: var(--orange);
+}
+
+/* Underline fields, small uppercase labels, outlined submit button */
+.form .field label {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-on-light-dim);
+  transition: color 0.2s ease;
+}
+.form .field:focus-within label {
+  color: var(--orange);
+}
+.form input,
+.form textarea,
+.form select {
+  padding-left: 0;
+  padding-right: 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--light-line);
+  border-radius: 0;
+  transition: border-color 0.2s ease;
+}
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+  border-bottom-color: var(--orange);
+  box-shadow: none;
+  outline: 2px solid var(--orange);
+  outline-offset: 4px;
+}
+
+@media (max-width: 900px) {
+  .contact-types__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+}
+@media (max-width: 520px) {
+  .contact-types__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Header: full TAR logo (drone, letters and rings) instead of the drone-only mark. */
+.brand__mark {
+  width: auto;
+  height: 46px;
+}

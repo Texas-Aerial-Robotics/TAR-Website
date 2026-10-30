@@ -8,7 +8,6 @@ scripts: ["carousel.js"]
 
   <section class="page-hero">
     <div class="container">
-      <span class="eyebrow">{{ site.season }} TAR Projects</span>
       <h1 class="page-hero__title">Projects</h1>
       <p class="lede">
         One goal: aerial robots that can sense, decide, and act without a
@@ -31,30 +30,17 @@ scripts: ["carousel.js"]
     id="{{ project.link }}"
   >
     <div class="container">
-      <div class="split">
+      <div class="split split--photo">
         <div class="reveal">
-          <span class="eyebrow"
-            >Project {% if loop.index < 10 %}0{% endif %}{{ loop.index }} &middot;
-            {{ project.label }}</span
-          >
-          <hr class="rule" />
+          {%- if project.photo %}
+          <img class="project-photo" src="{{ project.photo }}" alt="{{ project.name }}" loading="lazy" />
+          {%- else %}
+          <div class="photo-slot photo-slot--large"><span class="photo-slot__name">{{ project.name }}</span><span class="photo-slot__note">Photo coming</span></div>
+          {%- endif %}
+        </div>
+        <div class="reveal">
           <h2>{{ project.name }}</h2>
           <p class="lede">{{ project.description }}</p>
-        </div>
-
-        <div class="panel reveal">
-          <p class="panel__title">
-            <span
-              class="icon icon--{{ project.icon }}"
-              aria-hidden="true"
-            ></span>
-            Focus areas
-          </p>
-          <ul class="tags">
-            {%- for tag in project.tags %}
-            <li class="tag">{{ tag }}</li>
-            {%- endfor %}
-          </ul>
         </div>
       </div>
     </div>
@@ -66,28 +52,15 @@ scripts: ["carousel.js"]
        This year's task comes from src/content/ravg-competition.txt.
        Full write-up lives on ravg.html.
        =============================================================== -->
-  <section class="section section--dark section--grid" id="rtx">
-    <div class="container">
-      <div class="split">
-        <div class="reveal">
-          <span class="eyebrow">Competition team</span>
-          <hr class="rule" />
-          <h2>RTX Drone Competition</h2>
-          <p class="lede">{{ ravg.task.overview }}</p>
-          <div class="btn-row">
-            <a class="btn btn--primary" href="/ravg.html"
-              >Go to the RAVG page</a
-            >
-          </div>
-        </div>
-
-        <div class="panel reveal">
-          <p class="panel__title">Focus areas</p>
-          <ul class="tags">
-            {%- for tag in ravg.task.tags %}
-            <li class="tag">{{ tag }}</li>
-            {%- endfor %}
-          </ul>
+  <section class="section section--dark" id="rtx">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <h2>RTX Drone Competition</h2>
+        <p class="lede">{{ ravg.task.overview }}</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/ravg.html"
+            >Go to the RAVG page</a
+          >
         </div>
       </div>
     </div>
@@ -105,9 +78,7 @@ scripts: ["carousel.js"]
   <section class="section section--muted" id="archive">
     <div class="container">
       <div class="section__header">
-        <span class="eyebrow">Archive</span>
-        <hr class="rule" />
-        <h2>Past missions.</h2>
+        <h2>Past projects</h2>
         <p class="lede">
           Earlier project teams, and the International Aerial Robotics
           Competition missions we flew against top universities from around
@@ -126,21 +97,9 @@ scripts: ["carousel.js"]
         >
           {%- for project in projects.past %}
           <article class="card">
-            <span class="card__icon">
-              <span
-                class="icon icon--{{ project.icon }} icon--lg"
-                aria-hidden="true"
-              ></span>
-            </span>
             <p class="card__index">{{ project.when }}</p>
             <h3 class="card__title">{{ project.name }}</h3>
             <p class="card__body">{{ project.description }}</p>
-            <div class="card__spacer"></div>
-            <ul class="tags">
-              {%- for tag in project.tags %}
-              <li class="tag">{{ tag }}</li>
-              {%- endfor %}
-            </ul>
           </article>
           {%- endfor %}
         </div>

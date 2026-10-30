@@ -43,7 +43,11 @@ module.exports = {
        - "" (empty string) falls back to opening the visitor's email app
          with the message pre-filled.
      ------------------------------------------------------------------ */
-  contactEndpoint: "https://submit-form.com/VxqZQNAmW",
+  // DRAFT COPY: live endpoints removed on purpose so a test submit can never
+  // reach TAR's real inbox or Discord. Restore the real values only in the
+  // reviewed PR, not here.
+  contactEndpoint: "",
+  demoMode: true,
 
   /* ------------------------------------------------------------------
      A second place the same message is sent, alongside Formspark.
@@ -59,7 +63,7 @@ module.exports = {
      If it fails, the visitor is not told: their message is already safe
      in Formspark.
      ------------------------------------------------------------------ */
-  notifyEndpoint: "/.netlify/functions/contact",
+  notifyEndpoint: "",
 
   /* Where the "email us instead" links point, and the fallback destination
      if contactEndpoint is empty or the request fails.

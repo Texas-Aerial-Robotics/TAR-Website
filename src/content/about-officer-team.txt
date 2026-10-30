@@ -14,6 +14,11 @@
 # A line with an @ in it is treated as an email address and shown as a
 # mailto: link, so you can add one under any officer who wants it listed.
 #
+# A line like "Photo: /assets/officers/ify.jpg" shows that portrait above the
+# name. Without one, the card shows "Portrait coming soon". Put the image in
+# assets/officers/ (portrait, about 900 x 1200 px) and only use photos the
+# person has agreed can be public.
+#
 # Lines starting with # are notes like this one and are ignored.
 # ==========================================================================
 
