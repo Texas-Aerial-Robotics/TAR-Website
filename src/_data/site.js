@@ -70,6 +70,23 @@ module.exports = {
      CHECK THIS: it is a placeholder until someone confirms the real inbox. */
   contactEmail: "texasaerialrobotics@gmail.com",
 
+  /* ------------------------------------------------------------------
+     Member login (Supabase).
+
+     PLACEHOLDERS: replace both values with the ones from your Supabase
+     project (Project Settings -> API). The anon key is designed to be
+     public, so it is safe in this file; the database rules in
+     supabase/schema.sql are what keep recordings members-only.
+     Never put the service_role key here.
+
+     While these still say YOUR-..., the login page shows a setup notice
+     instead of trying to sign anyone in.
+     ------------------------------------------------------------------ */
+  supabase: {
+    url: "https://YOUR-PROJECT-REF.supabase.co",
+    anonKey: "YOUR-SUPABASE-ANON-KEY",
+  },
+
   /* Social and external links. Referenced from src/_data/nav.js and from
      the pages themselves. */
   links: {

@@ -2153,3 +2153,31 @@ p:last-child {
 .ts__price { font-size: 1.6rem; margin: 0 0 8px; }
 .ts--rows .ts__row { grid-template-columns: 160px 120px 1fr auto; }
 @media (max-width: 760px) { .ts--rows .ts__row { grid-template-columns: 1fr; gap: 12px; } }
+
+/* Member login and workshop recordings */
+.auth-card {
+  max-width: 460px;
+  padding: 28px;
+  background: var(--light-raised);
+  border: 1px solid var(--light-line);
+  border-radius: var(--radius);
+}
+
+.auth-card .form__status {
+  margin: 0;
+}
+
+.recordings {
+  margin-top: 24px;
+}
+
+.recording {
+  gap: 10px;
+}
+
+.recording__video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+  border-radius: var(--radius-sm);
+}

@@ -1,0 +1,60 @@
+---
+title: "Member login | Texas Aerial Robotics"
+description: "Sign in to Texas Aerial Robotics to watch workshop recordings."
+navKey: "members"
+scripts: ["auth.js"]
+noindex: true
+---
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-hero__title">Member login</h1>
+      <p class="lede">
+        Sign in to watch workshop recordings. Accounts are for current
+        TAR members; <a href="/contact.html">get in touch</a> if you need one.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="auth-card reveal">
+        <!-- assets/js/auth.js handles this form. Supabase keys live in
+             src/_data/site.js (the `supabase` block). -->
+        <form class="form" id="login-form" novalidate>
+          <div class="field">
+            <label for="login-email">Email</label>
+            <input
+              type="email"
+              id="login-email"
+              name="email"
+              autocomplete="email"
+              maxlength="254"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="login-password">Password</label>
+            <input
+              type="password"
+              id="login-password"
+              name="password"
+              autocomplete="current-password"
+              maxlength="128"
+              required
+            />
+          </div>
+
+          <p class="form__status" id="login-status" role="status" aria-live="polite"></p>
+
+          <div class="btn-row">
+            <button class="btn btn--primary" type="submit">Sign in</button>
+            <button class="btn btn--ghost" type="button" id="login-magic">
+              Email me a sign-in link
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>

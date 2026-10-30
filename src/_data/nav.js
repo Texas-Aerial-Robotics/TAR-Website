@@ -25,6 +25,7 @@ module.exports = {
     { key: "ravg", label: "RAVG", url: "/ravg.html" },
     { key: "partners", label: "Partners", url: "/partners.html" },
     { key: "contact", label: "Contact", url: "/contact.html" },
+    { key: "members", label: "Members", url: "/members.html" },
     { key: "donate", label: "Donate", url: "/donate.html", cta: true },
   ],
 

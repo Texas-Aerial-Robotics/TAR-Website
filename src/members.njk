@@ -1,0 +1,39 @@
+---
+title: "Workshop recordings | Texas Aerial Robotics"
+description: "Members-only workshop recordings from Texas Aerial Robotics."
+navKey: "members"
+scripts: ["auth.js"]
+noindex: true
+---
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="page-hero__title">Workshop recordings</h1>
+      <p class="lede">
+        Past workshops on flight software, vision, hardware and more.
+        Members only.
+      </p>
+      <div class="btn-row">
+        <button class="btn btn--ghost" type="button" id="sign-out" hidden>Sign out</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <p class="form__status" id="members-status" role="status" aria-live="polite"></p>
+
+      <!-- Shown by auth.js when nobody is signed in. -->
+      <div class="auth-card" id="members-locked" hidden>
+        <h2>Please sign in</h2>
+        <p>These recordings are for TAR members.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/login.html">Member login</a>
+        </div>
+      </div>
+
+      <!-- auth.js fills this with one card per row of the
+           workshop_recordings table (see supabase/schema.sql). -->
+      <div class="cards recordings" id="recordings" hidden></div>
+    </div>
+  </section>
